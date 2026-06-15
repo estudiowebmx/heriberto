@@ -1,0 +1,969 @@
+seccion,municipio,demarcacion
+0001,Acaponeta,3
+0002,Acaponeta,3
+0003,Acaponeta,1
+0004,Acaponeta,3
+0005,Acaponeta,1
+0006,Acaponeta,1
+0007,Acaponeta,6
+0008,Acaponeta,6
+0009,Acaponeta,3
+0010,Acaponeta,6
+0011,Acaponeta,6
+0012,Acaponeta,6
+0013,Acaponeta,6
+0014,Acaponeta,6
+0015,Acaponeta,2
+0016,Acaponeta,2
+0017,Acaponeta,2
+0018,Acaponeta,2
+0019,Acaponeta,5
+0020,Acaponeta,5
+0021,Acaponeta,4
+0022,Acaponeta,4
+0023,Acaponeta,5
+0024,Acaponeta,5
+0025,Acaponeta,5
+0026,Acaponeta,5
+0027,Acaponeta,5
+0028,Acaponeta,5
+0029,Acaponeta,5
+0030,Acaponeta,5
+0031,Acaponeta,5
+0032,Acaponeta,7
+0033,Acaponeta,2
+0034,Acaponeta,4
+0035,Acaponeta,4
+0036,Acaponeta,4
+0037,Acaponeta,4
+0038,Acaponeta,4
+0039,Acaponeta,4
+0040,Acaponeta,7
+0041,Acaponeta,7
+0043,Acaponeta,7
+0044,Acaponeta,5
+0045,Acaponeta,7
+0046,Acaponeta,7
+0047,Acaponeta,7
+0048,Acaponeta,7
+0049,Ahuacatlán,4
+0050,Ahuacatlán,1
+0051,Ahuacatlán,4
+0052,Ahuacatlán,4
+0053,Ahuacatlán,2
+0054,Ahuacatlán,1
+0055,Ahuacatlán,5
+0056,Ahuacatlán,5
+0057,Ahuacatlán,5
+0058,Ahuacatlán,5
+0059,Ahuacatlán,3
+0060,Ahuacatlán,2
+0061,Ahuacatlán,2
+0062,Ahuacatlán,1
+0063,Ahuacatlán,1
+0064,Ahuacatlán,3
+0065,Ahuacatlán,3
+0066,Amatlán de Cañas,5
+0067,Amatlán de Cañas,5
+0068,Amatlán de Cañas,5
+0069,Amatlán de Cañas,2
+0070,Amatlán de Cañas,2
+0071,Amatlán de Cañas,3
+0072,Amatlán de Cañas,3
+0074,Amatlán de Cañas,4
+0075,Amatlán de Cañas,3
+0076,Amatlán de Cañas,3
+0077,Amatlán de Cañas,4
+0078,Amatlán de Cañas,4
+0079,Amatlán de Cañas,3
+0080,Amatlán de Cañas,1
+0081,Amatlán de Cañas,4
+0082,Amatlán de Cañas,1
+0083,Amatlán de Cañas,1
+0084,Amatlán de Cañas,2
+0086,Amatlán de Cañas,2
+0087,Amatlán de Cañas,2
+0088,Amatlán de Cañas,2
+0089,Amatlán de Cañas,2
+0091,Bahía de Banderas,6
+0092,Bahía de Banderas,6
+0093,Bahía de Banderas,2
+0094,Bahía de Banderas,2
+0095,Bahía de Banderas,2
+0096,Bahía de Banderas,6
+0097,Bahía de Banderas,2
+0098,Bahía de Banderas,6
+0099,Bahía de Banderas,2
+0100,Bahía de Banderas,2
+0101,Bahía de Banderas,2
+0102,Bahía de Banderas,2
+0103,Bahía de Banderas,2
+0104,Bahía de Banderas,2
+0105,Bahía de Banderas,7
+0106,Bahía de Banderas,7
+0107,Bahía de Banderas,7
+0108,Bahía de Banderas,7
+0109,Bahía de Banderas,6
+0110,Bahía de Banderas,6
+0111,Bahía de Banderas,7
+0112,Bahía de Banderas,8
+0113,Bahía de Banderas,8
+0114,Bahía de Banderas,6
+0115,Bahía de Banderas,3
+0116,Bahía de Banderas,9
+0117,Bahía de Banderas,9
+0118,Bahía de Banderas,5
+0119,Bahía de Banderas,5
+0120,Bahía de Banderas,3
+0121,Bahía de Banderas,1
+0122,Bahía de Banderas,1
+0123,Bahía de Banderas,1
+0124,Compostela,1
+0125,Compostela,1
+0126,Compostela,1
+0127,Compostela,1
+0128,Compostela,1
+0129,Compostela,1
+0130,Compostela,1
+0131,Compostela,1
+0132,Compostela,2
+0133,Compostela,2
+0134,Compostela,2
+0135,Compostela,2
+0136,Compostela,2
+0137,Compostela,2
+0138,Compostela,3
+0139,Compostela,4
+0140,Compostela,3
+0141,Compostela,3
+0142,Compostela,3
+0143,Compostela,3
+0144,Compostela,4
+0145,Compostela,4
+0146,Compostela,4
+0147,Compostela,4
+0148,Compostela,4
+0149,Compostela,4
+0150,Compostela,4
+0151,Compostela,4
+0152,Compostela,4
+0153,Compostela,5
+0154,Compostela,5
+0155,Compostela,3
+0156,Compostela,3
+0157,Compostela,5
+0158,Compostela,6
+0159,Compostela,5
+0160,Compostela,5
+0161,Compostela,5
+0162,Compostela,5
+0163,Compostela,5
+0164,Compostela,5
+0165,Compostela,6
+0166,Compostela,6
+0167,Compostela,6
+0168,Compostela,6
+0169,Compostela,6
+0170,Compostela,7
+0171,Compostela,3
+0172,Compostela,7
+0173,Compostela,7
+0174,Compostela,7
+0175,Compostela,3
+0176,Compostela,3
+0177,Compostela,3
+0178,Compostela,9
+0179,Compostela,7
+0180,Compostela,7
+0181,Compostela,9
+0182,Compostela,9
+0183,Compostela,7
+0184,Compostela,9
+0185,Compostela,7
+0186,Compostela,7
+0187,Compostela,7
+0188,Compostela,8
+0189,Compostela,8
+0190,Compostela,8
+0191,Compostela,9
+0192,Compostela,9
+0193,Compostela,9
+0194,Compostela,9
+0195,Compostela,9
+0196,Huajicori,1
+0197,Huajicori,2
+0198,Huajicori,3
+0199,Huajicori,3
+0200,Huajicori,3
+0201,Huajicori,3
+0202,Huajicori,4
+0203,Huajicori,4
+0204,Huajicori,3
+0205,Huajicori,3
+0206,Huajicori,1
+0207,Huajicori,5
+0208,Huajicori,5
+0209,Huajicori,5
+0210,Huajicori,5
+0211,Huajicori,5
+0212,Huajicori,5
+0213,Huajicori,2
+0214,Huajicori,2
+0215,Ixtlán del Río,1
+0216,Ixtlán del Río,5
+0217,Ixtlán del Río,3
+0218,Ixtlán del Río,7
+0219,Ixtlán del Río,7
+0220,Ixtlán del Río,4
+0221,Ixtlán del Río,4
+0222,Ixtlán del Río,5
+0223,Ixtlán del Río,2
+0224,Ixtlán del Río,1
+0225,Ixtlán del Río,3
+0226,Ixtlán del Río,2
+0227,Ixtlán del Río,2
+0228,Ixtlán del Río,4
+0229,Ixtlán del Río,4
+0230,Ixtlán del Río,6
+0231,Ixtlán del Río,2
+0232,Ixtlán del Río,6
+0233,Ixtlán del Río,6
+0234,Ixtlán del Río,6
+0235,Ixtlán del Río,3
+0236,Ixtlán del Río,3
+0237,Ixtlán del Río,6
+0238,Ixtlán del Río,6
+0239,Jala,1
+0240,Jala,1
+0241,Jala,2
+0242,Jala,2
+0243,Jala,1
+0244,Jala,1
+0245,Jala,2
+0246,Jala,2
+0247,Jala,2
+0248,Jala,4
+0249,Jala,5
+0250,Jala,4
+0251,Jala,4
+0252,Jala,5
+0253,Jala,3
+0254,Jala,3
+0255,Jala,5
+0256,Jala,3
+0257,Del Nayar,1
+0258,Del Nayar,3
+0260,Del Nayar,1
+0261,Del Nayar,3
+0262,Del Nayar,6
+0263,Del Nayar,3
+0264,Del Nayar,1
+0265,Del Nayar,1
+0266,Del Nayar,5
+0267,Del Nayar,4
+0268,Del Nayar,7
+0269,Del Nayar,4
+0270,Del Nayar,5
+0271,Del Nayar,7
+0272,Del Nayar,2
+0273,Del Nayar,2
+0274,Del Nayar,7
+0275,Del Nayar,2
+0276,Del Nayar,2
+0277,Rosamorada,1
+0278,Rosamorada,1
+0279,Rosamorada,1
+0280,Rosamorada,1
+0281,Rosamorada,1
+0282,Rosamorada,1
+0283,Rosamorada,2
+0284,Rosamorada,2
+0285,Rosamorada,7
+0286,Rosamorada,2
+0287,Rosamorada,2
+0288,Rosamorada,2
+0289,Rosamorada,2
+0290,Rosamorada,7
+0291,Rosamorada,7
+0292,Rosamorada,7
+0293,Rosamorada,7
+0294,Rosamorada,7
+0295,Rosamorada,7
+0296,Rosamorada,6
+0297,Rosamorada,3
+0298,Rosamorada,3
+0299,Rosamorada,3
+0300,Rosamorada,3
+0301,Rosamorada,3
+0302,Rosamorada,4
+0303,Rosamorada,4
+0304,Rosamorada,4
+0305,Rosamorada,4
+0306,Rosamorada,4
+0307,Rosamorada,4
+0308,Rosamorada,4
+0309,Rosamorada,3
+0310,Rosamorada,5
+0311,Rosamorada,5
+0312,Rosamorada,5
+0313,Rosamorada,5
+0314,Rosamorada,6
+0315,Rosamorada,6
+0316,Rosamorada,6
+0317,Rosamorada,6
+0318,Rosamorada,6
+0319,Rosamorada,6
+0320,Ruíz,6
+0321,Ruíz,6
+0322,Ruíz,4
+0323,Ruíz,4
+0324,Ruíz,3
+0325,Ruíz,3
+0326,Ruíz,3
+0327,Ruíz,7
+0328,Ruíz,7
+0329,Ruíz,3
+0330,Ruíz,3
+0331,Ruíz,1
+0332,Ruíz,2
+0333,Ruíz,2
+0334,Ruíz,2
+0335,Ruíz,2
+0336,Ruíz,2
+0337,Ruíz,5
+0338,Ruíz,5
+0339,Ruíz,5
+0340,Ruíz,5
+0341,Ruíz,5
+0342,Ruíz,1
+0343,Ruíz,1
+0344,Ruíz,1
+0345,Ruíz,5
+0346,Ruíz,2
+0347,San Blas,7
+0348,San Blas,4
+0349,San Blas,4
+0350,San Blas,7
+0351,San Blas,7
+0352,San Blas,4
+0353,San Blas,3
+0354,San Blas,3
+0355,San Blas,5
+0356,San Blas,3
+0357,San Blas,3
+0358,San Blas,5
+0359,San Blas,5
+0360,San Blas,5
+0361,San Blas,5
+0362,San Blas,5
+0364,San Blas,3
+0365,San Blas,3
+0366,San Blas,3
+0367,San Blas,6
+0368,San Blas,5
+0369,San Blas,5
+0370,San Blas,5
+0372,San Blas,7
+0373,San Blas,7
+0374,San Blas,3
+0375,San Blas,6
+0376,San Blas,3
+0377,San Blas,7
+0378,San Blas,6
+0380,San Blas,6
+0381,San Blas,7
+0382,San Blas,6
+0383,San Blas,6
+0384,San Blas,7
+0385,San Blas,1
+0386,San Blas,1
+0387,San Blas,6
+0388,San Blas,2
+0389,San Blas,2
+0390,San Blas,2
+0391,San Blas,2
+0392,San Blas,2
+0393,San Blas,1
+0394,San Blas,2
+0395,San Blas,2
+0396,San Blas,2
+0398,San Pedro Lagunillas,1
+0399,San Pedro Lagunillas,1
+0400,San Pedro Lagunillas,3
+0401,San Pedro Lagunillas,2
+0402,San Pedro Lagunillas,3
+0403,San Pedro Lagunillas,2
+0404,San Pedro Lagunillas,3
+0405,San Pedro Lagunillas,5
+0406,San Pedro Lagunillas,4
+0407,San Pedro Lagunillas,5
+0408,San Pedro Lagunillas,5
+0409,San Pedro Lagunillas,5
+0410,San Pedro Lagunillas,4
+0411,Santa María del Oro,2
+0412,Santa María del Oro,1
+0413,Santa María del Oro,5
+0414,Santa María del Oro,5
+0415,Santa María del Oro,5
+0416,Santa María del Oro,6
+0417,Santa María del Oro,5
+0418,Santa María del Oro,5
+0419,Santa María del Oro,1
+0420,Santa María del Oro,7
+0421,Santa María del Oro,7
+0422,Santa María del Oro,6
+0423,Santa María del Oro,2
+0424,Santa María del Oro,3
+0425,Santa María del Oro,6
+0426,Santa María del Oro,7
+0427,Santa María del Oro,3
+0428,Santa María del Oro,3
+0429,Santa María del Oro,3
+0430,Santa María del Oro,4
+0431,Santa María del Oro,4
+0432,Santa María del Oro,4
+0433,Santa María del Oro,4
+0435,Santiago Ixcuintla,5
+0436,Santiago Ixcuintla,5
+0437,Santiago Ixcuintla,5
+0438,Santiago Ixcuintla,9
+0439,Santiago Ixcuintla,5
+0440,Santiago Ixcuintla,5
+0441,Santiago Ixcuintla,5
+0442,Santiago Ixcuintla,7
+0443,Santiago Ixcuintla,7
+0444,Santiago Ixcuintla,5
+0445,Santiago Ixcuintla,5
+0446,Santiago Ixcuintla,5
+0447,Santiago Ixcuintla,5
+0448,Santiago Ixcuintla,5
+0449,Santiago Ixcuintla,9
+0450,Santiago Ixcuintla,9
+0451,Santiago Ixcuintla,9
+0452,Santiago Ixcuintla,9
+0453,Santiago Ixcuintla,9
+0454,Santiago Ixcuintla,9
+0455,Santiago Ixcuintla,9
+0456,Santiago Ixcuintla,7
+0457,Santiago Ixcuintla,2
+0458,Santiago Ixcuintla,2
+0459,Santiago Ixcuintla,2
+0460,Santiago Ixcuintla,2
+0461,Santiago Ixcuintla,2
+0462,Santiago Ixcuintla,2
+0463,Santiago Ixcuintla,2
+0464,Santiago Ixcuintla,2
+0465,Santiago Ixcuintla,2
+0466,Santiago Ixcuintla,2
+0467,Santiago Ixcuintla,2
+0468,Santiago Ixcuintla,2
+0469,Santiago Ixcuintla,1
+0470,Santiago Ixcuintla,7
+0471,Santiago Ixcuintla,7
+0472,Santiago Ixcuintla,7
+0473,Santiago Ixcuintla,7
+0474,Santiago Ixcuintla,7
+0475,Santiago Ixcuintla,7
+0476,Santiago Ixcuintla,9
+0477,Santiago Ixcuintla,4
+0478,Santiago Ixcuintla,4
+0480,Santiago Ixcuintla,4
+0481,Santiago Ixcuintla,4
+0482,Santiago Ixcuintla,4
+0483,Santiago Ixcuintla,4
+0484,Santiago Ixcuintla,4
+0485,Santiago Ixcuintla,9
+0486,Santiago Ixcuintla,9
+0487,Santiago Ixcuintla,9
+0488,Santiago Ixcuintla,7
+0489,Santiago Ixcuintla,7
+0490,Santiago Ixcuintla,7
+0491,Santiago Ixcuintla,1
+0492,Santiago Ixcuintla,1
+0493,Santiago Ixcuintla,1
+0494,Santiago Ixcuintla,1
+0495,Santiago Ixcuintla,1
+0496,Santiago Ixcuintla,8
+0497,Santiago Ixcuintla,8
+0498,Santiago Ixcuintla,8
+0499,Santiago Ixcuintla,8
+0500,Santiago Ixcuintla,1
+0501,Santiago Ixcuintla,1
+0502,Santiago Ixcuintla,1
+0503,Santiago Ixcuintla,1
+0504,Santiago Ixcuintla,1
+0505,Santiago Ixcuintla,6
+0506,Santiago Ixcuintla,6
+0507,Santiago Ixcuintla,6
+0508,Santiago Ixcuintla,6
+0509,Santiago Ixcuintla,6
+0510,Santiago Ixcuintla,9
+0511,Santiago Ixcuintla,9
+0512,Santiago Ixcuintla,4
+0513,Santiago Ixcuintla,4
+0514,Santiago Ixcuintla,4
+0515,Santiago Ixcuintla,4
+0516,Santiago Ixcuintla,4
+0517,Santiago Ixcuintla,4
+0518,Santiago Ixcuintla,4
+0519,Santiago Ixcuintla,6
+0520,Santiago Ixcuintla,3
+0521,Santiago Ixcuintla,6
+0522,Santiago Ixcuintla,6
+0523,Santiago Ixcuintla,3
+0524,Santiago Ixcuintla,6
+0525,Santiago Ixcuintla,3
+0526,Santiago Ixcuintla,3
+0527,Santiago Ixcuintla,3
+0528,Santiago Ixcuintla,3
+0529,Santiago Ixcuintla,3
+0530,Santiago Ixcuintla,3
+0531,Santiago Ixcuintla,3
+0532,Santiago Ixcuintla,1
+0533,Santiago Ixcuintla,3
+0534,Santiago Ixcuintla,1
+0535,Santiago Ixcuintla,8
+0536,Santiago Ixcuintla,8
+0537,Santiago Ixcuintla,8
+0538,Santiago Ixcuintla,8
+0539,Santiago Ixcuintla,8
+0540,Santiago Ixcuintla,8
+0541,Santiago Ixcuintla,8
+0542,Santiago Ixcuintla,8
+0543,Santiago Ixcuintla,3
+0544,Santiago Ixcuintla,3
+0545,Santiago Ixcuintla,6
+0546,Santiago Ixcuintla,6
+0547,Tecuala,1
+0548,Tecuala,7
+0549,Tecuala,7
+0550,Tecuala,5
+0551,Tecuala,5
+0552,Tecuala,7
+0553,Tecuala,1
+0554,Tecuala,7
+0555,Tecuala,7
+0556,Tecuala,7
+0557,Tecuala,7
+0558,Tecuala,7
+0559,Tecuala,5
+0560,Tecuala,5
+0561,Tecuala,4
+0562,Tecuala,1
+0563,Tecuala,4
+0564,Tecuala,4
+0565,Tecuala,2
+0566,Tecuala,2
+0567,Tecuala,2
+0568,Tecuala,2
+0569,Tecuala,1
+0570,Tecuala,5
+0571,Tecuala,4
+0572,Tecuala,4
+0573,Tecuala,6
+0574,Tecuala,6
+0575,Tecuala,6
+0576,Tecuala,4
+0577,Tecuala,3
+0578,Tecuala,3
+0579,Tecuala,1
+0580,Tecuala,1
+0581,Tecuala,2
+0582,Tecuala,2
+0583,Tecuala,1
+0584,Tecuala,2
+0585,Tecuala,3
+0586,Tecuala,3
+0587,Tecuala,6
+0588,Tecuala,6
+0589,Tecuala,6
+0590,Tecuala,6
+0591,Tecuala,3
+0592,Tecuala,3
+0593,Tecuala,3
+0594,Tecuala,2
+0595,Tecuala,3
+0596,Tecuala,6
+0597,Tepic,2
+0598,Tepic,2
+0599,Tepic,2
+0600,Tepic,2
+0601,Tepic,2
+0602,Tepic,4
+0603,Tepic,4
+0604,Tepic,4
+0605,Tepic,4
+0606,Tepic,4
+0607,Tepic,4
+0610,Tepic,11
+0612,Tepic,1
+0613,Tepic,1
+0614,Tepic,8
+0615,Tepic,8
+0616,Tepic,8
+0617,Tepic,8
+0618,Tepic,8
+0619,Tepic,4
+0620,Tepic,8
+0621,Tepic,4
+0622,Tepic,4
+0623,Tepic,4
+0624,Tepic,4
+0625,Tepic,4
+0626,Tepic,4
+0627,Tepic,4
+0628,Tepic,2
+0629,Tepic,2
+0630,Tepic,2
+0631,Tepic,2
+0632,Tepic,2
+0635,Tepic,2
+0636,Tepic,2
+0637,Tepic,2
+0638,Tepic,2
+0639,Tepic,4
+0640,Tepic,4
+0641,Tepic,4
+0642,Tepic,4
+0643,Tepic,8
+0644,Tepic,8
+0645,Tepic,1
+0646,Tepic,1
+0647,Tepic,1
+0648,Tepic,1
+0649,Tepic,8
+0650,Tepic,8
+0651,Tepic,8
+0652,Tepic,4
+0653,Tepic,1
+0654,Tepic,4
+0655,Tepic,4
+0656,Tepic,4
+0657,Tepic,4
+0658,Tepic,4
+0659,Tepic,2
+0660,Tepic,2
+0661,Tepic,9
+0662,Tepic,5
+0663,Tepic,9
+0664,Tepic,9
+0665,Tepic,9
+0666,Tepic,9
+0667,Tepic,4
+0668,Tepic,4
+0669,Tepic,1
+0670,Tepic,1
+0671,Tepic,1
+0672,Tepic,1
+0673,Tepic,1
+0674,Tepic,1
+0675,Tepic,1
+0676,Tepic,1
+0677,Tepic,1
+0678,Tepic,10
+0679,Tepic,10
+0680,Tepic,10
+0681,Tepic,1
+0682,Tepic,1
+0683,Tepic,1
+0684,Tepic,1
+0685,Tepic,1
+0686,Tepic,1
+0687,Tepic,1
+0688,Tepic,1
+0689,Tepic,1
+0690,Tepic,1
+0691,Tepic,1
+0692,Tepic,1
+0693,Tepic,10
+0694,Tepic,10
+0695,Tepic,10
+0696,Tepic,10
+0697,Tepic,1
+0698,Tepic,1
+0699,Tepic,1
+0700,Tepic,9
+0701,Tepic,9
+0702,Tepic,9
+0703,Tepic,9
+0704,Tepic,10
+0705,Tepic,10
+0706,Tepic,10
+0707,Tepic,10
+0708,Tepic,10
+0709,Tepic,10
+0710,Tepic,10
+0712,Tepic,10
+0713,Tepic,10
+0714,Tepic,10
+0715,Tepic,10
+0716,Tepic,9
+0717,Tepic,9
+0718,Tepic,9
+0719,Tepic,9
+0720,Tepic,9
+0721,Tepic,9
+0722,Tepic,9
+0723,Tepic,9
+0724,Tepic,9
+0725,Tepic,10
+0726,Tepic,10
+0727,Tepic,10
+0728,Tepic,10
+0729,Tepic,11
+0730,Tepic,9
+0731,Tepic,9
+0732,Tepic,9
+0733,Tepic,9
+0734,Tepic,11
+0735,Tepic,11
+0736,Tepic,6
+0738,Tepic,6
+0739,Tepic,11
+0740,Tepic,11
+0741,Tepic,11
+0742,Tepic,9
+0743,Tepic,9
+0744,Tepic,11
+0745,Tepic,11
+0746,Tepic,11
+0747,Tepic,6
+0748,Tepic,6
+0749,Tepic,7
+0750,Tepic,1
+0751,Tepic,11
+0752,Tepic,11
+0753,Tepic,11
+0754,Tepic,5
+0755,Tepic,11
+0756,Tepic,11
+0757,Tepic,7
+0759,Tepic,7
+0761,Tepic,7
+0762,Tepic,7
+0763,Tepic,11
+0764,Tepic,11
+0765,Tepic,11
+0766,Tepic,11
+0767,Tepic,7
+0768,Tepic,5
+0769,Tepic,5
+0770,Tepic,5
+0771,Tepic,5
+0772,Tepic,5
+0773,Tepic,5
+0774,Tepic,5
+0775,Tepic,5
+0776,Tepic,5
+0777,Tepic,5
+0778,Tepic,5
+0779,Tepic,3
+0780,Tepic,3
+0781,Tepic,3
+0782,Tepic,3
+0783,Tepic,3
+0784,Tepic,3
+0785,Tepic,3
+0786,Tepic,3
+0787,Tepic,5
+0788,Tepic,5
+0789,Tepic,5
+0790,Tepic,5
+0791,Tepic,5
+0792,Tepic,5
+0793,Tepic,5
+0794,Tepic,5
+0795,Tepic,5
+0796,Tepic,3
+0797,Tepic,3
+0798,Tepic,8
+0799,Tepic,3
+0800,Tepic,5
+0801,Tepic,5
+0802,Tepic,5
+0803,Tepic,5
+0804,Tepic,3
+0805,Tepic,3
+0806,Tepic,5
+0807,Tepic,3
+0808,Tepic,3
+0809,Tepic,11
+0810,Tuxpan,1
+0811,Tuxpan,1
+0812,Tuxpan,1
+0813,Tuxpan,2
+0814,Tuxpan,2
+0815,Tuxpan,2
+0816,Tuxpan,1
+0817,Tuxpan,3
+0818,Tuxpan,3
+0819,Tuxpan,3
+0820,Tuxpan,4
+0821,Tuxpan,4
+0822,Tuxpan,5
+0823,Tuxpan,5
+0824,Tuxpan,5
+0825,Tuxpan,5
+0826,Tuxpan,4
+0827,Tuxpan,4
+0828,Tuxpan,3
+0829,Tuxpan,3
+0830,Tuxpan,2
+0831,Tuxpan,2
+0832,Tuxpan,3
+0833,Tuxpan,3
+0834,Tuxpan,3
+0835,Tuxpan,4
+0836,Tuxpan,6
+0837,Tuxpan,6
+0838,Tuxpan,6
+0839,Tuxpan,7
+0840,Tuxpan,7
+0841,Tuxpan,7
+0842,Tuxpan,7
+0843,Tuxpan,7
+0844,Xalisco,1
+0845,Xalisco,2
+0846,Xalisco,2
+0847,Xalisco,3
+0848,Xalisco,4
+0849,Xalisco,4
+0850,Xalisco,5
+0851,Xalisco,5
+0852,Xalisco,4
+0853,Xalisco,6
+0854,Xalisco,4
+0855,Xalisco,4
+0856,Xalisco,6
+0857,Xalisco,5
+0858,Xalisco,7
+0859,Xalisco,7
+0860,Xalisco,7
+0861,Xalisco,7
+0862,Xalisco,6
+0863,Xalisco,6
+0864,Xalisco,6
+0865,Xalisco,7
+0866,La Yesca,1
+0867,La Yesca,5
+0868,La Yesca,3
+0869,La Yesca,2
+0870,La Yesca,4
+0872,La Yesca,1
+0873,La Yesca,1
+0874,La Yesca,3
+0875,La Yesca,4
+0876,La Yesca,4
+0878,La Yesca,1
+0879,Tepic,8
+0880,Tepic,8
+0881,Tepic,8
+0882,Tepic,8
+0883,Tepic,8
+0884,Tepic,8
+0885,Tepic,8
+0886,Tepic,8
+0887,Tepic,8
+0888,Tepic,8
+0889,Tepic,8
+0890,Tepic,8
+0891,Tepic,8
+0892,Tepic,8
+0893,Tepic,8
+0894,Tepic,8
+0895,Tepic,8
+0896,Tepic,8
+0897,Tepic,8
+0898,Tepic,8
+0899,Tepic,8
+0900,Tepic,1
+0901,Tepic,1
+0902,Tepic,1
+0903,Tepic,1
+0904,Tepic,1
+0905,Tepic,1
+0906,Tepic,1
+0907,Tepic,1
+0908,Tepic,1
+0909,Tepic,1
+0910,Tepic,1
+0911,Tepic,2
+0912,Tepic,2
+0913,Tepic,2
+0914,Tepic,2
+0915,Tepic,5
+0916,Tepic,2
+0917,Tepic,5
+0918,Tepic,5
+0919,Tepic,5
+0920,Tepic,5
+0921,Tepic,5
+0922,Tepic,5
+0923,Tepic,6
+0924,Tepic,6
+0925,Tepic,6
+0926,Tepic,6
+0927,Tepic,6
+0928,Tepic,6
+0929,Tepic,6
+0930,Tepic,6
+0931,Tepic,6
+0932,Tepic,6
+0933,Tepic,6
+0934,Tepic,6
+0935,Tepic,6
+0936,Tepic,6
+0937,Tepic,6
+0938,Tepic,6
+0939,Tepic,6
+0940,Tepic,6
+0941,Tepic,6
+0942,Tepic,6
+0943,Tepic,6
+0944,Tepic,6
+0945,Tepic,3
+0946,Tepic,3
+0947,Tepic,7
+0948,Tepic,7
+0949,Tepic,3
+0950,Tepic,7
+0951,Tepic,3
+0952,Tepic,7
+0953,Tepic,7
+0954,Tepic,3
+0955,Tepic,7
+0956,Tepic,3
+0957,Tepic,7
+0958,Tepic,7
+0959,Tepic,7
+0960,Tepic,7
+0961,Tepic,3
+0962,Tepic,7
+0963,Tepic,7
+0964,Tepic,7
+0965,Tepic,7
+0966,Tepic,7
+0967,Tepic,7
+0968,Tepic,7
+0969,Tepic,7
+0970,Tepic,7
+0971,Tepic,7
+0972,Bahía de Banderas,8
+0973,Bahía de Banderas,8
+0974,Bahía de Banderas,8
+0975,Bahía de Banderas,8
+0976,Bahía de Banderas,4
+0977,Bahía de Banderas,4
+0978,Bahía de Banderas,4
+0979,Bahía de Banderas,4
+0980,Bahía de Banderas,1
+0981,Bahía de Banderas,1
+0982,Xalisco,5
+0983,Xalisco,5
+0984,Xalisco,5
+0985,Tepic,7
+0986,Tepic,7
+0987,Del Nayar,3
+0988,Del Nayar,6
+0989,Del Nayar,6
+0990,Del Nayar,6
