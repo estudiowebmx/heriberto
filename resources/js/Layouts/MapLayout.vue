@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from "vue";
-import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
 import NavLink from "@/Components/NavLink.vue";
+import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 import { Link } from "@inertiajs/vue3";
 
 const showingNavigationDropdown = ref(false);
@@ -20,8 +20,10 @@ const showingNavigationDropdown = ref(false);
                         <!-- Logo -->
                         <div class="flex shrink-0 items-center">
                             <Link :href="route('dashboard')">
-                                <ApplicationLogo
-                                    class="block h-9 w-auto fill-current text-gray-800"
+                                <img
+                                    src="/img/perfil.jpg"
+                                    alt="Jasmin Bugarin"
+                                    class="h-9 w-9 rounded-xl object-cover shadow-sm"
                                 />
                             </Link>
                         </div>
@@ -34,7 +36,7 @@ const showingNavigationDropdown = ref(false);
                                 :href="route('dashboard')"
                                 :active="route().current('dashboard')"
                             >
-                                Dashboard
+                                Avances
                             </NavLink>
                             <NavLink
                                 :href="route('admin.info.index')"
@@ -173,7 +175,7 @@ const showingNavigationDropdown = ref(false);
                         :href="route('dashboard')"
                         :active="route().current('dashboard')"
                     >
-                        Dashboard
+                        Avances
                     </ResponsiveNavLink>
                     <ResponsiveNavLink
                         :href="route('admin.info.index')"
