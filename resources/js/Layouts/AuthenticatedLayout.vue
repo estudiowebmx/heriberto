@@ -20,7 +20,11 @@ const showingNavigationDropdown = ref(false);
                             <!-- Logo -->
                             <div class="flex shrink-0 items-center">
                                 <Link :href="route('dashboard')">
-                                    <img src="/img/perfil.jpg" alt="Jasmin Bugarin" class="h-9 w-9 rounded-xl object-cover shadow-sm" />
+                                    <img
+                                        src="/img/perfil.jpg"
+                                        alt="Jasmin Bugarin"
+                                        class="h-9 w-9 rounded-xl object-cover shadow-sm"
+                                    />
                                 </Link>
                             </div>
 
@@ -29,22 +33,29 @@ const showingNavigationDropdown = ref(false);
                                 class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
                             >
                                 <NavLink
+                                    v-if="$page.props.auth.user?.role === 'admin'"
                                     :href="route('dashboard')"
                                     :active="route().current('dashboard')"
                                 >
-                                    Avances
+                                    <i class="fa-solid fa-chart-line mr-1.5"></i> Avances
                                 </NavLink>
                                 <NavLink
+                                    v-if="
+                                        $page.props.auth.user?.role === 'admin'
+                                    "
                                     :href="route('admin.info.index')"
                                     :active="route().current('admin.info.*')"
                                 >
-                                    Información
+                                    <i class="fa-solid fa-circle-info mr-1.5"></i> Información
                                 </NavLink>
                                 <NavLink
+                                    v-if="
+                                        $page.props.auth.user?.role === 'admin'
+                                    "
                                     :href="route('admin.agenda.index')"
                                     :active="route().current('admin.agenda.*')"
                                 >
-                                    Agenda
+                                    <i class="fa-solid fa-calendar-days mr-1.5"></i> Agenda
                                 </NavLink>
                                 <NavLink
                                     :href="route('admin.personas.index')"
@@ -52,21 +63,44 @@ const showingNavigationDropdown = ref(false);
                                         route().current('admin.personas.*')
                                     "
                                 >
-                                    Personas
+                                    <i class="fa-solid fa-address-book mr-1.5"></i> Personas
                                 </NavLink>
                                 <NavLink
+                                    v-if="
+                                        $page.props.auth.user?.role === 'admin'
+                                    "
                                     :href="route('admin.encuestas.index')"
                                     :active="
                                         route().current('admin.encuestas.*')
                                     "
                                 >
-                                    Conóceme
+                                    <i class="fa-solid fa-clipboard-question mr-1.5"></i> Conóceme
                                 </NavLink>
                                 <NavLink
+                                    :href="route('admin.denuncias.index')"
+                                    :active="
+                                        route().current('admin.denuncias.*')
+                                    "
+                                >
+                                    <i class="fa-solid fa-gavel mr-1.5"></i> Denuncias
+                                </NavLink>
+                                <NavLink
+                                    v-if="
+                                        $page.props.auth.user?.role === 'admin'
+                                    "
+                                    :href="route('admin.users.index')"
+                                    :active="route().current('admin.users.*')"
+                                >
+                                    <i class="fa-solid fa-user-gear mr-1.5"></i> Usuarios
+                                </NavLink>
+                                <NavLink
+                                    v-if="
+                                        $page.props.auth.user?.role === 'admin'
+                                    "
                                     :href="route('mapa.index')"
                                     :active="route().current('mapa.*')"
                                 >
-                                    Mapa
+                                    <i class="fa-solid fa-map mr-1.5"></i> Mapa
                                 </NavLink>
                             </div>
                         </div>
@@ -170,34 +204,48 @@ const showingNavigationDropdown = ref(false);
                 >
                     <div class="space-y-1 pb-3 pt-2">
                         <ResponsiveNavLink
+                            v-if="$page.props.auth.user?.role === 'admin'"
                             :href="route('dashboard')"
                             :active="route().current('dashboard')"
                         >
-                            Avances
+                            <i class="fa-solid fa-chart-line mr-1.5"></i> Avances
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
                             :href="route('admin.info.index')"
                             :active="route().current('admin.info.*')"
                         >
-                            Información
+                            <i class="fa-solid fa-circle-info mr-1.5"></i> Información
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
                             :href="route('admin.agenda.index')"
                             :active="route().current('admin.agenda.*')"
                         >
-                            Agenda
+                            <i class="fa-solid fa-calendar-days mr-1.5"></i> Agenda
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
                             :href="route('admin.personas.index')"
                             :active="route().current('admin.personas.*')"
                         >
-                            Personas
+                            <i class="fa-solid fa-address-book mr-1.5"></i> Personas
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
                             :href="route('admin.encuestas.index')"
                             :active="route().current('admin.encuestas.*')"
                         >
-                            Conóceme
+                            <i class="fa-solid fa-clipboard-question mr-1.5"></i> Conóceme
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            :href="route('admin.denuncias.index')"
+                            :active="route().current('admin.denuncias.*')"
+                        >
+                            <i class="fa-solid fa-gavel mr-1.5"></i> Denuncias
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            v-if="$page.props.auth.user?.role === 'admin'"
+                            :href="route('admin.users.index')"
+                            :active="route().current('admin.users.*')"
+                        >
+                            <i class="fa-solid fa-user-gear mr-1.5"></i> Usuarios
                         </ResponsiveNavLink>
                     </div>
 

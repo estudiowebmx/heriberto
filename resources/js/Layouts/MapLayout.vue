@@ -33,34 +33,48 @@ const showingNavigationDropdown = ref(false);
                             class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
                         >
                             <NavLink
+                                v-if="$page.props.auth.user?.role === 'admin'"
                                 :href="route('dashboard')"
                                 :active="route().current('dashboard')"
                             >
-                                Avances
+                                <i class="fa-solid fa-chart-line mr-1.5"></i> Avances
                             </NavLink>
                             <NavLink
                                 :href="route('admin.info.index')"
                                 :active="route().current('admin.info.*')"
                             >
-                                Información
+                                <i class="fa-solid fa-circle-info mr-1.5"></i> Información
                             </NavLink>
                             <NavLink
                                 :href="route('admin.agenda.index')"
                                 :active="route().current('admin.agenda.*')"
                             >
-                                Agenda
+                                <i class="fa-solid fa-calendar-days mr-1.5"></i> Agenda
                             </NavLink>
                             <NavLink
                                 :href="route('admin.personas.index')"
                                 :active="route().current('admin.personas.*')"
                             >
-                                Personas
+                                <i class="fa-solid fa-address-book mr-1.5"></i> Personas
                             </NavLink>
                             <NavLink
                                 :href="route('admin.encuestas.index')"
                                 :active="route().current('admin.encuestas.*')"
                             >
-                                Conóceme
+                                <i class="fa-solid fa-clipboard-question mr-1.5"></i> Conóceme
+                            </NavLink>
+                            <NavLink
+                                :href="route('admin.denuncias.index')"
+                                :active="route().current('admin.denuncias.*')"
+                            >
+                                <i class="fa-solid fa-gavel mr-1.5"></i> Denuncias
+                            </NavLink>
+                            <NavLink
+                                v-if="$page.props.auth.user?.role === 'admin'"
+                                :href="route('admin.users.index')"
+                                :active="route().current('admin.users.*')"
+                            >
+                                <i class="fa-solid fa-user-gear mr-1.5"></i> Usuarios
                             </NavLink>
                             <a
                                 :href="route('mapa.index')"
@@ -70,7 +84,7 @@ const showingNavigationDropdown = ref(false);
                                         ? 'border-purple-500 text-gray-900'
                                         : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                                 "
-                                >Mapa</a
+                                ><i class="fa-solid fa-map mr-1.5"></i>Mapa</a
                             >
                         </div>
                     </div>
@@ -172,35 +186,49 @@ const showingNavigationDropdown = ref(false);
             >
                 <div class="space-y-1 pb-3 pt-2">
                     <ResponsiveNavLink
+                        v-if="$page.props.auth.user?.role === 'admin'"
                         :href="route('dashboard')"
                         :active="route().current('dashboard')"
                     >
-                        Avances
+                        <i class="fa-solid fa-chart-line mr-1.5"></i> Avances
                     </ResponsiveNavLink>
                     <ResponsiveNavLink
                         :href="route('admin.info.index')"
                         :active="route().current('admin.info.*')"
                     >
-                        Información
+                        <i class="fa-solid fa-circle-info mr-1.5"></i> Información
                     </ResponsiveNavLink>
                     <ResponsiveNavLink
                         :href="route('admin.agenda.index')"
                         :active="route().current('admin.agenda.*')"
                     >
-                        Agenda
+                        <i class="fa-solid fa-calendar-days mr-1.5"></i> Agenda
                     </ResponsiveNavLink>
                     <ResponsiveNavLink
                         :href="route('admin.personas.index')"
                         :active="route().current('admin.personas.*')"
                     >
-                        Personas
+                        <i class="fa-solid fa-address-book mr-1.5"></i> Personas
                     </ResponsiveNavLink>
 
                     <ResponsiveNavLink
                         :href="route('admin.encuestas.index')"
                         :active="route().current('admin.encuestas.*')"
                     >
-                        Conóceme
+                        <i class="fa-solid fa-clipboard-question mr-1.5"></i> Conóceme
+                    </ResponsiveNavLink>
+                    <ResponsiveNavLink
+                        :href="route('admin.denuncias.index')"
+                        :active="route().current('admin.denuncias.*')"
+                    >
+                        <i class="fa-solid fa-gavel mr-1.5"></i> Denuncias
+                    </ResponsiveNavLink>
+                    <ResponsiveNavLink
+                        v-if="$page.props.auth.user?.role === 'admin'"
+                        :href="route('admin.users.index')"
+                        :active="route().current('admin.users.*')"
+                    >
+                        <i class="fa-solid fa-user-gear mr-1.5"></i> Usuarios
                     </ResponsiveNavLink>
                 </div>
 

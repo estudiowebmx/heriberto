@@ -9,6 +9,7 @@ class Persona extends Model
     protected $table = 'personas';
 
     protected $fillable = [
+        'user_id',
         'nombre',
         'apellido_paterno',
         'apellido_materno',
@@ -19,4 +20,9 @@ class Persona extends Model
         'distrito_federal',
         'demarcacion',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

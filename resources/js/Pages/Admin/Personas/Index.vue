@@ -125,8 +125,8 @@ const activeFilters = () => Object.values(filtros).some(v => v !== '');
                                 <td class="px-2 py-2.5 text-sm text-gray-600 whitespace-nowrap text-center">{{ p.demarcacion }}</td>
                                 <td class="px-2 py-2.5 text-sm text-gray-500 whitespace-nowrap">{{ new Date(p.created_at).toLocaleDateString('es-MX') }}</td>
                                 <td class="px-2 py-2.5 text-right text-sm whitespace-nowrap">
-                                    <Link :href="route('admin.personas.edit', p.id)" class="text-verde-600 hover:text-verde-700 mr-2">Editar</Link>
-                                    <button @click="deletePersona(p.id)" class="text-red-600 hover:text-red-900">Eliminar</button>
+                                    <Link :href="route('admin.personas.edit', p.id)" class="inline-flex items-center gap-1 text-verde-600 hover:text-verde-700 mr-2"><i class="fa-solid fa-pen-to-square"></i> Editar</Link>
+                                    <button @click="deletePersona(p.id)" class="inline-flex items-center gap-1 text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i> Eliminar</button>
                                 </td>
                             </tr>
                         </tbody>

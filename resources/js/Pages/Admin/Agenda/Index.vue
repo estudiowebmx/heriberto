@@ -22,9 +22,9 @@ const deleteEvent = (id) => {
                 <h2 class="text-xl font-semibold leading-tight text-gray-800">
                     Agenda
                 </h2>
-                <Link :href="route('admin.agenda.create')" class="px-4 py-2 bg-verde-600 text-white rounded-lg hover:bg-verde-700 text-sm">
-                    + Nuevo Evento
-                </Link>
+                    <Link :href="route('admin.agenda.create')" class="inline-flex items-center gap-2 px-4 py-2 bg-verde-600 text-white rounded-lg hover:bg-verde-700 text-sm">
+                        <i class="fa-solid fa-plus"></i> Nuevo Evento
+                    </Link>
             </div>
         </template>
 
@@ -54,9 +54,9 @@ const deleteEvent = (id) => {
                                         'bg-gray-100 text-gray-800': !['foro','visita','entrevista'].includes(event.type),
                                     }">{{ event.type }}</span>
                                 </td>
-                                <td class="px-6 py-4 text-right text-sm">
-                                    <Link :href="route('admin.agenda.edit', event.id)" class="text-verde-600 hover:text-verde-700 mr-3">Editar</Link>
-                                    <button @click="deleteEvent(event.id)" class="text-red-600 hover:text-red-900">Eliminar</button>
+                                <td class="px-6 py-4 text-right text-sm whitespace-nowrap">
+                                    <Link :href="route('admin.agenda.edit', event.id)" class="inline-flex items-center gap-1 text-verde-600 hover:text-verde-700 mr-3"><i class="fa-solid fa-pen-to-square"></i> Editar</Link>
+                                    <button @click="deleteEvent(event.id)" class="inline-flex items-center gap-1 text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i> Eliminar</button>
                                 </td>
                             </tr>
                         </tbody>

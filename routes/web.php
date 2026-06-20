@@ -6,6 +6,9 @@ use App\Http\Controllers\Admin\CandidateInfoController;
 use App\Http\Controllers\Admin\AgendaController;
 use App\Http\Controllers\Admin\PersonaController;
 use App\Http\Controllers\Admin\EncuestaController as AdminEncuestaController;
+use App\Http\Controllers\Admin\ComplainantController;
+use App\Http\Controllers\Admin\ComplaintController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\EncuestaController;
 use App\Http\Controllers\MapController;
 use Illuminate\Support\Facades\Route;
@@ -24,20 +27,45 @@ Route::get('/api/dashboard', [MapController::class, 'dashboard'])->name('api.das
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified', 'role:admin'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/mapa', [MapController::class, 'index'])->name('mapa.index');
+    
 
     Route::prefix('admin')->name('admin.')->group(function () {
-        Route::resource('info', CandidateInfoController::class)->except(['show']);
-        Route::resource('agenda', AgendaController::class)->except(['show']);
+        
         Route::resource('personas', PersonaController::class)->except(['show']);
-        Route::get('encuestas', [AdminEncuestaController::class, 'index'])->name('encuestas.index');
+      
+
+        Route::middleware('role:admin')->group(function () {
+            Route::resource('info', CandidateInfoController::class)->except(['show']);
+            Route::resource('agenda', AgendaController::class)->except(['show']);
+            Route::get('encuestas', [AdminEncuestaController::class, 'index'])->name('encuestas.index');
+            Route::resource('users', UserController::class)->except(['show']);
+
+            Route::get('/mapa', [MapController::class, 'index'])->name('mapa.index');
+        });
+
+
+        Route::prefix('denuncias')->name('denuncias.')->group(function () {
+            Route::middleware('role:admin')->group(function () {
+                Route::resource('complainants', ComplainantController::class)->except(['show']);
+            });
+
+            Route::get('/', [ComplaintController::class, 'index'])->name('index');
+            Route::get('/create', [ComplaintController::class, 'create'])->name('create');
+            Route::post('/', [ComplaintController::class, 'store'])->name('store');
+            Route::get('/{complaint}', [ComplaintController::class, 'show'])->name('show');
+            Route::get('/{complaint}/edit', [ComplaintController::class, 'edit'])->name('edit');
+            Route::put('/{complaint}', [ComplaintController::class, 'update'])->name('update');
+            Route::delete('/{complaint}', [ComplaintController::class, 'destroy'])->name('destroy');
+            Route::get('/{complaint}/word', [ComplaintController::class, 'generateWord'])->name('word');
+            Route::get('/{complaint}/pdf', [ComplaintController::class, 'generatePdf'])->name('pdf');
+        });
     });
 });
 

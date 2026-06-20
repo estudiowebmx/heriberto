@@ -13,6 +13,10 @@ class PersonaController extends Controller
     {
         $query = Persona::query()->orderBy('created_at', 'desc');
 
+        if (auth()->user()->isColaborador()) {
+            $query->where('user_id', auth()->id());
+        }
+
         $likeFields = ['nombre', 'municipio'];
         $exactFields = ['telefono', 'seccion', 'distrito_local', 'distrito_federal', 'demarcacion'];
 
@@ -55,6 +59,7 @@ class PersonaController extends Controller
             'demarcacion' => 'nullable|string|max:50',
         ]);
 
+        $validated['user_id'] = auth()->id();
         Persona::create($validated);
 
         return redirect()->route('admin.personas.index')->with('success', 'Persona registrada.');
