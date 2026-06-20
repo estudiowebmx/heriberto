@@ -1,5 +1,6 @@
 <script setup>
 import { ref, reactive, nextTick, watch } from "vue";
+import { Link } from "@inertiajs/vue3";
 import axios from "axios";
 
 const messages = ref([]);
@@ -182,9 +183,27 @@ const renderMarkdown = (content) => {
                         </div>
                         <h2 class="text-xl font-semibold text-gray-900 mb-2">¡Hola! Soy Jasmin Bugarin</h2>
                         <p class="text-gray-600 text-sm">Estoy aqui para platicar contigo, conocer tus inquietudes y compartirte mi vision para nuestro estado. ¿En que puedo ayudarte?</p>
-                        <div class="flex gap-3 justify-center mt-4">
-                            <button @click="showForm = true" class="px-5 py-2.5 bg-verde-600 text-white rounded-full hover:bg-verde-700 transition-colors font-medium text-sm">Unirme al Proyecto</button>
-                            <a href="/conoceme" class="px-5 py-2.5 bg-verde-600 text-white rounded-full hover:bg-verde-700 transition-colors font-medium text-sm">Conóceme</a>
+                        <div class="flex flex-col gap-2 mt-4">
+                            <button @click="showForm = true" class="flex items-center justify-between px-4 py-3 bg-verde-600 text-white rounded-lg hover:bg-verde-700 transition-colors font-medium text-sm w-full">
+                                <span><i class="fa-solid fa-user-plus mr-3"></i>Unirme al Proyecto</span>
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                            <a href="/conoceme" class="flex items-center justify-between px-4 py-3 bg-verde-600 text-white rounded-lg hover:bg-verde-700 transition-colors font-medium text-sm w-full">
+                                <span><i class="fa-solid fa-clipboard-question mr-3"></i>Conóceme</span>
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </a>
+                            <Link v-if="$page.props.auth.user?.role === 'admin'" :href="route('dashboard')" class="flex items-center justify-between px-4 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition-colors font-medium text-sm w-full">
+                                <span><i class="fa-solid fa-right-to-bracket mr-3"></i>Entrar a la plataforma</span>
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </Link>
+                            <Link v-else-if="$page.props.auth.user" :href="route('admin.personas.index')" class="flex items-center justify-between px-4 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition-colors font-medium text-sm w-full">
+                                <span><i class="fa-solid fa-right-to-bracket mr-3"></i>Entrar a la plataforma</span>
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </Link>
+                            <Link v-else :href="route('login')" class="flex items-center justify-between px-4 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition-colors font-medium text-sm w-full">
+                                <span><i class="fa-solid fa-right-to-bracket mr-3"></i>Entrar a la plataforma</span>
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </Link>
                         </div>
                     </div>
                 </div>
