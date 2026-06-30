@@ -8,7 +8,7 @@ defineProps({
 
 const deleteComplainant = (id) => {
     if (confirm('¿Eliminar este denunciante?')) {
-        router.delete(route('admin.lonas-old.complainants.destroy', id));
+        router.delete(route('admin.denunciantes.destroy', id));
     }
 };
 </script>
@@ -21,10 +21,8 @@ const deleteComplainant = (id) => {
             <div class="flex items-center justify-between">
                 <h2 class="text-xl font-semibold leading-tight text-gray-800">Catálogo de Denunciantes</h2>
                 <div class="flex gap-3">
-                    <Link :href="route('admin.lonas-old.index')" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 text-sm">
-                        &larr; Denuncias
-                    </Link>
-                    <Link :href="route('admin.lonas-old.complainants.create')" class="px-4 py-2 bg-verde-600 text-white rounded-lg hover:bg-verde-700 text-sm">
+                    
+                    <Link :href="route('admin.denunciantes.create')" class="px-4 py-2 bg-verde-600 text-white rounded-lg hover:bg-verde-700 text-sm">
                         + Nuevo Denunciante
                     </Link>
                 </div>
@@ -58,7 +56,7 @@ const deleteComplainant = (id) => {
                                 <td class="px-4 py-3 text-sm text-gray-600">{{ c.domicilio }}</td>
                                 <td class="px-4 py-3 text-sm text-gray-600">{{ c.email || '—' }}</td>
                                 <td class="px-4 py-3 text-right text-sm whitespace-nowrap">
-                                    <Link :href="route('admin.lonas-old.complainants.edit', c.id)" class="text-verde-600 hover:text-verde-700 mr-2">Editar</Link>
+                                    <Link :href="route('admin.denunciantes.edit', c.id)" class="text-verde-600 hover:text-verde-700 mr-2">Editar</Link>
                                     <button @click="deleteComplainant(c.id)" class="text-red-600 hover:text-red-900">Eliminar</button>
                                 </td>
                             </tr>

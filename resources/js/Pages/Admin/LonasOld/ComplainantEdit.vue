@@ -14,9 +14,9 @@ const form = useForm({
 
 const submit = () => {
     if (props.complainant) {
-        form.put(route('admin.lonas-old.complainants.update', props.complainant.id));
+        form.put(route('admin.denunciantes.update', props.complainant.id));
     } else {
-        form.post(route('admin.lonas-old.complainants.store'));
+        form.post(route('admin.denunciantes.store'));
     }
 };
 </script>
@@ -73,7 +73,7 @@ const submit = () => {
                                 <button type="submit" :disabled="form.processing" class="px-4 py-2 bg-verde-600 text-white rounded-lg hover:bg-verde-700 disabled:opacity-50 text-sm">
                                     {{ complainant ? 'Actualizar' : 'Registrar' }}
                                 </button>
-                                <Link :href="route('admin.lonas-old.complainants.index')" class="text-sm text-gray-600 hover:text-gray-900">Cancelar</Link>
+                                <Link :href="route('admin.denunciantes.index')" class="text-sm text-gray-600 hover:text-gray-900">Cancelar</Link>
                             </div>
                         </form>
                     </div>

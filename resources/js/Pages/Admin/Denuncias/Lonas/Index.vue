@@ -1,6 +1,19 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, router } from '@inertiajs/vue3';
+import { ref } from 'vue';
+
+const props = defineProps({
+    lonas: Object,
+});
+
+const deleting = ref(null);
+
+function confirmDelete(id, name) {
+    if (confirm(`¿Eliminar la denuncia de "${name}"?`)) {
+        router.delete(route('admin.denuncias.lonas.destroy', id));
+    }
+}
 </script>
 
 <template>
@@ -8,23 +21,133 @@ import { Head, Link } from '@inertiajs/vue3';
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                Lonas
-            </h2>
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-semibold leading-tight text-gray-800">
+                    Denuncias de Lonas
+                </h2>
+                <Link
+                    :href="route('admin.denuncias.lonas.create')"
+                    class="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 text-sm font-medium transition"
+                >
+                    <i class="fa-solid fa-plus"></i> Nueva Denuncia
+                </Link>
+            </div>
         </template>
 
-        <div class="py-12">
+        <div class="py-6">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-center text-gray-500">
-                        <i class="fa-solid fa-image text-6xl text-amber-400 mb-4 block"></i>
-                        <p class="text-lg">Módulo en construcción</p>
-                        <Link
-                            :href="route('admin.denuncias.index')"
-                            class="mt-4 inline-flex items-center gap-1 text-sm text-amber-600 hover:text-amber-800"
-                        >
-                            <i class="fa-solid fa-arrow-left"></i> Volver a Denuncias
-                        </Link>
+                    <div class="p-4 sm:p-6">
+                        <table class="min-w-full divide-y divide-gray-200 text-sm">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-3 py-3 text-center font-semibold text-gray-700 w-10"></th>
+                                    <th class="px-3 py-3 text-left font-semibold text-gray-700">Denunciante</th>
+                                    <th class="px-3 py-3 text-left font-semibold text-gray-700 hidden md:table-cell">Clave Elector</th>
+                                    <th class="px-3 py-3 text-left font-semibold text-gray-700">Lonas</th>
+                                    <th class="px-3 py-3 text-left font-semibold text-gray-700 hidden lg:table-cell">Registrado por</th>
+                                    <th class="px-3 py-3 text-left font-semibold text-gray-700 hidden sm:table-cell">Fecha</th>
+                                    <th class="px-3 py-3 text-right font-semibold text-gray-700">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100">
+                                <tr v-for="lona in lonas.data" :key="lona.id" class="hover:bg-gray-50">
+                                    <td class="px-3 py-3 whitespace-nowrap text-center">
+                                        <i
+                                            v-if="lona.verificada"
+                                            class="fa-solid fa-circle-check text-green-500 text-lg"
+                                            title="Verificada"
+                                        ></i>
+                                        <i
+                                            v-else
+                                            class="fa-solid fa-circle-xmark text-red-400 text-lg"
+                                            title="No verificada"
+                                        ></i>
+                                    </td>
+                                    <td class="px-3 py-3 whitespace-nowrap font-medium text-gray-900">
+                                        {{ lona.denunciante_nombre }}
+                                    </td>
+                                    <td class="px-3 py-3 whitespace-nowrap text-gray-500 hidden md:table-cell font-mono text-xs">
+                                        {{ lona.denunciante_clave_elector }}
+                                    </td>
+                                    <td class="px-3 py-3 whitespace-nowrap text-gray-600">
+                                        <span class="inline-flex items-center gap-1 bg-amber-100 text-amber-800 text-xs font-medium px-2 py-0.5 rounded-full">
+                                            {{ lona.evidences?.length ?? 0 }}
+                                        </span>
+                                    </td>
+                                    <td class="px-3 py-3 whitespace-nowrap text-gray-500 hidden lg:table-cell">
+                                        {{ lona.registered_by }}
+                                    </td>
+                                    <td class="px-3 py-3 whitespace-nowrap text-gray-500 hidden sm:table-cell">
+                                        {{ lona.dia_numero }} de {{ lona.mes }}
+                                    </td>
+                                    <td class="px-3 py-3 whitespace-nowrap text-right">
+                                        <div class="flex items-center justify-end gap-2">
+                                            <Link
+                                                :href="route('admin.denuncias.lonas.show', lona.id)"
+                                                class="text-blue-600 hover:text-blue-800 text-xs"
+                                                title="Ver"
+                                            >
+                                                <i class="fa-solid fa-eye"></i>
+                                            </Link>
+                                            <Link
+                                                v-if="!lona.verificada"
+                                                :href="route('admin.denuncias.lonas.verify', lona.id)"
+                                                class="text-amber-600 hover:text-amber-800 text-xs"
+                                                title="Verificar"
+                                            >
+                                                <i class="fa-solid fa-clipboard-check"></i>
+                                            </Link>
+                                            <Link
+                                                v-if="!lona.verificada"
+                                                :href="route('admin.denuncias.lonas.edit', lona.id)"
+                                                class="text-green-600 hover:text-green-800 text-xs"
+                                                title="Editar"
+                                            >
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </Link>
+                                            <a
+                                                v-if="lona.verificada"
+                                                :href="route('admin.denuncias.lonas.word', lona.id)"
+                                                class="text-purple-600 hover:text-purple-800 text-xs"
+                                                title="Descargar Word"
+                                            >
+                                                <i class="fa-solid fa-file-word"></i>
+                                            </a>
+                                            <button
+                                                @click="confirmDelete(lona.id, lona.denunciante_nombre)"
+                                                class="text-red-500 hover:text-red-700 text-xs"
+                                                title="Eliminar"
+                                            >
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr v-if="lonas.data.length === 0">
+                                    <td colspan="7" class="px-3 py-8 text-center text-gray-400">
+                                        No hay denuncias registradas.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div v-if="lonas.links" class="mt-4 flex justify-center">
+                            <div class="flex gap-1 text-sm">
+                                <Link
+                                    v-for="link in lonas.links"
+                                    :key="link.label"
+                                    :href="link.url || '#'"
+                                    class="px-3 py-1.5 rounded border"
+                                    :class="{
+                                        'bg-amber-600 text-white border-amber-600': link.active,
+                                        'bg-white text-gray-600 border-gray-300 hover:bg-gray-50': !link.active,
+                                        'pointer-events-none opacity-40': !link.url,
+                                    }"
+                                    v-html="link.label"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

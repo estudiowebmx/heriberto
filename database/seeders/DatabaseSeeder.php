@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             CandidateInformationSeeder::class,
             AgendaEventSeeder::class,
             SeccionesSeeder::class,
+            ColoniasSeeder::class,
         ]);
     }
 }

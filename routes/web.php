@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PersonaController;
 use App\Http\Controllers\Admin\EncuestaController as AdminEncuestaController;
 use App\Http\Controllers\Admin\ComplainantController;
 use App\Http\Controllers\Admin\ComplaintController;
+use App\Http\Controllers\Admin\LonaController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\EncuestaController;
 use App\Http\Controllers\MapController;
@@ -53,10 +54,6 @@ Route::middleware('auth')->group(function () {
 
         // BACKUP: denuncias antiguo → lonas-old (accesible solo por URL)
         Route::prefix('lonas-old')->name('lonas-old.')->group(function () {
-            Route::middleware('role:admin')->group(function () {
-                Route::resource('complainants', ComplainantController::class)->except(['show']);
-            });
-
             Route::get('/', [ComplaintController::class, 'index'])->name('index');
             Route::get('/create', [ComplaintController::class, 'create'])->name('create');
             Route::post('/', [ComplaintController::class, 'store'])->name('store');
@@ -68,6 +65,11 @@ Route::middleware('auth')->group(function () {
             Route::get('/{complaint}/pdf', [ComplaintController::class, 'generatePdf'])->name('pdf');
         });
 
+        // Catálogo de Denunciantes (menu Jurídico, admin only)
+        Route::middleware('role:admin')->group(function () {
+            Route::resource('denunciantes', ComplainantController::class)->except(['show']);
+        });
+
         // NUEVO: hub de denuncias
         Route::get('denuncias', function () {
             return Inertia::render('Admin/Denuncias/HubIndex');
@@ -75,9 +77,16 @@ Route::middleware('auth')->group(function () {
 
         // NUEVO: submódulos de denuncias
         Route::prefix('denuncias')->name('denuncias.')->group(function () {
-            Route::get('lonas', function () {
-                return Inertia::render('Admin/Denuncias/Lonas/Index');
-            })->name('lonas.index');
+            Route::get('lonas', [LonaController::class, 'index'])->name('lonas.index');
+            Route::get('lonas/create', [LonaController::class, 'create'])->name('lonas.create');
+            Route::post('lonas', [LonaController::class, 'store'])->name('lonas.store');
+            Route::get('lonas/{lona}', [LonaController::class, 'show'])->name('lonas.show');
+            Route::get('lonas/{lona}/edit', [LonaController::class, 'edit'])->name('lonas.edit');
+            Route::put('lonas/{lona}', [LonaController::class, 'update'])->name('lonas.update');
+            Route::get('lonas/{lona}/verify', [LonaController::class, 'verify'])->name('lonas.verify');
+            Route::post('lonas/{lona}/verify', [LonaController::class, 'confirmVerify'])->name('lonas.verify.confirm');
+            Route::delete('lonas/{lona}', [LonaController::class, 'destroy'])->name('lonas.destroy');
+            Route::get('lonas/{lona}/word', [LonaController::class, 'generateWord'])->name('lonas.word');
             Route::get('servidores', function () {
                 return Inertia::render('Admin/Denuncias/Servidores/Index');
             })->name('servidores.index');

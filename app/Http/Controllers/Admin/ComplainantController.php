@@ -35,7 +35,7 @@ class ComplainantController extends Controller
 
         Complainant::create($validated);
 
-        return redirect()->route('admin.lonas-old.complainants.index')->with('success', 'Denunciante registrado.');
+        return redirect()->route('admin.denunciantes.index')->with('success', 'Denunciante registrado.');
     }
 
     public function edit(Complainant $complainant)
@@ -57,13 +57,13 @@ class ComplainantController extends Controller
 
         $complainant->update($validated);
 
-        return redirect()->route('admin.lonas-old.complainants.index')->with('success', 'Denunciante actualizado.');
+        return redirect()->route('admin.denunciantes.index')->with('success', 'Denunciante actualizado.');
     }
 
     public function destroy(Complainant $complainant)
     {
         $complainant->delete();
 
-        return redirect()->route('admin.lonas-old.complainants.index')->with('success', 'Denunciante eliminado.');
+        return redirect()->route('admin.denunciantes.index')->with('success', 'Denunciante eliminado.');
     }
 }

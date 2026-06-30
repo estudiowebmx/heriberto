@@ -22,7 +22,7 @@ const expandedTerritorio = ref(false);
                     <div class="flex h-16 justify-between">
                         <div class="flex">
                             <!-- Logo -->
-                            <div class="flex shrink-0 items-center">
+                            <div class="flex shrink-0 items-center gap-2">
                                 <Link :href="route('dashboard')">
                                     <img
                                         src="/img/perfil.jpg"
@@ -30,17 +30,18 @@ const expandedTerritorio = ref(false);
                                         class="h-9 w-9 rounded-xl object-cover shadow-sm"
                                     />
                                 </Link>
+                                <span class="text-sm font-bold text-gray-700 hidden sm:inline whitespace-nowrap">Estructura Jurídica</span>
                             </div>
 
                             <!-- Navigation Links -->
                             <div
-                                class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
+                                class="hidden space-x-8 sm:ms-10 sm:flex sm:items-center"
                             >
                                 <!-- General -->
-                                <Dropdown width="48" align="left">
+                                <Dropdown v-if="$page.props.auth.user?.role === 'admin'" width="48" align="left">
                                     <template #trigger>
                                         <button
-                                            class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none"
+                                            class="inline-flex items-center px-1 pt-0 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none"
                                             :class="
                                                 route().current('dashboard') ||
                                                 route().current('admin.users.*')
@@ -68,10 +69,10 @@ const expandedTerritorio = ref(false);
                                 </Dropdown>
 
                                 <!-- ChatBot -->
-                                <Dropdown width="48" align="left">
+                                <Dropdown v-if="$page.props.auth.user?.role === 'admin'" width="48" align="left">
                                     <template #trigger>
                                         <button
-                                            class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none"
+                                            class="inline-flex items-center px-1 pt-0 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none"
                                             :class="
                                                 route().current('admin.info.*') ||
                                                 route().current('admin.agenda.*')
@@ -102,10 +103,11 @@ const expandedTerritorio = ref(false);
                                 <Dropdown width="48" align="left">
                                     <template #trigger>
                                         <button
-                                            class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none"
+                                            class="inline-flex items-center px-1 pt-0 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none"
                                             :class="
                                                 route().current('admin.programa_conoceme.*') ||
-                                                route().current('admin.denuncias.*')
+                                                route().current('admin.denuncias.*') ||
+                                                route().current('admin.denunciantes.*')
                                                     ? 'border-indigo-400 text-gray-900 focus:border-indigo-700'
                                                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:text-gray-700 focus:border-gray-300'
                                             "
@@ -125,6 +127,12 @@ const expandedTerritorio = ref(false);
                                         >
                                             <i class="fa-solid fa-gavel mr-1.5"></i> Denuncias
                                         </DropdownLink>
+                                        <DropdownLink
+                                            v-if="$page.props.auth.user?.role === 'admin'"
+                                            :href="route('admin.denunciantes.index')"
+                                        >
+                                            <i class="fa-solid fa-users mr-1.5"></i> Denunciantes
+                                        </DropdownLink>
                                     </template>
                                 </Dropdown>
 
@@ -132,7 +140,7 @@ const expandedTerritorio = ref(false);
                                 <Dropdown width="48" align="left">
                                     <template #trigger>
                                         <button
-                                            class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none"
+                                            class="inline-flex items-center px-1 pt-0 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none"
                                             :class="
                                                 route().current('mapa.*') ||
                                                 route().current('admin.personas.*')
@@ -260,6 +268,7 @@ const expandedTerritorio = ref(false);
                     <div class="space-y-1 pb-3 pt-2">
                         <!-- General -->
                         <button
+                            v-if="$page.props.auth.user?.role === 'admin'"
                             @click="expandedGeneral = !expandedGeneral"
                             class="flex w-full items-center justify-between ps-3 pe-4 py-2 border-l-4 border-transparent text-start text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none"
                         >
@@ -288,6 +297,7 @@ const expandedTerritorio = ref(false);
 
                         <!-- ChatBot -->
                         <button
+                            v-if="$page.props.auth.user?.role === 'admin'"
                             @click="expandedChatBot = !expandedChatBot"
                             class="flex w-full items-center justify-between ps-3 pe-4 py-2 border-l-4 border-transparent text-start text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none"
                         >
@@ -338,6 +348,13 @@ const expandedTerritorio = ref(false);
                                 :active="route().current('admin.denuncias.*')"
                             >
                                 <i class="fa-solid fa-gavel mr-1.5"></i> Denuncias
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink
+                                v-if="$page.props.auth.user?.role === 'admin'"
+                                :href="route('admin.denunciantes.index')"
+                                :active="route().current('admin.denunciantes.*')"
+                            >
+                                <i class="fa-solid fa-users mr-1.5"></i> Denunciantes
                             </ResponsiveNavLink>
                         </div>
 

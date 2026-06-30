@@ -29,7 +29,7 @@ const downloadPdf = (id) => {
             <div class="flex items-center justify-between">
                 <h2 class="text-xl font-semibold leading-tight text-gray-800">Denuncias Electorales</h2>
                 <div class="flex gap-3">
-                    <Link v-if="$page.props.auth.user?.role === 'admin'" :href="route('admin.lonas-old.complainants.index')" class="inline-flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 text-sm">
+                    <Link v-if="$page.props.auth.user?.role === 'admin'" :href="route('admin.denunciantes.index')" class="inline-flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 text-sm">
                         <i class="fa-solid fa-users"></i>
                         Catálogo de Denunciantes
                     </Link>
