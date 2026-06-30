@@ -22,7 +22,7 @@ class EncuestaController extends Controller
             'total' => $total,
         ];
 
-        return Inertia::render('Admin/Encuestas/Index', [
+        return Inertia::render('Admin/ProgramaConoceme/Index', [
             'encuestas' => $encuestas,
             'stats' => $stats,
         ]);

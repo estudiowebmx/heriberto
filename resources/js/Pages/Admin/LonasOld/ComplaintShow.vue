@@ -7,7 +7,7 @@ defineProps({
 });
 
 const downloadWord = (id) => {
-    window.open(route("admin.denuncias.word", id), "_blank");
+    window.open(route("admin.lonas-old.word", id), "_blank");
 };
 </script>
 
@@ -22,7 +22,7 @@ const downloadWord = (id) => {
                 </h2>
                 <div class="flex gap-3">
                     <Link
-                        :href="route('admin.denuncias.edit', complaint.id)"
+                        :href="route('admin.lonas-old.edit', complaint.id)"
                         class="px-4 py-2 bg-verde-600 text-white rounded-lg hover:bg-verde-700 text-sm"
                         >Editar</Link
                     >
@@ -33,7 +33,7 @@ const downloadWord = (id) => {
                         Generar Word
                     </button>
                     <Link
-                        :href="route('admin.denuncias.index')"
+                        :href="route('admin.lonas-old.index')"
                         class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 text-sm"
                         >&larr; Volver</Link
                     >

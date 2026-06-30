@@ -8,16 +8,16 @@ const props = defineProps({
 
 const deleteComplaint = (id) => {
     if (confirm('¿Eliminar esta denuncia?')) {
-        router.delete(route('admin.denuncias.destroy', id));
+        router.delete(route('admin.lonas-old.destroy', id));
     }
 };
 
 const downloadWord = (id) => {
-    window.open(route('admin.denuncias.word', id), '_blank');
+    window.open(route('admin.lonas-old.word', id), '_blank');
 };
 
 const downloadPdf = (id) => {
-    window.open(route('admin.denuncias.pdf', id), '_blank');
+    window.open(route('admin.lonas-old.pdf', id), '_blank');
 };
 </script>
 
@@ -29,11 +29,11 @@ const downloadPdf = (id) => {
             <div class="flex items-center justify-between">
                 <h2 class="text-xl font-semibold leading-tight text-gray-800">Denuncias Electorales</h2>
                 <div class="flex gap-3">
-                    <Link v-if="$page.props.auth.user?.role === 'admin'" :href="route('admin.denuncias.complainants.index')" class="inline-flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 text-sm">
+                    <Link v-if="$page.props.auth.user?.role === 'admin'" :href="route('admin.lonas-old.complainants.index')" class="inline-flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 text-sm">
                         <i class="fa-solid fa-users"></i>
                         Catálogo de Denunciantes
                     </Link>
-                    <Link :href="route('admin.denuncias.create')" class="inline-flex items-center gap-2 px-4 py-2 bg-verde-600 text-white rounded-lg hover:bg-verde-700 text-sm">
+                    <Link :href="route('admin.lonas-old.create')" class="inline-flex items-center gap-2 px-4 py-2 bg-verde-600 text-white rounded-lg hover:bg-verde-700 text-sm">
                         <i class="fa-solid fa-plus"></i>
                         Nueva Denuncia
                     </Link>
@@ -70,10 +70,10 @@ const downloadPdf = (id) => {
                                 <td class="px-4 py-3 text-sm text-gray-600">{{ c.evidences?.length ?? 0 }}</td>
                                 <td class="px-4 py-3 text-sm text-gray-500">{{ new Date(c.created_at).toLocaleDateString('es-MX') }}</td>
                                 <td class="px-4 py-3 text-right text-sm whitespace-nowrap space-x-1">
-                                    <Link :href="route('admin.denuncias.show', c.id)" class="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800" title="Ver">
+                                    <Link :href="route('admin.lonas-old.show', c.id)" class="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800" title="Ver">
                                         <i class="fa-solid fa-eye"></i> Ver
                                     </Link>
-                                    <Link :href="route('admin.denuncias.edit', c.id)" class="inline-flex items-center gap-1 text-verde-600 hover:text-verde-700" title="Editar">
+                                    <Link :href="route('admin.lonas-old.edit', c.id)" class="inline-flex items-center gap-1 text-verde-600 hover:text-verde-700" title="Editar">
                                         <i class="fa-solid fa-pen-to-square"></i> Editar
                                     </Link>
                                     <button @click="downloadWord(c.id)" class="inline-flex items-center gap-1 text-purple-600 hover:text-purple-800" title="Descargar Word">

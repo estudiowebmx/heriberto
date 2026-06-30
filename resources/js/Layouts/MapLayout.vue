@@ -7,12 +7,16 @@ import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 import { Link } from "@inertiajs/vue3";
 
 const showingNavigationDropdown = ref(false);
+const expandedGeneral = ref(false);
+const expandedChatBot = ref(false);
+const expandedJuridico = ref(false);
+const expandedTerritorio = ref(false);
 </script>
 
 <template>
     <div class="flex flex-col h-screen overflow-hidden">
         <!-- Copia aquí el <nav>...</nav> completo de tu AuthenticatedLayout -->
-        <nav class="border-b border-gray-100 bg-white shrink-0">
+        <nav class="relative z-[1100] border-b border-gray-100 bg-white shrink-0">
             <!-- Primary Navigation Menu -->
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="flex h-16 justify-between">
@@ -32,60 +36,123 @@ const showingNavigationDropdown = ref(false);
                         <div
                             class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
                         >
-                            <NavLink
-                                v-if="$page.props.auth.user?.role === 'admin'"
-                                :href="route('dashboard')"
-                                :active="route().current('dashboard')"
-                            >
-                                <i class="fa-solid fa-chart-line mr-1.5"></i> Avances
-                            </NavLink>
-                            <NavLink
-                                :href="route('admin.info.index')"
-                                :active="route().current('admin.info.*')"
-                            >
-                                <i class="fa-solid fa-circle-info mr-1.5"></i> Información
-                            </NavLink>
-                            <NavLink
-                                :href="route('admin.agenda.index')"
-                                :active="route().current('admin.agenda.*')"
-                            >
-                                <i class="fa-solid fa-calendar-days mr-1.5"></i> Agenda
-                            </NavLink>
-                            <NavLink
-                                :href="route('admin.personas.index')"
-                                :active="route().current('admin.personas.*')"
-                            >
-                                <i class="fa-solid fa-address-book mr-1.5"></i> Personas
-                            </NavLink>
-                            <NavLink
-                                :href="route('admin.encuestas.index')"
-                                :active="route().current('admin.encuestas.*')"
-                            >
-                                <i class="fa-solid fa-clipboard-question mr-1.5"></i> Conóceme
-                            </NavLink>
-                            <NavLink
-                                :href="route('admin.denuncias.index')"
-                                :active="route().current('admin.denuncias.*')"
-                            >
-                                <i class="fa-solid fa-gavel mr-1.5"></i> Denuncias
-                            </NavLink>
-                            <NavLink
-                                v-if="$page.props.auth.user?.role === 'admin'"
-                                :href="route('admin.users.index')"
-                                :active="route().current('admin.users.*')"
-                            >
-                                <i class="fa-solid fa-user-gear mr-1.5"></i> Usuarios
-                            </NavLink>
-                            <a
-                                :href="route('mapa.index')"
-                                class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                                :class="
-                                    route().current('mapa.*')
-                                        ? 'border-purple-500 text-gray-900'
-                                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                                "
-                                ><i class="fa-solid fa-map mr-1.5"></i>Mapa</a
-                            >
+                            <!-- General -->
+                            <Dropdown width="48" align="left">
+                                <template #trigger>
+                                    <button
+                                        class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none"
+                                        :class="
+                                            route().current('dashboard') ||
+                                            route().current('admin.users.*')
+                                                ? 'border-indigo-400 text-gray-900 focus:border-indigo-700'
+                                                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:text-gray-700 focus:border-gray-300'
+                                        "
+                                    >
+                                        <i class="fa-solid fa-layer-group mr-1.5"></i> General
+                                    </button>
+                                </template>
+                                <template #content>
+                                    <DropdownLink
+                                        v-if="$page.props.auth.user?.role === 'admin'"
+                                        :href="route('dashboard')"
+                                    >
+                                        <i class="fa-solid fa-chart-line mr-1.5"></i> Avances
+                                    </DropdownLink>
+                                    <DropdownLink
+                                        v-if="$page.props.auth.user?.role === 'admin'"
+                                        :href="route('admin.users.index')"
+                                    >
+                                        <i class="fa-solid fa-user-gear mr-1.5"></i> Usuarios
+                                    </DropdownLink>
+                                </template>
+                            </Dropdown>
+
+                            <!-- ChatBot -->
+                            <Dropdown width="48" align="left">
+                                <template #trigger>
+                                    <button
+                                        class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none"
+                                        :class="
+                                            route().current('admin.info.*') ||
+                                            route().current('admin.agenda.*')
+                                                ? 'border-indigo-400 text-gray-900 focus:border-indigo-700'
+                                                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:text-gray-700 focus:border-gray-300'
+                                        "
+                                    >
+                                        <i class="fa-solid fa-robot mr-1.5"></i> ChatBot
+                                    </button>
+                                </template>
+                                <template #content>
+                                    <DropdownLink
+                                        :href="route('admin.info.index')"
+                                    >
+                                        <i class="fa-solid fa-circle-info mr-1.5"></i> Información
+                                    </DropdownLink>
+                                    <DropdownLink
+                                        :href="route('admin.agenda.index')"
+                                    >
+                                        <i class="fa-solid fa-calendar-days mr-1.5"></i> Agenda
+                                    </DropdownLink>
+                                </template>
+                            </Dropdown>
+
+                            <!-- Jurídico -->
+                            <Dropdown width="48" align="left">
+                                <template #trigger>
+                                    <button
+                                        class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none"
+                                        :class="
+                                            route().current('admin.programa_conoceme.*') ||
+                                            route().current('admin.denuncias.*')
+                                                ? 'border-indigo-400 text-gray-900 focus:border-indigo-700'
+                                                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:text-gray-700 focus:border-gray-300'
+                                        "
+                                    >
+                                        <i class="fa-solid fa-scale-balanced mr-1.5"></i> Jurídico
+                                    </button>
+                                </template>
+                                <template #content>
+                                    <DropdownLink
+                                        :href="route('admin.programa_conoceme.index')"
+                                    >
+                                        <i class="fa-solid fa-clipboard-question mr-1.5"></i> Conóceme
+                                    </DropdownLink>
+                                    <DropdownLink
+                                        :href="route('admin.denuncias.index')"
+                                    >
+                                        <i class="fa-solid fa-gavel mr-1.5"></i> Denuncias
+                                    </DropdownLink>
+                                </template>
+                            </Dropdown>
+
+                            <!-- Territorio -->
+                            <Dropdown width="48" align="left">
+                                <template #trigger>
+                                    <button
+                                        class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none"
+                                        :class="
+                                            route().current('mapa.*') ||
+                                            route().current('admin.personas.*')
+                                                ? 'border-indigo-400 text-gray-900 focus:border-indigo-700'
+                                                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:text-gray-700 focus:border-gray-300'
+                                        "
+                                    >
+                                        <i class="fa-solid fa-earth-americas mr-1.5"></i> Territorio
+                                    </button>
+                                </template>
+                                <template #content>
+                                    <DropdownLink
+                                        :href="route('mapa.index')"
+                                    >
+                                        <i class="fa-solid fa-map mr-1.5"></i> Mapa
+                                    </DropdownLink>
+                                    <DropdownLink
+                                        :href="route('admin.personas.index')"
+                                    >
+                                        <i class="fa-solid fa-address-book mr-1.5"></i> Personas
+                                    </DropdownLink>
+                                </template>
+                            </Dropdown>
                         </div>
                     </div>
 
@@ -185,51 +252,111 @@ const showingNavigationDropdown = ref(false);
                 class="sm:hidden"
             >
                 <div class="space-y-1 pb-3 pt-2">
-                    <ResponsiveNavLink
-                        v-if="$page.props.auth.user?.role === 'admin'"
-                        :href="route('dashboard')"
-                        :active="route().current('dashboard')"
+                    <!-- General -->
+                    <button
+                        @click="expandedGeneral = !expandedGeneral"
+                        class="flex w-full items-center justify-between ps-3 pe-4 py-2 border-l-4 border-transparent text-start text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none"
                     >
-                        <i class="fa-solid fa-chart-line mr-1.5"></i> Avances
-                    </ResponsiveNavLink>
-                    <ResponsiveNavLink
-                        :href="route('admin.info.index')"
-                        :active="route().current('admin.info.*')"
-                    >
-                        <i class="fa-solid fa-circle-info mr-1.5"></i> Información
-                    </ResponsiveNavLink>
-                    <ResponsiveNavLink
-                        :href="route('admin.agenda.index')"
-                        :active="route().current('admin.agenda.*')"
-                    >
-                        <i class="fa-solid fa-calendar-days mr-1.5"></i> Agenda
-                    </ResponsiveNavLink>
-                    <ResponsiveNavLink
-                        :href="route('admin.personas.index')"
-                        :active="route().current('admin.personas.*')"
-                    >
-                        <i class="fa-solid fa-address-book mr-1.5"></i> Personas
-                    </ResponsiveNavLink>
+                        <span><i class="fa-solid fa-layer-group mr-1.5"></i> General</span>
+                        <i
+                            class="fa-solid text-xs transition-transform"
+                            :class="expandedGeneral ? 'fa-chevron-down' : 'fa-chevron-right'"
+                        ></i>
+                    </button>
+                    <div v-show="expandedGeneral" class="space-y-1">
+                        <ResponsiveNavLink
+                            v-if="$page.props.auth.user?.role === 'admin'"
+                            :href="route('dashboard')"
+                            :active="route().current('dashboard')"
+                        >
+                            <i class="fa-solid fa-chart-line mr-1.5"></i> Avances
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            v-if="$page.props.auth.user?.role === 'admin'"
+                            :href="route('admin.users.index')"
+                            :active="route().current('admin.users.*')"
+                        >
+                            <i class="fa-solid fa-user-gear mr-1.5"></i> Usuarios
+                        </ResponsiveNavLink>
+                    </div>
 
-                    <ResponsiveNavLink
-                        :href="route('admin.encuestas.index')"
-                        :active="route().current('admin.encuestas.*')"
+                    <!-- ChatBot -->
+                    <button
+                        @click="expandedChatBot = !expandedChatBot"
+                        class="flex w-full items-center justify-between ps-3 pe-4 py-2 border-l-4 border-transparent text-start text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none"
                     >
-                        <i class="fa-solid fa-clipboard-question mr-1.5"></i> Conóceme
-                    </ResponsiveNavLink>
-                    <ResponsiveNavLink
-                        :href="route('admin.denuncias.index')"
-                        :active="route().current('admin.denuncias.*')"
+                        <span><i class="fa-solid fa-robot mr-1.5"></i> ChatBot</span>
+                        <i
+                            class="fa-solid text-xs transition-transform"
+                            :class="expandedChatBot ? 'fa-chevron-down' : 'fa-chevron-right'"
+                        ></i>
+                    </button>
+                    <div v-show="expandedChatBot" class="space-y-1">
+                        <ResponsiveNavLink
+                            :href="route('admin.info.index')"
+                            :active="route().current('admin.info.*')"
+                        >
+                            <i class="fa-solid fa-circle-info mr-1.5"></i> Información
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            :href="route('admin.agenda.index')"
+                            :active="route().current('admin.agenda.*')"
+                        >
+                            <i class="fa-solid fa-calendar-days mr-1.5"></i> Agenda
+                        </ResponsiveNavLink>
+                    </div>
+
+                    <!-- Jurídico -->
+                    <button
+                        @click="expandedJuridico = !expandedJuridico"
+                        class="flex w-full items-center justify-between ps-3 pe-4 py-2 border-l-4 border-transparent text-start text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none"
                     >
-                        <i class="fa-solid fa-gavel mr-1.5"></i> Denuncias
-                    </ResponsiveNavLink>
-                    <ResponsiveNavLink
-                        v-if="$page.props.auth.user?.role === 'admin'"
-                        :href="route('admin.users.index')"
-                        :active="route().current('admin.users.*')"
+                        <span><i class="fa-solid fa-scale-balanced mr-1.5"></i> Jurídico</span>
+                        <i
+                            class="fa-solid text-xs transition-transform"
+                            :class="expandedJuridico ? 'fa-chevron-down' : 'fa-chevron-right'"
+                        ></i>
+                    </button>
+                    <div v-show="expandedJuridico" class="space-y-1">
+                        <ResponsiveNavLink
+                            :href="route('admin.programa_conoceme.index')"
+                            :active="route().current('admin.programa_conoceme.*')"
+                        >
+                            <i class="fa-solid fa-clipboard-question mr-1.5"></i> Conóceme
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            :href="route('admin.denuncias.index')"
+                            :active="route().current('admin.denuncias.*')"
+                        >
+                            <i class="fa-solid fa-gavel mr-1.5"></i> Denuncias
+                        </ResponsiveNavLink>
+                    </div>
+
+                    <!-- Territorio -->
+                    <button
+                        @click="expandedTerritorio = !expandedTerritorio"
+                        class="flex w-full items-center justify-between ps-3 pe-4 py-2 border-l-4 border-transparent text-start text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none"
                     >
-                        <i class="fa-solid fa-user-gear mr-1.5"></i> Usuarios
-                    </ResponsiveNavLink>
+                        <span><i class="fa-solid fa-earth-americas mr-1.5"></i> Territorio</span>
+                        <i
+                            class="fa-solid text-xs transition-transform"
+                            :class="expandedTerritorio ? 'fa-chevron-down' : 'fa-chevron-right'"
+                        ></i>
+                    </button>
+                    <div v-show="expandedTerritorio" class="space-y-1">
+                        <ResponsiveNavLink
+                            :href="route('mapa.index')"
+                            :active="route().current('mapa.*')"
+                        >
+                            <i class="fa-solid fa-map mr-1.5"></i> Mapa
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            :href="route('admin.personas.index')"
+                            :active="route().current('admin.personas.*')"
+                        >
+                            <i class="fa-solid fa-address-book mr-1.5"></i> Personas
+                        </ResponsiveNavLink>
+                    </div>
                 </div>
 
                 <!-- Responsive Settings Options -->

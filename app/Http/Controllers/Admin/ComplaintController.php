@@ -20,14 +20,14 @@ class ComplaintController extends Controller
             $query->where('user_id', auth()->id());
         }
 
-        return Inertia::render('Admin/Denuncias/Index', [
+        return Inertia::render('Admin/LonasOld/Index', [
             'complaints' => $query->paginate(20),
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('Admin/Denuncias/ComplaintCreate', [
+        return Inertia::render('Admin/LonasOld/ComplaintCreate', [
             'complainants' => Complainant::orderBy('nombre_completo')->get(['id', 'nombre_completo']),
         ]);
     }
@@ -65,14 +65,14 @@ class ComplaintController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.denuncias.index')->with('success', 'Denuncia registrada.');
+        return redirect()->route('admin.lonas-old.index')->with('success', 'Denuncia registrada.');
     }
 
     public function show(Complaint $complaint)
     {
         $complaint->load(['complainant', 'evidences']);
 
-        return Inertia::render('Admin/Denuncias/ComplaintShow', [
+        return Inertia::render('Admin/LonasOld/ComplaintShow', [
             'complaint' => $complaint,
         ]);
     }
@@ -81,7 +81,7 @@ class ComplaintController extends Controller
     {
         $complaint->load(['complainant', 'evidences']);
 
-        return Inertia::render('Admin/Denuncias/ComplaintEdit', [
+        return Inertia::render('Admin/LonasOld/ComplaintEdit', [
             'complaint' => $complaint,
             'complainants' => Complainant::orderBy('nombre_completo')->get(['id', 'nombre_completo']),
         ]);
@@ -147,7 +147,7 @@ class ComplaintController extends Controller
             }
         }
 
-        return redirect()->route('admin.denuncias.index')->with('success', 'Denuncia actualizada.');
+        return redirect()->route('admin.lonas-old.index')->with('success', 'Denuncia actualizada.');
     }
 
     public function destroy(Complaint $complaint)
@@ -158,7 +158,7 @@ class ComplaintController extends Controller
 
         $complaint->delete();
 
-        return redirect()->route('admin.denuncias.index')->with('success', 'Denuncia eliminada.');
+        return redirect()->route('admin.lonas-old.index')->with('success', 'Denuncia eliminada.');
     }
 
     public function generateWord(Complaint $complaint)

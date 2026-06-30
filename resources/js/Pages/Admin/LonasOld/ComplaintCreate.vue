@@ -5,36 +5,33 @@ import { reactive } from 'vue';
 import imageCompression from 'browser-image-compression';
 
 const props = defineProps({
-    complaint: Object,
     complainants: Array,
 });
 
-const existingEvidences = (props.complaint?.evidences || []).map(e => ({
-    id: e.id,
-    address: e.address,
-    leyenda: e.leyenda,
-    is_inhabited: e.is_inhabited,
-    is_cac_president: e.is_cac_president,
-    photo: null,
-    photo_path: e.photo_path,
-}));
-
 const form = useForm({
-    complainant_id: props.complaint?.complainant_id ?? '',
-    colonia: props.complaint?.colonia ?? '',
-    cac_president_name: props.complaint?.cac_president_name ?? '',
-    evidences: reactive(existingEvidences),
+    complainant_id: '',
+    colonia: '',
+    cac_president_name: '',
+    evidences: [],
 });
+
+const defaultEvidence = () => ({
+    address: '',
+    leyenda: '',
+    is_inhabited: false,
+    is_cac_president: true,
+    photo: null,
+});
+
+form.evidences = reactive([defaultEvidence()]);
 
 const addEvidence = () => {
     form.evidences.push(reactive({
-        id: null,
         address: '',
         leyenda: '',
         is_inhabited: false,
         is_cac_president: false,
         photo: null,
-        photo_path: null,
     }));
 };
 
@@ -67,16 +64,16 @@ const onPhotoChange = async (index, event) => {
 };
 
 const submit = () => {
-    form.put(route('admin.denuncias.update', props.complaint.id));
+    form.post(route('admin.lonas-old.store'));
 };
 </script>
 
 <template>
-    <Head title="Editar Denuncia" />
+    <Head title="Nueva Denuncia" />
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">Editar Denuncia</h2>
+            <h2 class="text-xl font-semibold leading-tight text-gray-800">Nueva Denuncia</h2>
         </template>
 
         <div class="py-12">
@@ -145,12 +142,10 @@ const submit = () => {
                                             </label>
                                         </div>
                                         <div>
-                                            <label class="block text-xs font-medium text-gray-600 mb-1">Fotografía</label>
-                                            <div class="flex items-center gap-2">
-                                                <input type="file" accept="image/*" @change="onPhotoChange(idx, $event)" class="block w-full text-sm text-gray-600 file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-xs file:font-medium file:bg-verde-50 file:text-verde-700 hover:file:bg-verde-100" />
-                                                <span v-if="compressing[idx]" class="text-xs text-verde-600">Comprimiendo...</span>
-                                                <span v-if="ev.photo_path && !ev.photo" class="text-xs text-gray-400 whitespace-nowrap">Actual</span>
-                                            </div>
+                                            <label class="block text-xs font-medium text-gray-600 mb-1">Fotografía *</label>
+                                            <input type="file" accept="image/*" @change="onPhotoChange(idx, $event)" class="block w-full text-sm text-gray-600 file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-xs file:font-medium file:bg-verde-50 file:text-verde-700 hover:file:bg-verde-100" />
+                                            <span v-if="compressing[idx]" class="text-xs text-verde-600">Comprimiendo...</span>
+                                            <p v-if="form.errors[`evidences.${idx}.photo`]" class="text-xs text-red-600 mt-1">{{ form.errors[`evidences.${idx}.photo`] }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -158,9 +153,9 @@ const submit = () => {
 
                             <div class="flex items-center gap-4 pt-4 border-t">
                                 <button type="submit" :disabled="form.processing" class="px-4 py-2 bg-verde-600 text-white rounded-lg hover:bg-verde-700 disabled:opacity-50 text-sm">
-                                    Actualizar Denuncia
+                                    Registrar Denuncia
                                 </button>
-                                <Link :href="route('admin.denuncias.index')" class="text-sm text-gray-600 hover:text-gray-900">Cancelar</Link>
+                                <Link :href="route('admin.lonas-old.index')" class="text-sm text-gray-600 hover:text-gray-900">Cancelar</Link>
                             </div>
                         </form>
                     </div>

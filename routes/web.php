@@ -44,14 +44,15 @@ Route::middleware('auth')->group(function () {
         Route::middleware('role:admin')->group(function () {
             Route::resource('info', CandidateInfoController::class)->except(['show']);
             Route::resource('agenda', AgendaController::class)->except(['show']);
-            Route::get('encuestas', [AdminEncuestaController::class, 'index'])->name('encuestas.index');
+            Route::get('programa-conoceme', [AdminEncuestaController::class, 'index'])->name('programa_conoceme.index');
             Route::resource('users', UserController::class)->except(['show']);
 
             Route::get('/mapa', [MapController::class, 'index'])->name('mapa.index');
         });
 
 
-        Route::prefix('denuncias')->name('denuncias.')->group(function () {
+        // BACKUP: denuncias antiguo → lonas-old (accesible solo por URL)
+        Route::prefix('lonas-old')->name('lonas-old.')->group(function () {
             Route::middleware('role:admin')->group(function () {
                 Route::resource('complainants', ComplainantController::class)->except(['show']);
             });
@@ -65,6 +66,27 @@ Route::middleware('auth')->group(function () {
             Route::delete('/{complaint}', [ComplaintController::class, 'destroy'])->name('destroy');
             Route::get('/{complaint}/word', [ComplaintController::class, 'generateWord'])->name('word');
             Route::get('/{complaint}/pdf', [ComplaintController::class, 'generatePdf'])->name('pdf');
+        });
+
+        // NUEVO: hub de denuncias
+        Route::get('denuncias', function () {
+            return Inertia::render('Admin/Denuncias/HubIndex');
+        })->name('denuncias.index');
+
+        // NUEVO: submódulos de denuncias
+        Route::prefix('denuncias')->name('denuncias.')->group(function () {
+            Route::get('lonas', function () {
+                return Inertia::render('Admin/Denuncias/Lonas/Index');
+            })->name('lonas.index');
+            Route::get('servidores', function () {
+                return Inertia::render('Admin/Denuncias/Servidores/Index');
+            })->name('servidores.index');
+            Route::get('encuestas', function () {
+                return Inertia::render('Admin/Denuncias/Encuestas/Index');
+            })->name('encuestas.index');
+            Route::get('sonrie', function () {
+                return Inertia::render('Admin/Denuncias/Sonrie/Index');
+            })->name('sonrie.index');
         });
     });
 });
