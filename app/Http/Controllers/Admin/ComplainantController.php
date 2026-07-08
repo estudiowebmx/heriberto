@@ -12,7 +12,9 @@ class ComplainantController extends Controller
     public function index()
     {
         return Inertia::render('Admin/LonasOld/ComplainantIndex', [
-            'complainants' => Complainant::orderBy('created_at', 'desc')->paginate(20),
+            'complainants' => Complainant::withCount(['complaints', 'lonas'])
+                ->orderBy('created_at', 'desc')
+                ->paginate(20),
         ]);
     }
 
@@ -38,31 +40,31 @@ class ComplainantController extends Controller
         return redirect()->route('admin.denunciantes.index')->with('success', 'Denunciante registrado.');
     }
 
-    public function edit(Complainant $complainant)
+    public function edit(Complainant $denunciante)
     {
         return Inertia::render('Admin/LonasOld/ComplainantEdit', [
-            'complainant' => $complainant,
+            'complainant' => $denunciante,
         ]);
     }
 
-    public function update(Request $request, Complainant $complainant)
+    public function update(Request $request, Complainant $denunciante)
     {
         $validated = $request->validate([
             'nombre_completo' => 'required|string|max:255',
-            'clave_elector' => 'required|string|max:30|unique:complainants,clave_elector,' . $complainant->id,
+            'clave_elector' => 'required|string|max:30|unique:complainants,clave_elector,' . $denunciante->id,
             'domicilio' => 'required|string|max:500',
             'email' => 'nullable|email|max:255',
             'sexo' => 'required|in:M,F',
         ]);
 
-        $complainant->update($validated);
+        $denunciante->update($validated);
 
         return redirect()->route('admin.denunciantes.index')->with('success', 'Denunciante actualizado.');
     }
 
-    public function destroy(Complainant $complainant)
+    public function destroy(Complainant $denunciante)
     {
-        $complainant->delete();
+        $denunciante->delete();
 
         return redirect()->route('admin.denunciantes.index')->with('success', 'Denunciante eliminado.');
     }

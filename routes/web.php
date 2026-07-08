@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PersonaController;
 use App\Http\Controllers\Admin\EncuestaController as AdminEncuestaController;
 use App\Http\Controllers\Admin\ComplainantController;
 use App\Http\Controllers\Admin\ComplaintController;
+use App\Http\Controllers\Admin\EncuestaDenunciaController;
 use App\Http\Controllers\Admin\LonaController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\EncuestaController;
@@ -90,9 +91,16 @@ Route::middleware('auth')->group(function () {
             Route::get('servidores', function () {
                 return Inertia::render('Admin/Denuncias/Servidores/Index');
             })->name('servidores.index');
-            Route::get('encuestas', function () {
-                return Inertia::render('Admin/Denuncias/Encuestas/Index');
-            })->name('encuestas.index');
+            Route::get('encuestas', [EncuestaDenunciaController::class, 'index'])->name('encuestas.index');
+            Route::get('encuestas/create', [EncuestaDenunciaController::class, 'create'])->name('encuestas.create');
+            Route::post('encuestas', [EncuestaDenunciaController::class, 'store'])->name('encuestas.store');
+            Route::get('encuestas/{encuesta}', [EncuestaDenunciaController::class, 'show'])->name('encuestas.show');
+            Route::get('encuestas/{encuesta}/edit', [EncuestaDenunciaController::class, 'edit'])->name('encuestas.edit');
+            Route::put('encuestas/{encuesta}', [EncuestaDenunciaController::class, 'update'])->name('encuestas.update');
+            Route::get('encuestas/{encuesta}/verify', [EncuestaDenunciaController::class, 'verify'])->name('encuestas.verify');
+            Route::post('encuestas/{encuesta}/verify', [EncuestaDenunciaController::class, 'confirmVerify'])->name('encuestas.verify.confirm');
+            Route::delete('encuestas/{encuesta}', [EncuestaDenunciaController::class, 'destroy'])->name('encuestas.destroy');
+            Route::get('encuestas/{encuesta}/word', [EncuestaDenunciaController::class, 'generateWord'])->name('encuestas.word');
             Route::get('sonrie', function () {
                 return Inertia::render('Admin/Denuncias/Sonrie/Index');
             })->name('sonrie.index');

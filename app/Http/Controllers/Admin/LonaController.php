@@ -29,7 +29,8 @@ class LonaController extends Controller
     public function create()
     {
         return Inertia::render('Admin/Denuncias/Lonas/Create', [
-            'complainants' => Complainant::orderBy('nombre_completo')
+            'complainants' => Complainant::withCount(['complaints', 'lonas'])
+                ->orderBy('nombre_completo')
                 ->get(['id', 'nombre_completo', 'clave_elector', 'domicilio', 'email', 'sexo']),
             'colonias' => Colonia::where('municipio', 'TEPIC')
                 ->select('nombre')
@@ -62,6 +63,7 @@ class LonaController extends Controller
         $mes = $meses[(int) $now->format('m')];
 
         $lona = Lona::create([
+            'complainant_id' => $complainant->id,
             'denunciante_nombre' => $complainant->nombre_completo,
             'denunciante_clave_elector' => $complainant->clave_elector,
             'denunciante_domicilio' => $complainant->domicilio,
@@ -104,7 +106,8 @@ class LonaController extends Controller
 
         return Inertia::render('Admin/Denuncias/Lonas/Edit', [
             'lona' => $lona,
-            'complainants' => Complainant::orderBy('nombre_completo')
+            'complainants' => Complainant::withCount(['complaints', 'lonas'])
+                ->orderBy('nombre_completo')
                 ->get(['id', 'nombre_completo', 'clave_elector', 'domicilio', 'email', 'sexo']),
             'colonias' => Colonia::where('municipio', 'TEPIC')
                 ->select('nombre')
@@ -129,6 +132,7 @@ class LonaController extends Controller
         $complainant = Complainant::findOrFail($validated['complainant_id']);
 
         $lona->update([
+            'complainant_id' => $complainant->id,
             'denunciante_nombre' => $complainant->nombre_completo,
             'denunciante_clave_elector' => $complainant->clave_elector,
             'denunciante_domicilio' => $complainant->domicilio,

@@ -147,7 +147,7 @@ function submit() {
                                         :key="c.id"
                                         :value="c.id"
                                     >
-                                        {{ c.nombre_completo }}
+                                        {{ c.nombre_completo }} — {{ (c.complaints_count || 0) + (c.lonas_count || 0) }} {{ ((c.complaints_count || 0) + (c.lonas_count || 0)) === 1 ? 'denuncia' : 'denuncias' }}
                                     </option>
                                 </select>
                             </div>
@@ -226,22 +226,12 @@ function submit() {
                                     <label class="block text-xs font-medium text-gray-600 mb-1">
                                         Colonia (Tepic)
                                     </label>
-                                    <input
+                                    <v-select
                                         v-model="ev.colonia"
-                                        :list="'colonia-list-' + idx"
-                                        type="text"
-                                        class="w-full rounded-lg border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 text-sm"
+                                        :options="colonias"
                                         placeholder="Buscar colonia..."
-                                        autocomplete="off"
-                                        required
+                                        class="text-sm"
                                     />
-                                    <datalist :id="'colonia-list-' + idx">
-                                        <option
-                                            v-for="col in colonias"
-                                            :key="col"
-                                            :value="col"
-                                        />
-                                    </datalist>
                                 </div>
                                 <div>
                                     <label class="block text-xs font-medium text-gray-600 mb-1">

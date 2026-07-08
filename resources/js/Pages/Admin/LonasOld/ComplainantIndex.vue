@@ -39,6 +39,7 @@ const deleteComplainant = (id) => {
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
+                                <th class="px-2 py-3 text-center text-xs font-medium text-gray-500 uppercase w-[60px]">Denuncias</th>
                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nombre Completo</th>
                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Clave de Elector</th>
                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Domicilio</th>
@@ -48,16 +49,22 @@ const deleteComplainant = (id) => {
                         </thead>
                         <tbody class="divide-y divide-gray-200">
                             <tr v-if="complainants.data.length === 0">
-                                <td colspan="5" class="px-4 py-8 text-center text-sm text-gray-400">Sin denunciantes registrados</td>
+                                <td colspan="6" class="px-4 py-8 text-center text-sm text-gray-400">Sin denunciantes registrados</td>
                             </tr>
                             <tr v-for="c in complainants.data" :key="c.id">
+                                <td class="px-2 py-3 text-center" :title="((c.complaints_count || 0) + (c.lonas_count || 0)) + ' denuncias registradas'">
+                                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-full text-xs font-bold"
+                                        :class="((c.complaints_count || 0) + (c.lonas_count || 0)) > 0 ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-400'">
+                                        {{ (c.complaints_count || 0) + (c.lonas_count || 0) }}
+                                    </span>
+                                </td>
                                 <td class="px-4 py-3 text-sm text-gray-900">{{ c.nombre_completo }}</td>
                                 <td class="px-4 py-3 text-sm text-gray-600 font-mono">{{ c.clave_elector }}</td>
                                 <td class="px-4 py-3 text-sm text-gray-600">{{ c.domicilio }}</td>
                                 <td class="px-4 py-3 text-sm text-gray-600">{{ c.email || '—' }}</td>
                                 <td class="px-4 py-3 text-right text-sm whitespace-nowrap">
-                                    <Link :href="route('admin.denunciantes.edit', c.id)" class="text-verde-600 hover:text-verde-700 mr-2">Editar</Link>
-                                    <button @click="deleteComplainant(c.id)" class="text-red-600 hover:text-red-900">Eliminar</button>
+                                    <Link :href="route('admin.denunciantes.edit', c.id)" class="inline-flex items-center gap-1 text-verde-600 hover:text-verde-700 mr-3"><i class="fa-solid fa-pen-to-square"></i> Editar</Link>
+                                    <button @click="deleteComplainant(c.id)" class="inline-flex items-center gap-1 text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i> Eliminar</button>
                                 </td>
                             </tr>
                         </tbody>

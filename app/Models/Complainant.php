@@ -18,4 +18,9 @@ class Complainant extends Model
     {
         return $this->hasMany(Complaint::class);
     }
+
+    public function lonas()
+    {
+        return $this->hasMany(Lona::class);
+    }
 }

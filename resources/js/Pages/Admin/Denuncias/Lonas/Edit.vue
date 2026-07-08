@@ -137,7 +137,7 @@ function submit() {
                                 >
                                     <option :value="null" disabled>Selecciona un denunciante...</option>
                                     <option v-for="c in complainants" :key="c.id" :value="c.id">
-                                        {{ c.nombre_completo }}
+                                        {{ c.nombre_completo }} — {{ (c.complaints_count || 0) + (c.lonas_count || 0) }} {{ ((c.complaints_count || 0) + (c.lonas_count || 0)) === 1 ? 'denuncia' : 'denuncias' }}
                                     </option>
                                 </select>
                             </div>
@@ -187,12 +187,12 @@ function submit() {
                                 </div>
                                 <div>
                                     <label class="block text-xs font-medium text-gray-600 mb-1">Colonia (Tepic)</label>
-                                    <input v-model="ev.colonia" :list="'colonia-edit-' + idx" type="text"
-                                        class="w-full rounded-lg border-gray-300 shadow-sm focus:border-amber-500 focus:ring-amber-500 text-sm"
-                                        autocomplete="off" required />
-                                    <datalist :id="'colonia-edit-' + idx">
-                                        <option v-for="col in colonias" :key="col" :value="col" />
-                                    </datalist>
+                                    <v-select
+                                        v-model="ev.colonia"
+                                        :options="colonias"
+                                        placeholder="Buscar colonia..."
+                                        class="text-sm"
+                                    />
                                 </div>
                                 <div>
                                     <label class="block text-xs font-medium text-gray-600 mb-1">Condición</label>

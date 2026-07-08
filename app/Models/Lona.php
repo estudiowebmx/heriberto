@@ -9,6 +9,7 @@ class Lona extends Model
     protected $table = 'lonas';
 
     protected $fillable = [
+        'complainant_id',
         'denunciante_nombre',
         'denunciante_clave_elector',
         'denunciante_domicilio',
@@ -20,6 +21,11 @@ class Lona extends Model
         'mes',
         'verificada',
     ];
+
+    public function complainant()
+    {
+        return $this->belongsTo(Complainant::class);
+    }
 
     public function evidences()
     {
