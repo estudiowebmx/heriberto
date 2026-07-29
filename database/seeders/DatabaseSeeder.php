@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             AgendaEventSeeder::class,
             SeccionesSeeder::class,
             ColoniasSeeder::class,
+            PersonaSeeder::class,
         ]);
     }
 }
