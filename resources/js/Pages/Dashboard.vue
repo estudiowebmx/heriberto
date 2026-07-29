@@ -12,12 +12,14 @@ use([GaugeChart, CanvasRenderer]);
 
 const estatal = ref({ total: 0, meta: 0, pct: 0 });
 const municipios = ref([]);
+const secciones = ref([]);
 
 onMounted(async () => {
     try {
         const res = await axios.get("/api/dashboard");
         estatal.value = res.data.estatal;
         municipios.value = res.data.municipios;
+        secciones.value = res.data.secciones || [];
     } catch {}
 });
 
@@ -81,10 +83,10 @@ function gaugeOption(total, meta, pct, title) {
                 <!-- State-wide gauge -->
                 <div class="bg-white shadow-sm sm:rounded-lg p-6">
                     <h3 class="text-lg font-semibold text-gray-900 mb-2">
-                        Avance Estatal
+                        Avance Total
                     </h3>
                     <p class="text-sm text-gray-500 mb-4">
-                        Suma de todos los municipios
+                        Suma de todas las demarcaciones
                     </p>
                     <div class="flex justify-center">
                         <v-chart
@@ -102,10 +104,44 @@ function gaugeOption(total, meta, pct, title) {
                     </div>
                 </div>
 
-                <!-- Municipio gauges -->
+                <!-- Secciones Xalisco -->
                 <div class="bg-white shadow-sm sm:rounded-lg p-6">
                     <h3 class="text-lg font-semibold text-gray-900 mb-4">
-                        Por Municipio
+                        Avance por Sección - Xalisco
+                    </h3>
+                    <div
+                        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+                    >
+                        <div
+                            v-for="s in secciones"
+                            :key="s.seccion"
+                            class="text-center"
+                        >
+                            <v-chart
+                                :option="
+                                    gaugeOption(
+                                        s.total,
+                                        s.meta,
+                                        s.pct,
+                                        s.seccion,
+                                    )
+                                "
+                                style="height: 240px"
+                                autoresize
+                            />
+                            <p
+                                class="text-xs font-medium text-gray-600 mt-1 truncate"
+                            >
+                                <strong>Secc. {{ s.seccion }}</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Demarcaciones Xalisco -->
+                <div class="bg-white shadow-sm sm:rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                        Por Demarcación
                     </h3>
                     <div
                         class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"

@@ -71,26 +71,27 @@ class MapController extends Controller
 
     public function dashboard()
     {
-        $personas = Persona::selectRaw('municipio, COUNT(*) as total')
-            ->whereNotNull('municipio')
-            ->groupBy('municipio')
-            ->pluck('total', 'municipio');
+        $personas = Persona::selectRaw("CONCAT(municipio, ' - D', demarcacion) as clave, COUNT(*) as total")
+            ->whereNotNull('demarcacion')
+            ->where('municipio', 'XALISCO')
+            ->groupBy('clave')
+            ->pluck('total', 'clave');
 
-        $metas = Seccion::selectRaw('municipio, SUM(meta) as meta')
-            ->groupBy('municipio')
-            ->pluck('meta', 'municipio');
+        $metas = Seccion::selectRaw("CONCAT(municipio, ' - D', demarcacion) as clave, SUM(meta) as meta")
+            ->whereNotNull('demarcacion')
+            ->where('municipio', 'XALISCO')
+            ->groupBy('clave')
+            ->pluck('meta', 'clave');
 
-        // State-wide
         $totalPromovidos = $personas->sum();
         $totalMeta = $metas->sum();
         $estatal = ['total' => $totalPromovidos, 'meta' => $totalMeta, 'pct' => $totalMeta > 0 ? round(($totalPromovidos / $totalMeta) * 100) : 0];
 
-        // Per municipio
         $municipios = [];
-        foreach ($metas as $mun => $meta) {
-            $prom = $personas[$mun] ?? 0;
+        foreach ($metas as $clave => $meta) {
+            $prom = $personas[$clave] ?? 0;
             $municipios[] = [
-                'municipio' => $mun,
+                'municipio' => $clave,
                 'total' => (int) $prom,
                 'meta' => (int) $meta,
                 'pct' => $meta > 0 ? round(($prom / $meta) * 100) : 0,
@@ -99,7 +100,34 @@ class MapController extends Controller
 
         usort($municipios, fn($a, $b) => $b['pct'] - $a['pct']);
 
-        return response()->json(['estatal' => $estatal, 'municipios' => $municipios]);
+        $seccionesXalisco = Persona::selectRaw('seccion, COUNT(*) as total')
+            ->where('municipio', 'XALISCO')
+            ->whereNotNull('seccion')
+            ->where('seccion', '!=', '')
+            ->groupBy('seccion')
+            ->pluck('total', 'seccion');
+
+        $metasSeccion = Seccion::where('municipio', 'XALISCO')
+            ->pluck('meta', 'seccion');
+
+        $secciones = [];
+        foreach ($metasSeccion as $sec => $meta) {
+            $prom = $seccionesXalisco[$sec] ?? 0;
+            $secciones[] = [
+                'seccion' => $sec,
+                'total' => (int) $prom,
+                'meta' => (int) $meta,
+                'pct' => $meta > 0 ? round(($prom / $meta) * 100) : 0,
+            ];
+        }
+
+        usort($secciones, fn($a, $b) => $b['pct'] - $a['pct']);
+
+        return response()->json([
+            'estatal' => $estatal,
+            'municipios' => $municipios,
+            'secciones' => $secciones,
+        ]);
     }
 
     public function seccionesMunicipios()
