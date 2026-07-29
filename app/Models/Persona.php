@@ -15,6 +15,7 @@ class Persona extends Model
         'apellido_materno',
         'telefono',
         'seccion',
+        'promotor',
         'municipio',
         'distrito_local',
         'distrito_federal',

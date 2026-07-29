@@ -82,7 +82,7 @@ defineProps({
                                 <span
                                     class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium"
                                     :class="ev.condicion_inmueble === 'Habitado'
-                                        ? 'bg-green-100 text-green-700'
+                                        ? 'bg-guinda-100 text-guinda-700'
                                         : 'bg-red-100 text-red-700'"
                                 >
                                     {{ ev.condicion_inmueble }}

@@ -68,31 +68,31 @@ const submit = () => {
                         <form @submit.prevent="submit" class="space-y-6">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Nombre *</label>
-                                <input v-model="form.nombre" type="text" required maxlength="100" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-verde-500 focus:ring-verde-500" />
+                                <input v-model="form.nombre" type="text" required maxlength="100" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-guinda-500 focus:ring-guinda-500" />
                                 <p v-if="form.errors.nombre" class="text-sm text-red-600 mt-1">{{ form.errors.nombre }}</p>
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Apellido Paterno *</label>
-                                <input v-model="form.apellido_paterno" type="text" required maxlength="100" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-verde-500 focus:ring-verde-500" />
+                                <input v-model="form.apellido_paterno" type="text" required maxlength="100" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-guinda-500 focus:ring-guinda-500" />
                                 <p v-if="form.errors.apellido_paterno" class="text-sm text-red-600 mt-1">{{ form.errors.apellido_paterno }}</p>
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Apellido Materno</label>
-                                <input v-model="form.apellido_materno" type="text" maxlength="100" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-verde-500 focus:ring-verde-500" />
+                                <input v-model="form.apellido_materno" type="text" maxlength="100" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-guinda-500 focus:ring-guinda-500" />
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Teléfono * (10 dígitos)</label>
-                                <input v-model="form.telefono" type="tel" required pattern="[0-9]{10}" maxlength="10" placeholder="5512345678" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-verde-500 focus:ring-verde-500" />
+                                <input v-model="form.telefono" type="tel" required pattern="[0-9]{10}" maxlength="10" placeholder="5512345678" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-guinda-500 focus:ring-guinda-500" />
                                 <p v-if="form.errors.telefono" class="text-sm text-red-600 mt-1">{{ form.errors.telefono }}</p>
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Sección Electoral</label>
                                 <div class="flex gap-2 mt-1">
-                                    <input v-model="form.seccion" type="text" maxlength="20" class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-verde-500 focus:ring-verde-500" placeholder="Ingresa la sección" />
+                                    <input v-model="form.seccion" type="text" maxlength="20" class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-guinda-500 focus:ring-guinda-500" placeholder="Ingresa la sección" />
                                     <button type="button" @click="buscarSeccion" class="px-3 py-2 bg-gray-100 text-gray-600 rounded-md hover:bg-gray-200 text-sm">Buscar</button>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@ const submit = () => {
                             </div>
 
                             <div class="flex items-center gap-4">
-                                <button type="submit" :disabled="form.processing" class="px-4 py-2 bg-verde-600 text-white rounded-lg hover:bg-verde-700 disabled:opacity-50 text-sm">
+                                <button type="submit" :disabled="form.processing" class="px-4 py-2 bg-guinda-600 text-white rounded-lg hover:bg-guinda-700 disabled:opacity-50 text-sm">
                                     {{ persona ? 'Actualizar' : 'Registrar' }}
                                 </button>
                                 <Link :href="route('admin.personas.index')" class="text-sm text-gray-600 hover:text-gray-900">Cancelar</Link>

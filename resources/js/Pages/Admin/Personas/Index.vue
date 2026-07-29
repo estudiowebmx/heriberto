@@ -54,7 +54,7 @@ const activeFilters = () => Object.values(filtros).some(v => v !== '');
         <template #header>
             <div class="flex items-center justify-between">
                 <h2 class="text-xl font-semibold leading-tight text-gray-800">Personas Registradas</h2>
-                <Link :href="route('admin.personas.create')" class="px-4 py-2 bg-verde-600 text-white rounded-lg hover:bg-verde-700 text-sm">+ Nueva Persona</Link>
+                <Link :href="route('admin.personas.create')" class="px-4 py-2 bg-guinda-600 text-white rounded-lg hover:bg-guinda-700 text-sm">+ Nueva Persona</Link>
             </div>
         </template>
 
@@ -66,7 +66,7 @@ const activeFilters = () => Object.values(filtros).some(v => v !== '');
                     <button
                         v-if="activeFilters()"
                         @click="limpiar"
-                        class="text-sm text-verde-600 hover:text-verde-700"
+                        class="text-sm text-guinda-600 hover:text-guinda-700"
                     >Limpiar filtros</button>
                 </div>
 
@@ -87,25 +87,25 @@ const activeFilters = () => Object.values(filtros).some(v => v !== '');
                             </tr>
                             <tr>
                                 <th class="px-2 pb-2">
-                                    <input v-model="filtros.nombre" @input="buscar('nombre')" placeholder="Filtrar..." class="w-full rounded border border-gray-200 px-2 py-1 text-xs focus:border-verde-400 focus:ring-1 focus:ring-verde-400 outline-none" />
+                                    <input v-model="filtros.nombre" @input="buscar('nombre')" placeholder="Filtrar..." class="w-full rounded border border-gray-200 px-2 py-1 text-xs focus:border-guinda-400 focus:ring-1 focus:ring-guinda-400 outline-none" />
                                 </th>
                                 <th class="px-2 pb-2">
-                                    <input v-model="filtros.telefono" @input="buscar('telefono')" placeholder="Filtrar..." inputmode="numeric" class="w-full rounded border border-gray-200 px-2 py-1 text-xs focus:border-verde-400 focus:ring-1 focus:ring-verde-400 outline-none" />
+                                    <input v-model="filtros.telefono" @input="buscar('telefono')" placeholder="Filtrar..." inputmode="numeric" class="w-full rounded border border-gray-200 px-2 py-1 text-xs focus:border-guinda-400 focus:ring-1 focus:ring-guinda-400 outline-none" />
                                 </th>
                                 <th class="px-2 pb-2">
-                                    <input v-model="filtros.seccion" @input="buscar('seccion')" placeholder="Filtrar..." inputmode="numeric" class="w-full rounded border border-gray-200 px-2 py-1 text-xs focus:border-verde-400 focus:ring-1 focus:ring-verde-400 outline-none" />
+                                    <input v-model="filtros.seccion" @input="buscar('seccion')" placeholder="Filtrar..." inputmode="numeric" class="w-full rounded border border-gray-200 px-2 py-1 text-xs focus:border-guinda-400 focus:ring-1 focus:ring-guinda-400 outline-none" />
                                 </th>
                                 <th class="px-2 pb-2">
-                                    <input v-model="filtros.municipio" @input="buscar('municipio')" placeholder="Filtrar..." class="w-full rounded border border-gray-200 px-2 py-1 text-xs focus:border-verde-400 focus:ring-1 focus:ring-verde-400 outline-none" />
+                                    <input v-model="filtros.municipio" @input="buscar('municipio')" placeholder="Filtrar..." class="w-full rounded border border-gray-200 px-2 py-1 text-xs focus:border-guinda-400 focus:ring-1 focus:ring-guinda-400 outline-none" />
                                 </th>
                                 <th class="px-2 pb-2">
-                                    <input v-model="filtros.distrito_local" @input="buscar('distrito_local')" placeholder="..." inputmode="numeric" class="w-full rounded border border-gray-200 px-1 py-1 text-xs focus:border-verde-400 focus:ring-1 focus:ring-verde-400 outline-none text-center" />
+                                    <input v-model="filtros.distrito_local" @input="buscar('distrito_local')" placeholder="..." inputmode="numeric" class="w-full rounded border border-gray-200 px-1 py-1 text-xs focus:border-guinda-400 focus:ring-1 focus:ring-guinda-400 outline-none text-center" />
                                 </th>
                                 <th class="px-2 pb-2">
-                                    <input v-model="filtros.distrito_federal" @input="buscar('distrito_federal')" placeholder="..." inputmode="numeric" class="w-full rounded border border-gray-200 px-1 py-1 text-xs focus:border-verde-400 focus:ring-1 focus:ring-verde-400 outline-none text-center" />
+                                    <input v-model="filtros.distrito_federal" @input="buscar('distrito_federal')" placeholder="..." inputmode="numeric" class="w-full rounded border border-gray-200 px-1 py-1 text-xs focus:border-guinda-400 focus:ring-1 focus:ring-guinda-400 outline-none text-center" />
                                 </th>
                                 <th class="px-2 pb-2">
-                                    <input v-model="filtros.demarcacion" @input="buscar('demarcacion')" placeholder="..." inputmode="numeric" class="w-full rounded border border-gray-200 px-1 py-1 text-xs focus:border-verde-400 focus:ring-1 focus:ring-verde-400 outline-none text-center" />
+                                    <input v-model="filtros.demarcacion" @input="buscar('demarcacion')" placeholder="..." inputmode="numeric" class="w-full rounded border border-gray-200 px-1 py-1 text-xs focus:border-guinda-400 focus:ring-1 focus:ring-guinda-400 outline-none text-center" />
                                 </th>
                                 <th class="px-2 pb-2"></th>
                                 <th class="px-2 pb-2"></th>
@@ -125,7 +125,7 @@ const activeFilters = () => Object.values(filtros).some(v => v !== '');
                                 <td class="px-2 py-2.5 text-sm text-gray-600 whitespace-nowrap text-center">{{ p.demarcacion }}</td>
                                 <td class="px-2 py-2.5 text-sm text-gray-500 whitespace-nowrap">{{ new Date(p.created_at).toLocaleDateString('es-MX') }}</td>
                                 <td class="px-2 py-2.5 text-right text-sm whitespace-nowrap">
-                                    <Link :href="route('admin.personas.edit', p.id)" class="inline-flex items-center gap-1 text-verde-600 hover:text-verde-700 mr-2"><i class="fa-solid fa-pen-to-square"></i> Editar</Link>
+                                    <Link :href="route('admin.personas.edit', p.id)" class="inline-flex items-center gap-1 text-guinda-600 hover:text-guinda-700 mr-2"><i class="fa-solid fa-pen-to-square"></i> Editar</Link>
                                     <button @click="deletePersona(p.id)" class="inline-flex items-center gap-1 text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i> Eliminar</button>
                                 </td>
                             </tr>
@@ -147,7 +147,7 @@ const activeFilters = () => Object.values(filtros).some(v => v !== '');
                                 v-html="link.label"
                                 :class="[
                                     'px-3 py-1.5 text-sm rounded-md transition-colors',
-                                    link.active ? 'bg-verde-600 text-white' : link.url ? 'text-gray-600 hover:bg-gray-100' : 'text-gray-300 cursor-default',
+                                    link.active ? 'bg-guinda-600 text-white' : link.url ? 'text-gray-600 hover:bg-gray-100' : 'text-gray-300 cursor-default',
                                 ]"
                                 preserve-scroll
                             />

@@ -23,7 +23,7 @@ const downloadWord = (id) => {
                 <div class="flex gap-3">
                     <Link
                         :href="route('admin.lonas-old.edit', complaint.id)"
-                        class="px-4 py-2 bg-verde-600 text-white rounded-lg hover:bg-verde-700 text-sm"
+                        class="px-4 py-2 bg-guinda-600 text-white rounded-lg hover:bg-guinda-700 text-sm"
                         >Editar</Link
                     >
                     <button
@@ -123,7 +123,7 @@ const downloadWord = (id) => {
                                 class="text-xs font-medium px-2 py-0.5 rounded-full"
                                 :class="
                                     ev.is_cac_president
-                                        ? 'bg-verde-100 text-verde-700'
+                                        ? 'bg-guinda-100 text-guinda-700'
                                         : 'bg-blue-100 text-blue-700'
                                 "
                             >

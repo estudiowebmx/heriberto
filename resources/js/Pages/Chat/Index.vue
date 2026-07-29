@@ -4,7 +4,7 @@ import Chat from '@/Components/Chat.vue';
 </script>
 
 <template>
-    <Head title="Chatea con Jasmin Bugarin" />
+    <Head title="Chatea con Heriberto Castañeda" />
 
     <div class="min-h-screen bg-gray-50">
         <Chat />

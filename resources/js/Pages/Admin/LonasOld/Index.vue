@@ -33,7 +33,7 @@ const downloadPdf = (id) => {
                         <i class="fa-solid fa-users"></i>
                         Catálogo de Denunciantes
                     </Link>
-                    <Link :href="route('admin.lonas-old.create')" class="inline-flex items-center gap-2 px-4 py-2 bg-verde-600 text-white rounded-lg hover:bg-verde-700 text-sm">
+                    <Link :href="route('admin.lonas-old.create')" class="inline-flex items-center gap-2 px-4 py-2 bg-guinda-600 text-white rounded-lg hover:bg-guinda-700 text-sm">
                         <i class="fa-solid fa-plus"></i>
                         Nueva Denuncia
                     </Link>
@@ -73,7 +73,7 @@ const downloadPdf = (id) => {
                                     <Link :href="route('admin.lonas-old.show', c.id)" class="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800" title="Ver">
                                         <i class="fa-solid fa-eye"></i> Ver
                                     </Link>
-                                    <Link :href="route('admin.lonas-old.edit', c.id)" class="inline-flex items-center gap-1 text-verde-600 hover:text-verde-700" title="Editar">
+                                    <Link :href="route('admin.lonas-old.edit', c.id)" class="inline-flex items-center gap-1 text-guinda-600 hover:text-guinda-700" title="Editar">
                                         <i class="fa-solid fa-pen-to-square"></i> Editar
                                     </Link>
                                     <button @click="downloadWord(c.id)" class="inline-flex items-center gap-1 text-purple-600 hover:text-purple-800" title="Descargar Word">
@@ -104,7 +104,7 @@ const downloadPdf = (id) => {
                                 v-html="link.label"
                                 :class="[
                                     'px-3 py-1.5 text-sm rounded-md transition-colors',
-                                    link.active ? 'bg-verde-600 text-white' : link.url ? 'text-gray-600 hover:bg-gray-100' : 'text-gray-300 cursor-default',
+                                    link.active ? 'bg-guinda-600 text-white' : link.url ? 'text-gray-600 hover:bg-gray-100' : 'text-gray-300 cursor-default',
                                 ]"
                                 preserve-scroll
                             />

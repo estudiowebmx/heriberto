@@ -26,6 +26,7 @@ Route::get('/mapa', [MapController::class, 'index'])->name('mapa.index');
 Route::get('/api/ranking', [MapController::class, 'ranking'])->name('api.ranking');
 Route::get('/api/metas', [MapController::class, 'metas'])->name('api.metas');
 Route::get('/api/dashboard', [MapController::class, 'dashboard'])->name('api.dashboard');
+Route::get('/api/secciones-municipios', [MapController::class, 'seccionesMunicipios'])->name('api.secciones_municipios');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

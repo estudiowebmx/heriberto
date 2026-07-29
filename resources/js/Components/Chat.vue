@@ -153,16 +153,16 @@ const renderMarkdown = (content) => {
                 >
                     <img
                         src="/img/perfil.jpg"
-                        alt="Jasmin Bugarin"
+                        alt="Heriberto Castañeda"
                         class="w-full h-full object-cover"
                     />
                 </div>
                 <div>
                     <h1 class="text-lg font-semibold text-gray-900">
-                        Jasmin Bugarin
+                        Heriberto Castañeda
                     </h1>
                     <p class="text-sm text-gray-500">
-                        Senadora de la república por Nayarit
+                        Ex-presidente Municipal de Xalisco
                     </p>
                 </div>
             </div>
@@ -173,25 +173,21 @@ const renderMarkdown = (content) => {
             class="flex-1 overflow-y-auto px-4 py-6 space-y-4 bg-gray-50"
         >
             <div class="flex justify-center mb-4">
-                <div class="bg-white rounded-2xl shadow-sm border border-verde-200 max-w-lg w-full overflow-hidden">
+                <div class="bg-white rounded-2xl shadow-sm border border-guinda-200 max-w-lg w-full overflow-hidden">
                     <div class="h-36 overflow-hidden">
-                        <img src="/img/portada.jpg" alt="Jasmin Bugarin" class="w-full h-full object-cover" />
+                        <img src="/img/portada.png" alt="Heriberto Castañeda" class="w-full h-full object-cover" />
                     </div>
                     <div class="px-6 pb-6 -mt-12 text-center">
                         <div class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-3 border-4 border-white shadow-md">
-                            <img src="/img/perfil.jpg" alt="Jasmin Bugarin" class="w-full h-full object-cover" />
+                            <img src="/img/perfil.jpg" alt="Heriberto Castañeda" class="w-full h-full object-cover" />
                         </div>
-                        <h2 class="text-xl font-semibold text-gray-900 mb-2">¡Hola! Soy Jasmin Bugarin</h2>
+                        <h2 class="text-xl font-semibold text-gray-900 mb-2">¡Hola! Soy Heriberto Castañeda</h2>
                         <p class="text-gray-600 text-sm">Estoy aqui para platicar contigo, conocer tus inquietudes y compartirte mi vision para nuestro estado. ¿En que puedo ayudarte?</p>
                         <div class="flex flex-col gap-2 mt-4">
-                            <button @click="showForm = true" class="flex items-center justify-between px-4 py-3 bg-verde-600 text-white rounded-lg hover:bg-verde-700 transition-colors font-medium text-sm w-full">
+                            <button @click="showForm = true" class="flex items-center justify-between px-4 py-3 bg-guinda-600 text-white rounded-lg hover:bg-guinda-700 transition-colors font-medium text-sm w-full">
                                 <span><i class="fa-solid fa-user-plus mr-3"></i>Unirme al Proyecto</span>
                                 <i class="fa-solid fa-chevron-right"></i>
                             </button>
-                            <a href="/conoceme" class="flex items-center justify-between px-4 py-3 bg-verde-600 text-white rounded-lg hover:bg-verde-700 transition-colors font-medium text-sm w-full">
-                                <span><i class="fa-solid fa-clipboard-question mr-3"></i>Conóceme</span>
-                                <i class="fa-solid fa-chevron-right"></i>
-                            </a>
                             <Link v-if="$page.props.auth.user?.role === 'admin'" :href="route('dashboard')" class="flex items-center justify-between px-4 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition-colors font-medium text-sm w-full">
                                 <span><i class="fa-solid fa-right-to-bracket mr-3"></i>Entrar a la plataforma</span>
                                 <i class="fa-solid fa-chevron-right"></i>
@@ -221,7 +217,7 @@ const renderMarkdown = (content) => {
                     :class="[
                         'max-w-[80%] rounded-2xl px-4 py-3',
                         msg.role === 'user'
-                            ? 'bg-verde-600 text-white rounded-br-sm'
+                            ? 'bg-guinda-600 text-white rounded-br-sm'
                             : 'bg-white border border-gray-100 shadow-sm rounded-bl-sm',
                     ]"
                 >
@@ -264,13 +260,13 @@ const renderMarkdown = (content) => {
                     @keydown="handleKeydown"
                     placeholder="Escribe tu mensaje..."
                     rows="1"
-                    class="flex-1 resize-none rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-verde-500 focus:ring-1 focus:ring-verde-500 outline-none"
+                    class="flex-1 resize-none rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-guinda-500 focus:ring-1 focus:ring-guinda-500 outline-none"
                     :disabled="loading"
                 ></textarea>
                 <button
                     @click="sendMessage"
                     :disabled="loading || !input.trim()"
-                    class="px-5 py-3 bg-verde-600 text-white rounded-xl hover:bg-verde-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium text-sm"
+                    class="px-5 py-3 bg-guinda-600 text-white rounded-xl hover:bg-guinda-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium text-sm"
                 >
                     Enviar
                 </button>
@@ -311,7 +307,7 @@ const renderMarkdown = (content) => {
                                 v-model="form.nombre"
                                 type="text"
                                 required
-                                class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-verde-500 focus:ring-1 focus:ring-verde-500 outline-none"
+                                class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-guinda-500 focus:ring-1 focus:ring-guinda-500 outline-none"
                             />
                         </div>
                         <div>
@@ -323,7 +319,7 @@ const renderMarkdown = (content) => {
                                 v-model="form.apellido_paterno"
                                 type="text"
                                 required
-                                class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-verde-500 focus:ring-1 focus:ring-verde-500 outline-none"
+                                class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-guinda-500 focus:ring-1 focus:ring-guinda-500 outline-none"
                             />
                         </div>
                         <div>
@@ -334,7 +330,7 @@ const renderMarkdown = (content) => {
                             <input
                                 v-model="form.apellido_materno"
                                 type="text"
-                                class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-verde-500 focus:ring-1 focus:ring-verde-500 outline-none"
+                                class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-guinda-500 focus:ring-1 focus:ring-guinda-500 outline-none"
                             />
                         </div>
                         <div>
@@ -348,7 +344,7 @@ const renderMarkdown = (content) => {
                                 required
                                 pattern="[0-9]{10}"
                                 maxlength="10"
-                                class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-verde-500 focus:ring-1 focus:ring-verde-500 outline-none"
+                                class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-guinda-500 focus:ring-1 focus:ring-guinda-500 outline-none"
                                 placeholder="Ej: 5512345678"
                             />
                         </div>
@@ -362,7 +358,7 @@ const renderMarkdown = (content) => {
                                     v-model="form.seccion"
                                     type="text"
                                     @blur="buscarSeccion"
-                                    class="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-verde-500 focus:ring-1 focus:ring-verde-500 outline-none"
+                                    class="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-guinda-500 focus:ring-1 focus:ring-guinda-500 outline-none"
                                     placeholder="Ingresa tu seccion"
                                 />
                                 <button
@@ -427,7 +423,7 @@ const renderMarkdown = (content) => {
                                 !form.apellido_paterno ||
                                 form.telefono.replace(/\D/g, '').length !== 10
                             "
-                            class="w-full py-2.5 bg-verde-600 text-white rounded-lg hover:bg-verde-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium text-sm"
+                            class="w-full py-2.5 bg-guinda-600 text-white rounded-lg hover:bg-guinda-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium text-sm"
                         >
                             Registrarme
                         </button>

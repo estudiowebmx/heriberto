@@ -12,8 +12,8 @@ class CandidateInformationSeeder extends Seeder
         $info = [
             [
                 'section' => 'biografia',
-                'title' => '¿Quién es Jasmin Bugarin?',
-                'content' => 'Soy Jasmin Bugarin, candidata a la gubernatura. Nací y crecí en este estado, conozco sus necesidades y su potencial. He dedicado mi vida al servicio público y al desarrollo comunitario, trabajando incansablemente por mejorar la calidad de vida de nuestras familias.',
+                'title' => '¿Quién es Heriberto Castañeda?',
+                'content' => 'Soy Heriberto Castañeda, candidata a la gubernatura. Nací y crecí en este estado, conozco sus necesidades y su potencial. He dedicado mi vida al servicio público y al desarrollo comunitario, trabajando incansablemente por mejorar la calidad de vida de nuestras familias.',
                 'order' => 1,
             ],
             [

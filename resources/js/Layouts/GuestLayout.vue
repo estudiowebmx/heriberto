@@ -8,7 +8,7 @@ import { Link } from '@inertiajs/vue3';
     >
         <div>
             <Link href="/">
-                <img src="/img/portada.jpg" alt="Jasmin Bugarin" class="h-32 w-auto rounded-xl object-cover shadow-md" />
+                <img src="/img/portada.png" alt="Heriberto Castañeda" class="h-32 w-auto rounded-xl object-cover shadow-md" />
             </Link>
         </div>
 

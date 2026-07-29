@@ -9,6 +9,7 @@ const mapContainer = ref(null);
 const layerType = ref('municipio');
 const rankings = ref([]);
 const metas = ref([]);
+const seccionesMunicipios = ref({});
 const loading = ref(true);
 const mapError = ref('');
 const sortField = ref('total');
@@ -46,7 +47,11 @@ const buildProgressMap = () => {
     const pmap = {};
     rankings.value.forEach(r => {
         const meta = mmap[r.clave] || 1;
-        pmap[r.clave] = parseInt(r.total) / meta;
+        pmap[r.clave] = {
+            ratio: parseInt(r.total) / meta,
+            total: parseInt(r.total),
+            meta: mmap[r.clave] || 0,
+        };
     });
     return pmap;
 };
@@ -81,7 +86,7 @@ const createGeoJSONLayer = (data, keyField, progressMap) => {
     return L.geoJSON(data, {
         style: (feature) => {
             const key = String(feature.properties[keyField]);
-            const ratio = progressMap[key] ?? 0;
+            const ratio = progressMap[key]?.ratio ?? 0;
             return {
                 fillColor: progressColor(ratio),
                 weight: 1.5,
@@ -92,17 +97,21 @@ const createGeoJSONLayer = (data, keyField, progressMap) => {
         },
         onEachFeature: (feature, layer) => {
             const key = String(feature.properties[keyField]);
-            const ratio = progressMap[key] ?? 0;
+            const data = progressMap[key] ?? { ratio: 0, total: 0, meta: 0 };
+            const ratio = data.ratio;
+            const total = data.total;
+            const meta = data.meta;
             const pct = Math.round(ratio * 100);
             let name = `Distrito ${key}`;
             if (keyField === 'seccion') {
-                name = `Seccion ${feature.properties.seccion}<br>Municipio: ${getMunicipioName(feature.properties.municipio)}`;
+                const dbMunicipio = seccionesMunicipios.value[key] || getMunicipioName(feature.properties.municipio);
+                name = `Seccion ${feature.properties.seccion}<br>Municipio: ${dbMunicipio}`;
             } else if (keyField === 'nombre') {
                 name = feature.properties.nombre;
             } else if (keyField === 'dmunicipal') {
                 name = feature.properties.dmunicipal || `Demarcacion ${key}`;
             }
-            layer.bindTooltip(`${name}<br>Progreso: ${pct}%`, { sticky: true });
+            layer.bindTooltip(`${name}<br>Promovidos: ${total}<br>Progreso: ${pct}%`, { sticky: true });
         },
     });
 };
@@ -163,6 +172,11 @@ const showLayer = async (tipo) => {
 
 onMounted(async () => {
     loading.value = true;
+
+    try {
+        const smRes = await axios.get('/api/secciones-municipios');
+        seccionesMunicipios.value = smRes.data;
+    } catch {}
 
     map = L.map(mapContainer.value, {
         center: [21.75, -105.0],
@@ -235,7 +249,7 @@ const layerLabel = () => {
         <div class="flex-1 relative">
             <div v-if="loading" class="absolute inset-0 z-[1000] flex items-center justify-center bg-white/80">
                 <div class="text-center">
-                    <div class="animate-spin w-10 h-10 border-4 border-verde-600 border-t-transparent rounded-full mx-auto mb-3"></div>
+                    <div class="animate-spin w-10 h-10 border-4 border-guinda-600 border-t-transparent rounded-full mx-auto mb-3"></div>
                     <p class="text-gray-600 text-sm">Cargando mapa...</p>
                 </div>
             </div>
@@ -253,13 +267,13 @@ const layerLabel = () => {
 
             <div class="p-3 border-b border-gray-100 space-y-2">
                 <div class="flex gap-1">
-                    <button @click="showLayer('distrito_federal')" :class="['flex-1 py-2 text-xs font-medium rounded-lg transition-colors', layerType === 'distrito_federal' ? 'bg-verde-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200']">Distrito Federal</button>
-                    <button @click="showLayer('distrito_local')" :class="['flex-1 py-2 text-xs font-medium rounded-lg transition-colors', layerType === 'distrito_local' ? 'bg-verde-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200']">Distrito Local</button>
-                    <button @click="showLayer('municipio')" :class="['flex-1 py-2 text-xs font-medium rounded-lg transition-colors', layerType === 'municipio' ? 'bg-verde-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200']">Municipio</button>
+                    <button @click="showLayer('distrito_federal')" :class="['flex-1 py-2 text-xs font-medium rounded-lg transition-colors', layerType === 'distrito_federal' ? 'bg-guinda-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200']">Distrito Federal</button>
+                    <button @click="showLayer('distrito_local')" :class="['flex-1 py-2 text-xs font-medium rounded-lg transition-colors', layerType === 'distrito_local' ? 'bg-guinda-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200']">Distrito Local</button>
+                    <button @click="showLayer('municipio')" :class="['flex-1 py-2 text-xs font-medium rounded-lg transition-colors', layerType === 'municipio' ? 'bg-guinda-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200']">Municipio</button>
                 </div>
                 <div class="flex gap-1">
-                    <button @click="showLayer('demarcacion')" :class="['flex-1 py-2 text-xs font-medium rounded-lg transition-colors', layerType === 'demarcacion' ? 'bg-verde-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200']">Demarcación</button>
-                    <button @click="showLayer('seccion')" :class="['flex-1 py-2 text-xs font-medium rounded-lg transition-colors', layerType === 'seccion' ? 'bg-verde-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200']">Sección</button>
+                    <button @click="showLayer('demarcacion')" :class="['flex-1 py-2 text-xs font-medium rounded-lg transition-colors', layerType === 'demarcacion' ? 'bg-guinda-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200']">Demarcación</button>
+                    <button @click="showLayer('seccion')" :class="['flex-1 py-2 text-xs font-medium rounded-lg transition-colors', layerType === 'seccion' ? 'bg-guinda-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200']">Sección</button>
                 </div>
             </div>
 
@@ -289,13 +303,13 @@ const layerLabel = () => {
                         <thead>
                             <tr class="border-b border-gray-200">
                                 <th class="text-left py-2 text-xs font-semibold text-gray-600 uppercase">{{ layerLabel() }}</th>
-                                <th class="text-center py-2 text-xs font-semibold text-gray-600 uppercase cursor-pointer select-none hover:text-verde-600 w-10" title="Promovidos" @click="toggleSort('total')">
+                                <th class="text-center py-2 text-xs font-semibold text-gray-600 uppercase cursor-pointer select-none hover:text-guinda-600 w-10" title="Promovidos" @click="toggleSort('total')">
                                     <div class="flex items-center justify-center gap-0.5">
                                         <CircleUser :size="14" :stroke-width="2.5" />
                                         <span v-if="sortField === 'total'" class="inline-block"><svg v-if="sortOrder === 'desc'" class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg><svg v-else class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"/></svg></span>
                                     </div>
                                 </th>
-                                <th class="text-center py-2 text-xs font-semibold text-gray-600 uppercase cursor-pointer select-none hover:text-verde-600 w-10" title="Porcentaje" @click="toggleSort('progress')">
+                                <th class="text-center py-2 text-xs font-semibold text-gray-600 uppercase cursor-pointer select-none hover:text-guinda-600 w-10" title="Porcentaje" @click="toggleSort('progress')">
                                     <div class="flex items-center justify-center gap-0.5">
                                         <CirclePercent :size="14" :stroke-width="2.5" />
                                         <span v-if="sortField === 'progress'" class="inline-block"><svg v-if="sortOrder === 'desc'" class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg><svg v-else class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"/></svg></span>
@@ -318,8 +332,8 @@ const layerLabel = () => {
                                         </div>
                                     </div>
                                 </td>
-                                <td class="py-1.5 text-center font-semibold text-verde-600 text-xs w-10">{{ item.total }}</td>
-                                <td class="py-1.5 text-center text-xs font-medium w-10" :class="item.progress >= 80 ? 'text-verde-700' : item.progress >= 40 ? 'text-yellow-600' : 'text-red-500'">{{ item.progress }}%</td>
+                                <td class="py-1.5 text-center font-semibold text-guinda-600 text-xs w-10">{{ item.total }}</td>
+                                <td class="py-1.5 text-center text-xs font-medium w-10" :class="item.progress >= 80 ? 'text-guinda-700' : item.progress >= 40 ? 'text-yellow-600' : 'text-red-500'">{{ item.progress }}%</td>
                                 <td class="py-1.5 text-center text-xs text-gray-500 w-10">{{ item.meta }}</td>
                             </tr>
                         </tbody>

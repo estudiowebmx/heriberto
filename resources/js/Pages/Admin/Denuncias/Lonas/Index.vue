@@ -55,7 +55,7 @@ function confirmDelete(id, name) {
                                     <td class="px-3 py-3 whitespace-nowrap text-center">
                                         <i
                                             v-if="lona.verificada"
-                                            class="fa-solid fa-circle-check text-green-500 text-lg"
+                                            class="fa-solid fa-circle-check text-guinda-500 text-lg"
                                             title="Verificada"
                                         ></i>
                                         <i
@@ -101,7 +101,7 @@ function confirmDelete(id, name) {
                                             <Link
                                                 v-if="!lona.verificada"
                                                 :href="route('admin.denuncias.lonas.edit', lona.id)"
-                                                class="text-green-600 hover:text-green-800 text-xs"
+                                                class="text-guinda-600 hover:text-guinda-800 text-xs"
                                                 title="Editar"
                                             >
                                                 <i class="fa-solid fa-pen-to-square"></i>

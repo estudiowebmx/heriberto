@@ -61,35 +61,35 @@ const submit = async () => {
 </script>
 
 <template>
-    <Head title="Conóceme - Jasmin Bugarin" />
+    <Head title="Conóceme - Heriberto Castañeda" />
 
-    <div class="min-h-screen bg-gradient-to-br from-verde-50 via-white to-verde-50">
+    <div class="min-h-screen bg-gradient-to-br from-guinda-50 via-white to-guinda-50">
         <div class="max-w-3xl mx-auto px-4 py-10">
             <div v-if="done" class="text-center py-20">
-                <div class="w-20 h-20 rounded-full bg-verde-100 flex items-center justify-center mx-auto mb-6">
-                    <svg class="w-10 h-10 text-verde-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="w-20 h-20 rounded-full bg-guinda-100 flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-guinda-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                     </svg>
                 </div>
                 <h2 class="text-2xl font-bold text-gray-900 mb-4">¡Gracias!</h2>
                 <p class="text-gray-600 mb-6">{{ msg }}</p>
-                <Link href="/" class="text-verde-600 hover:text-verde-700 font-medium">Volver al chat</Link>
+                <Link href="/" class="text-guinda-600 hover:text-guinda-700 font-medium">Volver al chat</Link>
             </div>
 
             <div v-else>
                 <div class="text-center mb-8">
                     <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-4 shadow-lg">
-                        <img src="/img/perfil.jpg" alt="Jasmin Bugarin" class="w-full h-full object-cover" />
+                        <img src="/img/perfil.jpg" alt="Heriberto Castañeda" class="w-full h-full object-cover" />
                     </div>
                     <h1 class="text-3xl font-bold text-gray-900">Conóceme</h1>
-                    <p class="text-gray-600 mt-2">Jasmin Bugarin quiere conocerte mejor</p>
+                    <p class="text-gray-600 mt-2">Heriberto Castañeda quiere conocerte mejor</p>
                 </div>
 
                 <!-- Progress -->
                 <div class="flex items-center justify-center gap-2 mb-10">
                     <div v-for="s in 3" :key="s" class="flex items-center">
-                        <div :class="['w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-colors', step >= s ? 'bg-verde-600 text-white' : 'bg-gray-200 text-gray-500']">{{ s }}</div>
-                        <div v-if="s < 3" :class="['h-1 w-12 transition-colors', step > s ? 'bg-verde-600' : 'bg-gray-200']"></div>
+                        <div :class="['w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-colors', step >= s ? 'bg-guinda-600 text-white' : 'bg-gray-200 text-gray-500']">{{ s }}</div>
+                        <div v-if="s < 3" :class="['h-1 w-12 transition-colors', step > s ? 'bg-guinda-600' : 'bg-gray-200']"></div>
                     </div>
                 </div>
 
@@ -99,33 +99,33 @@ const submit = async () => {
                     <div class="space-y-5">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo *</label>
-                            <input v-model="form.nombre_completo" type="text" required class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-verde-500 focus:ring-1 focus:ring-verde-500 outline-none" />
+                            <input v-model="form.nombre_completo" type="text" required class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-guinda-500 focus:ring-1 focus:ring-guinda-500 outline-none" />
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Fecha de Nacimiento</label>
-                                <input v-model="form.fecha_nacimiento" type="date" max="2009-12-31" class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-verde-500 focus:ring-1 focus:ring-verde-500 outline-none appearance-none" />
+                                <input v-model="form.fecha_nacimiento" type="date" max="2009-12-31" class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-guinda-500 focus:ring-1 focus:ring-guinda-500 outline-none appearance-none" />
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Teléfono * <span class="text-gray-400 font-normal">(10 dígitos)</span></label>
-                                <input v-model="form.telefono" @input="filtrarNumeros" type="tel" inputmode="numeric" required placeholder="5512345678" :class="['w-full rounded-xl border px-4 py-3 text-sm outline-none transition-colors', form.telefono.length > 0 ? (validTelefono ? 'border-green-400 focus:border-green-500 focus:ring-1 focus:ring-green-500' : 'border-red-300 focus:border-red-500 focus:ring-1 focus:ring-red-500') : 'border-gray-300 focus:border-verde-500 focus:ring-1 focus:ring-verde-500']" />
+                                <input v-model="form.telefono" @input="filtrarNumeros" type="tel" inputmode="numeric" required placeholder="5512345678" :class="['w-full rounded-xl border px-4 py-3 text-sm outline-none transition-colors', form.telefono.length > 0 ? (validTelefono ? 'border-guinda-400 focus:border-guinda-500 focus:ring-1 focus:ring-guinda-500' : 'border-red-300 focus:border-red-500 focus:ring-1 focus:ring-red-500') : 'border-gray-300 focus:border-guinda-500 focus:ring-1 focus:ring-guinda-500']" />
                             </div>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Profesión / Ocupación *</label>
-                            <input v-model="form.profesion_ocupacion" type="text" required class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-verde-500 focus:ring-1 focus:ring-verde-500 outline-none" placeholder="Ej: Ingeniero, Estudiante, Ama de casa..." />
+                            <input v-model="form.profesion_ocupacion" type="text" required class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-guinda-500 focus:ring-1 focus:ring-guinda-500 outline-none" placeholder="Ej: Ingeniero, Estudiante, Ama de casa..." />
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Lugar de Nacimiento *</label>
-                            <input v-model="form.lugar_nacimiento" type="text" required class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-verde-500 focus:ring-1 focus:ring-verde-500 outline-none" />
+                            <input v-model="form.lugar_nacimiento" type="text" required class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-guinda-500 focus:ring-1 focus:ring-guinda-500 outline-none" />
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Domicilio Actual</label>
-                            <textarea v-model="form.domicilio_actual" rows="3" class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-verde-500 focus:ring-1 focus:ring-verde-500 outline-none"></textarea>
+                            <textarea v-model="form.domicilio_actual" rows="3" class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-guinda-500 focus:ring-1 focus:ring-guinda-500 outline-none"></textarea>
                         </div>
                     </div>
                     <div class="mt-8 flex justify-end">
-                        <button @click="next" :disabled="!form.nombre_completo || !form.profesion_ocupacion || !form.lugar_nacimiento || !validTelefono" class="px-6 py-3 bg-verde-600 text-white rounded-xl hover:bg-verde-700 disabled:opacity-50 transition-colors font-medium text-sm">Siguiente →</button>
+                        <button @click="next" :disabled="!form.nombre_completo || !form.profesion_ocupacion || !form.lugar_nacimiento || !validTelefono" class="px-6 py-3 bg-guinda-600 text-white rounded-xl hover:bg-guinda-700 disabled:opacity-50 transition-colors font-medium text-sm">Siguiente →</button>
                     </div>
                 </div>
 
@@ -135,29 +135,29 @@ const submit = async () => {
                     <div class="space-y-5">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Hijos o dependientes económicos (edades y escolaridad)</label>
-                            <textarea v-model="form.hijos_info" rows="3" class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-verde-500 focus:ring-1 focus:ring-verde-500 outline-none" placeholder="Ej: Hijo 12 años (secundaria), Hija 8 años (primaria)..."></textarea>
+                            <textarea v-model="form.hijos_info" rows="3" class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-guinda-500 focus:ring-1 focus:ring-guinda-500 outline-none" placeholder="Ej: Hijo 12 años (secundaria), Hija 8 años (primaria)..."></textarea>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">¿Tus padres viven?</label>
                             <div class="flex gap-4">
                                 <label v-for="op in ['si','no','solo_uno']" :key="op" class="flex items-center gap-2 cursor-pointer">
-                                    <input v-model="form.padres_viven" type="radio" :value="op" class="text-verde-600 focus:ring-verde-500" />
+                                    <input v-model="form.padres_viven" type="radio" :value="op" class="text-guinda-600 focus:ring-guinda-500" />
                                     <span class="text-sm text-gray-700">{{ op === 'si' ? 'Sí' : op === 'no' ? 'No' : 'Solo uno' }}</span>
                                 </label>
                             </div>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Lugar de origen de tus padres</label>
-                            <input v-model="form.padres_origen" type="text" class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-verde-500 focus:ring-1 focus:ring-verde-500 outline-none" />
+                            <input v-model="form.padres_origen" type="text" class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-guinda-500 focus:ring-1 focus:ring-guinda-500 outline-none" />
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">¿A qué se dedican o dedicaron?</label>
-                            <input v-model="form.padres_ocupacion" type="text" class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-verde-500 focus:ring-1 focus:ring-verde-500 outline-none" />
+                            <input v-model="form.padres_ocupacion" type="text" class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-guinda-500 focus:ring-1 focus:ring-guinda-500 outline-none" />
                         </div>
                     </div>
                     <div class="mt-8 flex justify-between">
                         <button @click="prev" class="px-6 py-3 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-colors font-medium text-sm">← Anterior</button>
-                        <button @click="next" class="px-6 py-3 bg-verde-600 text-white rounded-xl hover:bg-verde-700 transition-colors font-medium text-sm">Siguiente →</button>
+                        <button @click="next" class="px-6 py-3 bg-guinda-600 text-white rounded-xl hover:bg-guinda-700 transition-colors font-medium text-sm">Siguiente →</button>
                     </div>
                 </div>
 
@@ -169,7 +169,7 @@ const submit = async () => {
                             <label class="block text-sm font-medium text-gray-700 mb-2">Preocupaciones actuales (selecciona todas las que apliquen)</label>
                             <div class="grid grid-cols-2 gap-2">
                                 <label v-for="op in ['Salud','Empleo','Educación','Seguridad','Sistema de Justicia','Otro']" :key="op" class="flex items-center gap-2 cursor-pointer bg-gray-50 rounded-lg px-3 py-2 hover:bg-gray-100">
-                                    <input type="checkbox" :checked="form.preocupaciones.includes(op)" @change="toggle(form.preocupaciones, op)" class="rounded text-verde-600 focus:ring-verde-500" />
+                                    <input type="checkbox" :checked="form.preocupaciones.includes(op)" @change="toggle(form.preocupaciones, op)" class="rounded text-guinda-600 focus:ring-guinda-500" />
                                     <span class="text-sm text-gray-700">{{ op }}</span>
                                 </label>
                             </div>
@@ -179,7 +179,7 @@ const submit = async () => {
                             <label class="block text-sm font-medium text-gray-700 mb-2">Principal problema de la justicia</label>
                             <div class="space-y-2">
                                 <label v-for="op in ['Corrupción','Falta de capacidad','El sistema está mal diseñado','Mala educación profesional']" :key="op" class="flex items-center gap-2 cursor-pointer bg-gray-50 rounded-lg px-3 py-2 hover:bg-gray-100">
-                                    <input v-model="form.problema_justicia" type="radio" :value="op" class="text-verde-600 focus:ring-verde-500" />
+                                    <input v-model="form.problema_justicia" type="radio" :value="op" class="text-guinda-600 focus:ring-guinda-500" />
                                     <span class="text-sm text-gray-700">{{ op }}</span>
                                 </label>
                             </div>
@@ -187,14 +187,14 @@ const submit = async () => {
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">¿En qué le gustaría que el próximo gobernador se enfocara?</label>
-                            <textarea v-model="form.enfoque_gobernador" rows="3" class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-verde-500 focus:ring-1 focus:ring-verde-500 outline-none"></textarea>
+                            <textarea v-model="form.enfoque_gobernador" rows="3" class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:border-guinda-500 focus:ring-1 focus:ring-guinda-500 outline-none"></textarea>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Principales errores de los gobiernos actuales</label>
                             <div class="grid grid-cols-2 gap-2">
                                 <label v-for="op in ['Economía','Educación','Corrupción','Falta de oportunidades','Seguridad','Sistemas de Salud','Trámites de gobierno','Impuestos','Empleo']" :key="op" class="flex items-center gap-2 cursor-pointer bg-gray-50 rounded-lg px-3 py-2 hover:bg-gray-100">
-                                    <input type="checkbox" :checked="form.errores_gobierno.includes(op)" @change="toggle(form.errores_gobierno, op)" class="rounded text-verde-600 focus:ring-verde-500" />
+                                    <input type="checkbox" :checked="form.errores_gobierno.includes(op)" @change="toggle(form.errores_gobierno, op)" class="rounded text-guinda-600 focus:ring-guinda-500" />
                                     <span class="text-sm text-gray-700">{{ op }}</span>
                                 </label>
                             </div>
@@ -204,7 +204,7 @@ const submit = async () => {
                             <label class="block text-sm font-medium text-gray-700 mb-2">Deficiencias en Servicios Públicos</label>
                             <div class="grid grid-cols-2 gap-2">
                                 <label v-for="op in ['Agua','Alumbrado público','Alcantarillado','Transporte público','Calles','Hospitales','Escuelas']" :key="op" class="flex items-center gap-2 cursor-pointer bg-gray-50 rounded-lg px-3 py-2 hover:bg-gray-100">
-                                    <input type="checkbox" :checked="form.deficiencias_servicios.includes(op)" @change="toggle(form.deficiencias_servicios, op)" class="rounded text-verde-600 focus:ring-verde-500" />
+                                    <input type="checkbox" :checked="form.deficiencias_servicios.includes(op)" @change="toggle(form.deficiencias_servicios, op)" class="rounded text-guinda-600 focus:ring-guinda-500" />
                                     <span class="text-sm text-gray-700">{{ op }}</span>
                                 </label>
                             </div>
@@ -212,7 +212,7 @@ const submit = async () => {
                     </div>
                     <div class="mt-8 flex justify-between">
                         <button @click="prev" class="px-6 py-3 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-colors font-medium text-sm">← Anterior</button>
-                        <button @click="submit" :disabled="sending" class="px-8 py-3 bg-verde-600 text-white rounded-xl hover:bg-verde-700 disabled:opacity-50 transition-colors font-medium text-sm">{{ sending ? 'Enviando...' : 'Enviar' }}</button>
+                        <button @click="submit" :disabled="sending" class="px-8 py-3 bg-guinda-600 text-white rounded-xl hover:bg-guinda-700 disabled:opacity-50 transition-colors font-medium text-sm">{{ sending ? 'Enviando...' : 'Enviar' }}</button>
                     </div>
                 </div>
             </div>

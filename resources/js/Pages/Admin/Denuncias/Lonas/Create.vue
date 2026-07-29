@@ -258,7 +258,7 @@ function submit() {
                                     />
                                     <div
                                         v-if="ev.photo"
-                                        class="mt-2 text-xs text-green-600 flex items-center gap-1"
+                                        class="mt-2 text-xs text-guinda-600 flex items-center gap-1"
                                     >
                                         <i class="fa-solid fa-check-circle"></i>
                                         Imagen seleccionada

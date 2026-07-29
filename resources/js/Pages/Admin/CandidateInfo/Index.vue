@@ -22,7 +22,7 @@ const deleteInfo = (id) => {
                 <h2 class="text-xl font-semibold leading-tight text-gray-800">
                     Información de la Candidata
                 </h2>
-                    <Link :href="route('admin.info.create')" class="inline-flex items-center gap-2 px-4 py-2 bg-verde-600 text-white rounded-lg hover:bg-verde-700 text-sm">
+                    <Link :href="route('admin.info.create')" class="inline-flex items-center gap-2 px-4 py-2 bg-guinda-600 text-white rounded-lg hover:bg-guinda-700 text-sm">
                         <i class="fa-solid fa-plus"></i> Nueva Información
                     </Link>
             </div>
@@ -48,7 +48,7 @@ const deleteInfo = (id) => {
                                     <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ item.title }}</td>
                                     <td class="px-6 py-4 text-sm text-gray-600 max-w-md truncate">{{ item.content }}</td>
                                     <td class="px-6 py-4 text-right text-sm whitespace-nowrap">
-                                        <Link :href="route('admin.info.edit', item.id)" class="inline-flex items-center gap-1 text-verde-600 hover:text-verde-700 mr-3"><i class="fa-solid fa-pen-to-square"></i> Editar</Link>
+                                        <Link :href="route('admin.info.edit', item.id)" class="inline-flex items-center gap-1 text-guinda-600 hover:text-guinda-700 mr-3"><i class="fa-solid fa-pen-to-square"></i> Editar</Link>
                                         <button @click="deleteInfo(item.id)" class="inline-flex items-center gap-1 text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i> Eliminar</button>
                                     </td>
                                 </tr>

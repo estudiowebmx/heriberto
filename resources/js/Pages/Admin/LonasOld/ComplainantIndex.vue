@@ -22,7 +22,7 @@ const deleteComplainant = (id) => {
                 <h2 class="text-xl font-semibold leading-tight text-gray-800">Catálogo de Denunciantes</h2>
                 <div class="flex gap-3">
                     
-                    <Link :href="route('admin.denunciantes.create')" class="px-4 py-2 bg-verde-600 text-white rounded-lg hover:bg-verde-700 text-sm">
+                    <Link :href="route('admin.denunciantes.create')" class="px-4 py-2 bg-guinda-600 text-white rounded-lg hover:bg-guinda-700 text-sm">
                         + Nuevo Denunciante
                     </Link>
                 </div>
@@ -63,7 +63,7 @@ const deleteComplainant = (id) => {
                                 <td class="px-4 py-3 text-sm text-gray-600">{{ c.domicilio }}</td>
                                 <td class="px-4 py-3 text-sm text-gray-600">{{ c.email || '—' }}</td>
                                 <td class="px-4 py-3 text-right text-sm whitespace-nowrap">
-                                    <Link :href="route('admin.denunciantes.edit', c.id)" class="inline-flex items-center gap-1 text-verde-600 hover:text-verde-700 mr-3"><i class="fa-solid fa-pen-to-square"></i> Editar</Link>
+                                    <Link :href="route('admin.denunciantes.edit', c.id)" class="inline-flex items-center gap-1 text-guinda-600 hover:text-guinda-700 mr-3"><i class="fa-solid fa-pen-to-square"></i> Editar</Link>
                                     <button @click="deleteComplainant(c.id)" class="inline-flex items-center gap-1 text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i> Eliminar</button>
                                 </td>
                             </tr>
@@ -84,7 +84,7 @@ const deleteComplainant = (id) => {
                                 v-html="link.label"
                                 :class="[
                                     'px-3 py-1.5 text-sm rounded-md transition-colors',
-                                    link.active ? 'bg-verde-600 text-white' : link.url ? 'text-gray-600 hover:bg-gray-100' : 'text-gray-300 cursor-default',
+                                    link.active ? 'bg-guinda-600 text-white' : link.url ? 'text-gray-600 hover:bg-gray-100' : 'text-gray-300 cursor-default',
                                 ]"
                                 preserve-scroll
                             />

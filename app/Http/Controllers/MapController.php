@@ -101,4 +101,10 @@ class MapController extends Controller
 
         return response()->json(['estatal' => $estatal, 'municipios' => $municipios]);
     }
+
+    public function seccionesMunicipios()
+    {
+        $data = Seccion::pluck('municipio', 'seccion');
+        return response()->json($data);
+    }
 }

@@ -9,7 +9,7 @@ import { Link } from "@inertiajs/vue3";
 const showingNavigationDropdown = ref(false);
 const expandedGeneral = ref(false);
 const expandedChatBot = ref(false);
-const expandedJuridico = ref(false);
+
 const expandedTerritorio = ref(false);
 </script>
 
@@ -26,7 +26,7 @@ const expandedTerritorio = ref(false);
                                 <Link :href="route('dashboard')">
                                     <img
                                         src="/img/perfil.jpg"
-                                        alt="Jasmin Bugarin"
+                                        alt="Heriberto Castañeda"
                                         class="h-9 w-9 rounded-xl object-cover shadow-sm"
                                     />
                                 </Link>
@@ -95,43 +95,6 @@ const expandedTerritorio = ref(false);
                                             :href="route('admin.agenda.index')"
                                         >
                                             <i class="fa-solid fa-calendar-days mr-1.5"></i> Agenda
-                                        </DropdownLink>
-                                    </template>
-                                </Dropdown>
-
-                                <!-- Jurídico -->
-                                <Dropdown width="48" align="left">
-                                    <template #trigger>
-                                        <button
-                                            class="inline-flex items-center px-1 pt-0 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none"
-                                            :class="
-                                                route().current('admin.programa_conoceme.*') ||
-                                                route().current('admin.denuncias.*') ||
-                                                route().current('admin.denunciantes.*')
-                                                    ? 'border-indigo-400 text-gray-900 focus:border-indigo-700'
-                                                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:text-gray-700 focus:border-gray-300'
-                                            "
-                                        >
-                                            <i class="fa-solid fa-scale-balanced mr-1.5"></i> Jurídico
-                                        </button>
-                                    </template>
-                                    <template #content>
-                                        <DropdownLink
-                                            v-if="$page.props.auth.user?.role === 'admin'"
-                                            :href="route('admin.programa_conoceme.index')"
-                                        >
-                                            <i class="fa-solid fa-clipboard-question mr-1.5"></i> Conóceme
-                                        </DropdownLink>
-                                        <DropdownLink
-                                            :href="route('admin.denuncias.index')"
-                                        >
-                                            <i class="fa-solid fa-gavel mr-1.5"></i> Denuncias
-                                        </DropdownLink>
-                                        <DropdownLink
-                                            v-if="$page.props.auth.user?.role === 'admin'"
-                                            :href="route('admin.denunciantes.index')"
-                                        >
-                                            <i class="fa-solid fa-users mr-1.5"></i> Denunciantes
                                         </DropdownLink>
                                     </template>
                                 </Dropdown>
@@ -321,40 +284,6 @@ const expandedTerritorio = ref(false);
                                 :active="route().current('admin.agenda.*')"
                             >
                                 <i class="fa-solid fa-calendar-days mr-1.5"></i> Agenda
-                            </ResponsiveNavLink>
-                        </div>
-
-                        <!-- Jurídico -->
-                        <button
-                            @click="expandedJuridico = !expandedJuridico"
-                            class="flex w-full items-center justify-between ps-3 pe-4 py-2 border-l-4 border-transparent text-start text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none"
-                        >
-                            <span><i class="fa-solid fa-scale-balanced mr-1.5"></i> Jurídico</span>
-                            <i
-                                class="fa-solid text-xs transition-transform"
-                                :class="expandedJuridico ? 'fa-chevron-down' : 'fa-chevron-right'"
-                            ></i>
-                        </button>
-                        <div v-show="expandedJuridico" class="space-y-1">
-                            <ResponsiveNavLink
-                                v-if="$page.props.auth.user?.role === 'admin'"
-                                :href="route('admin.programa_conoceme.index')"
-                                :active="route().current('admin.programa_conoceme.*')"
-                            >
-                                <i class="fa-solid fa-clipboard-question mr-1.5"></i> Conóceme
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink
-                                :href="route('admin.denuncias.index')"
-                                :active="route().current('admin.denuncias.*')"
-                            >
-                                <i class="fa-solid fa-gavel mr-1.5"></i> Denuncias
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink
-                                v-if="$page.props.auth.user?.role === 'admin'"
-                                :href="route('admin.denunciantes.index')"
-                                :active="route().current('admin.denunciantes.*')"
-                            >
-                                <i class="fa-solid fa-users mr-1.5"></i> Denunciantes
                             </ResponsiveNavLink>
                         </div>
 

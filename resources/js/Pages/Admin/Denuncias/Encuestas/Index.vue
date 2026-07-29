@@ -45,7 +45,7 @@ function confirmDelete(id, name) {
                             <tbody class="divide-y divide-gray-100">
                                 <tr v-for="e in encuestas.data" :key="e.id" class="hover:bg-gray-50">
                                     <td class="px-3 py-3 whitespace-nowrap text-center">
-                                        <i v-if="e.verificada" class="fa-solid fa-circle-check text-green-500 text-lg" title="Verificada"></i>
+                                        <i v-if="e.verificada" class="fa-solid fa-circle-check text-guinda-500 text-lg" title="Verificada"></i>
                                         <i v-else class="fa-solid fa-circle-xmark text-red-400 text-lg" title="No verificada"></i>
                                     </td>
                                     <td class="px-3 py-3 whitespace-nowrap font-medium text-gray-900">{{ e.complainant?.nombre_completo }}</td>
@@ -59,7 +59,7 @@ function confirmDelete(id, name) {
                                         <div class="flex items-center justify-end gap-2">
                                             <Link :href="route('admin.denuncias.encuestas.show', e.id)" class="text-blue-600 hover:text-blue-800 text-xs" title="Ver"><i class="fa-solid fa-eye"></i></Link>
                                             <Link v-if="!e.verificada" :href="route('admin.denuncias.encuestas.verify', e.id)" class="text-emerald-600 hover:text-emerald-800 text-xs" title="Verificar"><i class="fa-solid fa-clipboard-check"></i></Link>
-                                            <Link v-if="!e.verificada" :href="route('admin.denuncias.encuestas.edit', e.id)" class="text-green-600 hover:text-green-800 text-xs" title="Editar"><i class="fa-solid fa-pen-to-square"></i></Link>
+                                            <Link v-if="!e.verificada" :href="route('admin.denuncias.encuestas.edit', e.id)" class="text-guinda-600 hover:text-guinda-800 text-xs" title="Editar"><i class="fa-solid fa-pen-to-square"></i></Link>
                                             <a v-if="e.verificada" :href="route('admin.denuncias.encuestas.word', e.id)" class="text-purple-600 hover:text-purple-800 text-xs" title="Descargar Word"><i class="fa-solid fa-file-word"></i></a>
                                             <button @click="confirmDelete(e.id, e.complainant?.nombre_completo)" class="text-red-500 hover:text-red-700 text-xs" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
                                         </div>

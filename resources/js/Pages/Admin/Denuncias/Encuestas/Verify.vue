@@ -88,11 +88,11 @@ function goEdit() {
                     <div class="mb-5">
                         <div class="flex items-center justify-between text-xs text-gray-400 mb-1">
                             <span v-if="!timerReady">Revisa la información...</span>
-                            <span v-else class="text-green-600 font-medium">Ya puedes continuar</span>
+                            <span v-else class="text-guinda-600 font-medium">Ya puedes continuar</span>
                             <span>{{ Math.ceil((100 - timerProgress) / 100 * 5) }}s</span>
                         </div>
                         <div class="w-full bg-gray-100 rounded-full h-1 overflow-hidden">
-                            <div class="h-1 rounded-full transition-all duration-100 ease-linear" :class="timerReady ? 'bg-green-500' : 'bg-emerald-400'" :style="{ width: timerProgress + '%' }" />
+                            <div class="h-1 rounded-full transition-all duration-100 ease-linear" :class="timerReady ? 'bg-guinda-500' : 'bg-emerald-400'" :style="{ width: timerProgress + '%' }" />
                         </div>
                     </div>
                     <!-- Rush warning -->
@@ -145,7 +145,7 @@ function goEdit() {
                     </div>
                     <!-- Done state -->
                     <div v-if="currentStep === totalSteps - 1 && !rejected" class="text-center py-4 mb-4">
-                        <i class="fa-solid fa-circle-check text-5xl text-green-500 mb-3 block"></i>
+                        <i class="fa-solid fa-circle-check text-5xl text-guinda-500 mb-3 block"></i>
                         <p class="text-lg font-semibold text-gray-700">Todos los datos revisados</p>
                         <p class="text-sm text-gray-500 mt-1">Presiona "Sí" para confirmar la verificación.</p>
                     </div>
@@ -156,7 +156,7 @@ function goEdit() {
                         </button>
                         <button type="button" @click="onSi" :disabled="false"
                             class="inline-flex items-center gap-2 px-8 py-3 text-lg font-semibold rounded-xl transition"
-                            :class="timerReady ? 'text-green-600 bg-green-50 border-2 border-green-200 hover:bg-green-100' : 'text-gray-400 bg-gray-50 border-2 border-gray-200 cursor-not-allowed'">
+                            :class="timerReady ? 'text-guinda-600 bg-guinda-50 border-2 border-guinda-200 hover:bg-guinda-100' : 'text-gray-400 bg-gray-50 border-2 border-gray-200 cursor-not-allowed'">
                             <i class="fa-solid fa-check text-xl"></i> Sí
                         </button>
                     </div>

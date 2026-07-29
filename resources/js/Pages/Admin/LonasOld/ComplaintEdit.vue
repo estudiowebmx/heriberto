@@ -86,7 +86,7 @@ const submit = () => {
                         <form @submit.prevent="submit" class="space-y-6">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Denunciante *</label>
-                                <select v-model="form.complainant_id" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-verde-500 focus:ring-verde-500">
+                                <select v-model="form.complainant_id" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-guinda-500 focus:ring-guinda-500">
                                     <option value="" disabled>Selecciona un denunciante...</option>
                                     <option v-for="c in complainants" :key="c.id" :value="c.id">{{ c.nombre_completo }}</option>
                                 </select>
@@ -96,12 +96,12 @@ const submit = () => {
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Colonia *</label>
-                                    <input v-model="form.colonia" type="text" required maxlength="255" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-verde-500 focus:ring-verde-500" />
+                                    <input v-model="form.colonia" type="text" required maxlength="255" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-guinda-500 focus:ring-guinda-500" />
                                     <p v-if="form.errors.colonia" class="text-sm text-red-600 mt-1">{{ form.errors.colonia }}</p>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Nombre del Presidente CAC *</label>
-                                    <input v-model="form.cac_president_name" type="text" required maxlength="255" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-verde-500 focus:ring-verde-500" />
+                                    <input v-model="form.cac_president_name" type="text" required maxlength="255" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-guinda-500 focus:ring-guinda-500" />
                                     <p v-if="form.errors.cac_president_name" class="text-sm text-red-600 mt-1">{{ form.errors.cac_president_name }}</p>
                                 </div>
                             </div>
@@ -118,7 +118,7 @@ const submit = () => {
 
                                 <div v-for="(ev, idx) in form.evidences" :key="idx" class="border border-gray-200 rounded-lg p-4 mb-3 bg-gray-50">
                                     <div class="flex items-center justify-between mb-3">
-                                        <span class="text-xs font-medium px-2 py-0.5 rounded-full" :class="ev.is_cac_president ? 'bg-verde-100 text-verde-700' : 'bg-blue-100 text-blue-700'">
+                                        <span class="text-xs font-medium px-2 py-0.5 rounded-full" :class="ev.is_cac_president ? 'bg-guinda-100 text-guinda-700' : 'bg-blue-100 text-blue-700'">
                                             {{ ev.is_cac_president ? 'Domicilio Presidente CAC' : `Domicilio ${idx}` }}
                                         </span>
                                         <button v-if="!ev.is_cac_president" type="button" @click="removeEvidence(idx)" class="text-red-500 hover:text-red-700 text-xs">Eliminar</button>
@@ -127,12 +127,12 @@ const submit = () => {
                                     <div class="grid grid-cols-2 gap-3">
                                         <div>
                                             <label class="block text-xs font-medium text-gray-600 mb-1">Dirección (Calle y Número) *</label>
-                                            <input v-model="ev.address" type="text" required maxlength="500" class="block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-verde-500 focus:ring-verde-500" />
+                                            <input v-model="ev.address" type="text" required maxlength="500" class="block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-guinda-500 focus:ring-guinda-500" />
                                             <p v-if="form.errors[`evidences.${idx}.address`]" class="text-xs text-red-600 mt-1">{{ form.errors[`evidences.${idx}.address`] }}</p>
                                         </div>
                                         <div>
                                             <label class="block text-xs font-medium text-gray-600 mb-1">Leyenda *</label>
-                                            <input v-model="ev.leyenda" type="text" required maxlength="255" class="block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-verde-500 focus:ring-verde-500" />
+                                            <input v-model="ev.leyenda" type="text" required maxlength="255" class="block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-guinda-500 focus:ring-guinda-500" />
                                             <p v-if="form.errors[`evidences.${idx}.leyenda`]" class="text-xs text-red-600 mt-1">{{ form.errors[`evidences.${idx}.leyenda`] }}</p>
                                         </div>
                                     </div>
@@ -140,15 +140,15 @@ const submit = () => {
                                     <div class="grid grid-cols-2 gap-3 mt-3">
                                         <div>
                                             <label class="inline-flex items-center gap-2 text-sm text-gray-700">
-                                                <input v-model="ev.is_inhabited" type="checkbox" class="rounded border-gray-300 text-verde-600 shadow-sm focus:border-verde-500 focus:ring-verde-500" />
+                                                <input v-model="ev.is_inhabited" type="checkbox" class="rounded border-gray-300 text-guinda-600 shadow-sm focus:border-guinda-500 focus:ring-guinda-500" />
                                                 ¿Inmueble habitado?
                                             </label>
                                         </div>
                                         <div>
                                             <label class="block text-xs font-medium text-gray-600 mb-1">Fotografía</label>
                                             <div class="flex items-center gap-2">
-                                                <input type="file" accept="image/*" @change="onPhotoChange(idx, $event)" class="block w-full text-sm text-gray-600 file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-xs file:font-medium file:bg-verde-50 file:text-verde-700 hover:file:bg-verde-100" />
-                                                <span v-if="compressing[idx]" class="text-xs text-verde-600">Comprimiendo...</span>
+                                                <input type="file" accept="image/*" @change="onPhotoChange(idx, $event)" class="block w-full text-sm text-gray-600 file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-xs file:font-medium file:bg-guinda-50 file:text-guinda-700 hover:file:bg-guinda-100" />
+                                                <span v-if="compressing[idx]" class="text-xs text-guinda-600">Comprimiendo...</span>
                                                 <span v-if="ev.photo_path && !ev.photo" class="text-xs text-gray-400 whitespace-nowrap">Actual</span>
                                             </div>
                                         </div>
@@ -157,7 +157,7 @@ const submit = () => {
                             </div>
 
                             <div class="flex items-center gap-4 pt-4 border-t">
-                                <button type="submit" :disabled="form.processing" class="px-4 py-2 bg-verde-600 text-white rounded-lg hover:bg-verde-700 disabled:opacity-50 text-sm">
+                                <button type="submit" :disabled="form.processing" class="px-4 py-2 bg-guinda-600 text-white rounded-lg hover:bg-guinda-700 disabled:opacity-50 text-sm">
                                     Actualizar Denuncia
                                 </button>
                                 <Link :href="route('admin.lonas-old.index')" class="text-sm text-gray-600 hover:text-gray-900">Cancelar</Link>

@@ -18,7 +18,7 @@ const chartOptions = {
 
 const chartPreocupaciones = computed(() => ({
     labels: Object.keys(s.value.preocupaciones),
-    datasets: [{ data: Object.values(s.value.preocupaciones), backgroundColor: ['#54b848','#00ae41','#c7de8d','#f97316','#6366f1','#ec4899','#14b8a6','#eab308','#f43f5e'] }],
+    datasets: [{ data: Object.values(s.value.preocupaciones), backgroundColor: ['#d64053','#A91C2C','#f2a5b0','#f97316','#6366f1','#ec4899','#14b8a6','#eab308','#f43f5e'] }],
 }));
 
 const chartJusticia = computed(() => ({
@@ -28,12 +28,12 @@ const chartJusticia = computed(() => ({
 
 const chartErrores = computed(() => ({
     labels: Object.keys(s.value.errores_gobierno),
-    datasets: [{ data: Object.values(s.value.errores_gobierno), backgroundColor: ['#ef4444','#f97316','#eab308','#54b848','#6366f1','#ec4899','#14b8a6','#c7de8d','#00ae41'] }],
+    datasets: [{ data: Object.values(s.value.errores_gobierno), backgroundColor: ['#ef4444','#f97316','#eab308','#d64053','#6366f1','#ec4899','#14b8a6','#f2a5b0','#A91C2C'] }],
 }));
 
 const chartServicios = computed(() => ({
     labels: Object.keys(s.value.deficiencias_servicios),
-    datasets: [{ data: Object.values(s.value.deficiencias_servicios), backgroundColor: ['#6366f1','#eab308','#14b8a6','#f97316','#78716c','#ef4444','#54b848'] }],
+    datasets: [{ data: Object.values(s.value.deficiencias_servicios), backgroundColor: ['#6366f1','#eab308','#14b8a6','#f97316','#78716c','#ef4444','#d64053'] }],
 }));
 </script>
 
@@ -111,7 +111,7 @@ const chartServicios = computed(() => ({
                     <div class="flex items-center justify-between">
                         <span class="text-sm text-gray-500">Mostrando {{ encuestas.from }}–{{ encuestas.to }} de {{ encuestas.total }}</span>
                         <div class="flex gap-1">
-                            <Link v-for="link in encuestas.links" :key="link.label" :href="link.url || '#'" v-html="link.label" :class="['px-3 py-1.5 text-sm rounded-md', link.active ? 'bg-verde-600 text-white' : link.url ? 'text-gray-600 hover:bg-gray-100' : 'text-gray-300 cursor-default']" preserve-scroll />
+                            <Link v-for="link in encuestas.links" :key="link.label" :href="link.url || '#'" v-html="link.label" :class="['px-3 py-1.5 text-sm rounded-md', link.active ? 'bg-guinda-600 text-white' : link.url ? 'text-gray-600 hover:bg-gray-100' : 'text-gray-300 cursor-default']" preserve-scroll />
                         </div>
                     </div>
                 </div>
