@@ -1,18 +1,20 @@
 <?php
 
-use App\Http\Controllers\ChatController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Admin\CandidateInfoController;
 use App\Http\Controllers\Admin\AgendaController;
-use App\Http\Controllers\Admin\PersonaController;
-use App\Http\Controllers\Admin\EncuestaController as AdminEncuestaController;
+use App\Http\Controllers\Admin\CandidateInfoController;
 use App\Http\Controllers\Admin\ComplainantController;
 use App\Http\Controllers\Admin\ComplaintController;
+use App\Http\Controllers\Admin\DemostracionController as AdminDemostracionController;
+use App\Http\Controllers\Admin\EncuestaController as AdminEncuestaController;
 use App\Http\Controllers\Admin\EncuestaDenunciaController;
 use App\Http\Controllers\Admin\LonaController;
+use App\Http\Controllers\Admin\PersonaController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\DemostracionController;
 use App\Http\Controllers\EncuestaController;
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -28,6 +30,10 @@ Route::get('/api/metas', [MapController::class, 'metas'])->name('api.metas');
 Route::get('/api/dashboard', [MapController::class, 'dashboard'])->name('api.dashboard');
 Route::get('/api/secciones-municipios', [MapController::class, 'seccionesMunicipios'])->name('api.secciones_municipios');
 
+// Módulo de Demostración (público, sin contraseña)
+Route::get('/demostracion', [DemostracionController::class, 'index'])->name('demostracion.index');
+Route::post('/demostracion', [DemostracionController::class, 'store'])->name('demostracion.store');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified', 'role:admin'])->name('dashboard');
@@ -37,12 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    
-
     Route::prefix('admin')->name('admin.')->group(function () {
-        
+
         Route::resource('personas', PersonaController::class)->except(['show']);
-      
 
         Route::middleware('role:admin')->group(function () {
             Route::resource('info', CandidateInfoController::class)->except(['show']);
@@ -51,8 +54,14 @@ Route::middleware('auth')->group(function () {
             Route::resource('users', UserController::class)->except(['show']);
 
             Route::get('/mapa', [MapController::class, 'index'])->name('mapa.index');
-        });
 
+            // Módulo de Demostración (listado + envío de SMS)
+            Route::prefix('demostracion')->name('demostracion.')->group(function () {
+                Route::get('/', [AdminDemostracionController::class, 'index'])->name('index');
+                Route::post('/enviar-sms', [AdminDemostracionController::class, 'enviarSms'])->name('sms');
+                Route::delete('/{demostracion}', [AdminDemostracionController::class, 'destroy'])->name('destroy');
+            });
+        });
 
         // BACKUP: denuncias antiguo → lonas-old (accesible solo por URL)
         Route::prefix('lonas-old')->name('lonas-old.')->group(function () {

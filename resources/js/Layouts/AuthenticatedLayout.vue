@@ -30,7 +30,7 @@ const expandedTerritorio = ref(false);
                                         class="h-9 w-9 rounded-xl object-cover shadow-sm"
                                     />
                                 </Link>
-                                <span class="text-sm font-bold text-gray-700 hidden sm:inline whitespace-nowrap">Estructura Jurídica</span>
+                                <span class="text-sm font-bold text-gray-700 hidden sm:inline whitespace-nowrap">Heriberto Castañeda</span>
                             </div>
 
                             <!-- Navigation Links -->
@@ -44,7 +44,8 @@ const expandedTerritorio = ref(false);
                                             class="inline-flex items-center px-1 pt-0 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none"
                                             :class="
                                                 route().current('dashboard') ||
-                                                route().current('admin.users.*')
+                                                route().current('admin.users.*') ||
+                                                route().current('admin.demostracion.*')
                                                     ? 'border-indigo-400 text-gray-900 focus:border-indigo-700'
                                                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:text-gray-700 focus:border-gray-300'
                                             "
@@ -64,6 +65,12 @@ const expandedTerritorio = ref(false);
                                             :href="route('admin.users.index')"
                                         >
                                             <i class="fa-solid fa-user-gear mr-1.5"></i> Usuarios
+                                        </DropdownLink>
+                                        <DropdownLink
+                                            v-if="$page.props.auth.user?.role === 'admin'"
+                                            :href="route('admin.demostracion.index')"
+                                        >
+                                            <i class="fa-solid fa-mobile-screen-button mr-1.5"></i> Demostración
                                         </DropdownLink>
                                     </template>
                                 </Dropdown>
@@ -255,6 +262,13 @@ const expandedTerritorio = ref(false);
                                 :active="route().current('admin.users.*')"
                             >
                                 <i class="fa-solid fa-user-gear mr-1.5"></i> Usuarios
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink
+                                v-if="$page.props.auth.user?.role === 'admin'"
+                                :href="route('admin.demostracion.index')"
+                                :active="route().current('admin.demostracion.*')"
+                            >
+                                <i class="fa-solid fa-mobile-screen-button mr-1.5"></i> Demostración
                             </ResponsiveNavLink>
                         </div>
 

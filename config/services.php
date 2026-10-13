@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'brevo' => [
+        'api_key' => env('BREVO_API_KEY'),
+        'sms_sender' => env('BREVO_SMS_SENDER', 'Heriberto'),
+        'country_code' => env('BREVO_SMS_COUNTRY_CODE', '52'),
+        'endpoint' => env('BREVO_SMS_ENDPOINT', 'https://api.brevo.com/v3/transactionalSMS/sms'),
+    ],
+
 ];
