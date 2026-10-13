@@ -185,13 +185,9 @@ onMounted(async () => {
         attributionControl: false,
     });
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
-    }).addTo(map);
-
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png', {
-        maxZoom: 19,
-        pane: 'overlayPane',
+        attribution: '&copy; OpenStreetMap contributors',
     }).addTo(map);
 
     const FullscreenControl = L.Control.extend({
