@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DemostracionPersona;
 use App\Services\BrevoSmsService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 use Throwable;
 
@@ -45,31 +46,54 @@ class DemostracionController extends Controller
 
         $personas = $query->get();
 
-        $enviados = 0;
-        $errores = [];
+        $items = [];
 
         foreach ($personas as $persona) {
-            $contenido = str_ireplace('{nombre}', $persona->nombre, $validated['mensaje']);
+            $items[$persona->id] = [
+                'telefono' => $persona->telefono,
+                'contenido' => str_ireplace('{nombre}', $persona->nombre, $validated['mensaje']),
+            ];
+        }
 
-            try {
-                $resultado = $sms->send($persona->telefono, $contenido);
+        try {
+            $respuestas = $sms->sendMany($items);
+        } catch (Throwable $e) {
+            Log::error('Error inesperado al enviar SMS de demostración', [
+                'error' => $e->getMessage(),
+            ]);
 
-                if ($resultado['ok']) {
-                    $enviados++;
-                } else {
-                    $errores[] = [
-                        'nombre' => $persona->nombre,
-                        'telefono' => $persona->telefono,
-                        'error' => $resultado['error'] ?? 'Error desconocido',
-                    ];
-                }
-            } catch (Throwable $e) {
-                $errores[] = [
-                    'nombre' => $persona->nombre,
-                    'telefono' => $persona->telefono,
-                    'error' => $e->getMessage(),
-                ];
+            $respuestas = [];
+        }
+
+        $enviados = 0;
+        $errores = 0;
+        $resultados = [];
+
+        foreach ($personas as $persona) {
+            $respuesta = $respuestas[$persona->id] ?? [
+                'ok' => false,
+                'http' => null,
+                'messageId' => null,
+                'code' => 'unknown_error',
+                'error' => 'No se obtuvo respuesta del envío.',
+            ];
+
+            if ($respuesta['ok']) {
+                $enviados++;
+            } else {
+                $errores++;
             }
+
+            $resultados[] = [
+                'id' => $persona->id,
+                'nombre' => $persona->nombre,
+                'telefono' => $persona->telefono,
+                'ok' => $respuesta['ok'],
+                'http' => $respuesta['http'],
+                'messageId' => $respuesta['messageId'],
+                'code' => $respuesta['code'],
+                'error' => $respuesta['error'],
+            ];
         }
 
         return response()->json([
@@ -77,6 +101,7 @@ class DemostracionController extends Controller
             'enviados' => $enviados,
             'total' => $personas->count(),
             'errores' => $errores,
+            'resultados' => $resultados,
         ]);
     }
 

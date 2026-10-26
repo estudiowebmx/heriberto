@@ -30,6 +30,7 @@ const selected = ref([]);
 const mensaje = ref('');
 const sending = ref(false);
 const resultado = ref(null);
+const soloErrores = ref(false);
 
 const allSelected = computed(
     () => props.personas.data.length > 0 && selected.value.length === props.personas.data.length,
@@ -40,6 +41,11 @@ const toggleAll = () => {
 };
 
 const destinatarios = computed(() => (selected.value.length > 0 ? selected.value.length : props.personas.total));
+
+const resultadosFiltrados = computed(() => {
+    const lista = resultado.value?.resultados ?? [];
+    return soloErrores.value ? lista.filter((r) => !r.ok) : lista;
+});
 
 const preview = computed(() => {
     const nombre = props.personas.data.find((p) => selected.value.includes(p.id))?.nombre
@@ -61,6 +67,7 @@ const enviarSms = async () => {
 
     sending.value = true;
     resultado.value = null;
+    soloErrores.value = false;
     try {
         const res = await axios.post(route('admin.demostracion.sms'), {
             mensaje: mensaje.value,
@@ -68,14 +75,32 @@ const enviarSms = async () => {
         });
         resultado.value = res.data;
     } catch (e) {
+        const status = e?.response?.status;
+        const esTimeout = e?.code === 'ECONNABORTED' || !e?.response || status === 502 || status === 504;
         resultado.value = {
             ok: false,
             enviados: 0,
             total: 0,
-            errores: [{ nombre: '-', telefono: '-', error: e?.response?.data?.message || 'Error al enviar.' }],
+            errores: 1,
+            resultados: [],
+            errorGeneral: esTimeout
+                ? 'La operación tardó demasiado (posible timeout del servidor). Verifica en Brevo antes de reenviar para no duplicar SMS.'
+                : (e?.response?.data?.message || 'Error al enviar.'),
         };
     } finally {
         sending.value = false;
+    }
+};
+
+const copiarErrores = async () => {
+    const fallidos = (resultado.value?.resultados ?? []).filter((r) => !r.ok);
+    const texto = fallidos
+        .map((r) => `${r.nombre} (${r.telefono}) [${r.http ?? '-'}]: ${r.error || r.code || 'Error'}`)
+        .join('\n');
+    try {
+        await navigator.clipboard.writeText(texto);
+    } catch (err) {
+        alert(texto);
     }
 };
 
@@ -141,16 +166,53 @@ const eliminar = (id) => {
                         </div>
                     </div>
 
-                    <div v-if="resultado" class="mt-4 rounded-md p-3 text-sm" :class="resultado.errores?.length ? 'bg-amber-50 text-amber-800' : 'bg-green-50 text-green-800'">
-                        <p class="font-medium">
-                            Enviados: {{ resultado.enviados }} de {{ resultado.total }}
-                            <span v-if="resultado.errores?.length"> · Con errores: {{ resultado.errores.length }}</span>
-                        </p>
-                        <ul v-if="resultado.errores?.length" class="mt-2 list-disc list-inside space-y-0.5 text-xs">
-                            <li v-for="(err, i) in resultado.errores" :key="i">
-                                {{ err.nombre }} ({{ err.telefono }}): {{ err.error }}
-                            </li>
-                        </ul>
+                    <div v-if="resultado" class="mt-4 space-y-3">
+                        <div v-if="resultado.errorGeneral" class="rounded-md p-3 text-sm bg-red-50 text-red-800">
+                            {{ resultado.errorGeneral }}
+                        </div>
+
+                        <div v-else class="rounded-md p-3 text-sm" :class="resultado.errores ? 'bg-amber-50 text-amber-800' : 'bg-green-50 text-green-800'">
+                            <p class="font-medium">
+                                Enviados: {{ resultado.enviados }} de {{ resultado.total }}
+                                <span v-if="resultado.errores"> · Con errores: {{ resultado.errores }}</span>
+                            </p>
+                        </div>
+
+                        <div v-if="resultado.resultados?.length" class="overflow-x-auto bg-white shadow-sm sm:rounded-lg border border-gray-200">
+                            <div class="flex items-center justify-between px-3 py-2 border-b border-gray-100">
+                                <label class="inline-flex items-center gap-2 text-xs text-gray-600">
+                                    <input type="checkbox" v-model="soloErrores" class="rounded border-gray-300 text-guinda-600 focus:ring-guinda-500" />
+                                    Solo errores
+                                </label>
+                                <button v-if="resultado.errores" @click="copiarErrores" class="text-xs text-guinda-700 hover:underline">
+                                    <i class="fa-solid fa-copy mr-1"></i>Copiar errores
+                                </button>
+                            </div>
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Nombre</th>
+                                        <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Teléfono</th>
+                                        <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">HTTP</th>
+                                        <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Resultado</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr v-for="r in resultadosFiltrados" :key="r.id">
+                                        <td class="px-3 py-2 text-sm text-gray-900 whitespace-nowrap">{{ r.nombre }}</td>
+                                        <td class="px-3 py-2 text-sm text-gray-600 whitespace-nowrap">{{ r.telefono }}</td>
+                                        <td class="px-3 py-2 text-sm whitespace-nowrap" :class="r.ok ? 'text-green-600' : 'text-red-600'">{{ r.http ?? '-' }}</td>
+                                        <td class="px-3 py-2 text-sm" :class="r.ok ? 'text-green-700' : 'text-red-700'">
+                                            <span v-if="r.ok">messageId {{ r.messageId }}</span>
+                                            <span v-else>{{ r.error || r.code || 'Error' }}</span>
+                                        </td>
+                                    </tr>
+                                    <tr v-if="resultadosFiltrados.length === 0">
+                                        <td colspan="4" class="px-3 py-6 text-center text-sm text-gray-400">Sin resultados</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
