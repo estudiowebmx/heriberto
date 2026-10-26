@@ -45,8 +45,11 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('admin')->name('admin.')->group(function () {
 
-        Route::resource('personas', PersonaController::class)->except(['show']);
+        Route::post('personas/ine', [PersonaController::class, 'extraerIne'])
+            ->name('personas.ine')
+            ->middleware('throttle:10,1');
 
+        Route::resource('personas', PersonaController::class)->except(['show']);
         Route::middleware('role:admin')->group(function () {
             Route::resource('info', CandidateInfoController::class)->except(['show']);
             Route::resource('agenda', AgendaController::class)->except(['show']);

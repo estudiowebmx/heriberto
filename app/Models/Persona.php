@@ -13,17 +13,37 @@ class Persona extends Model
         'nombre',
         'apellido_paterno',
         'apellido_materno',
-        'telefono',
+        'sexo',
+        'fecha_nacimiento',
+        'celular',
+        'curp',
+        'clave_elector',
+        'domicilio',
+        'colonia',
+        'localidad',
         'seccion',
         'promotor',
-        'municipio',
-        'distrito_local',
-        'distrito_federal',
-        'demarcacion',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'fecha_nacimiento' => 'date:Y-m-d',
+        ];
+    }
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function grupos()
+    {
+        return $this->belongsToMany(Grupo::class, 'grupo_persona');
+    }
+
+    public function seccionInfo()
+    {
+        return $this->belongsTo(Seccion::class, 'seccion', 'seccion');
     }
 }

@@ -14,7 +14,7 @@ const form = reactive({
     nombre: "",
     apellido_paterno: "",
     apellido_materno: "",
-    telefono: "",
+    celular: "",
     seccion: "",
     municipio: "",
     distrito_local: "",
@@ -91,8 +91,8 @@ const buscarSeccion = async () => {
 };
 
 const submitRegistro = async () => {
-    if (!form.nombre || !form.apellido_paterno || !form.telefono) return;
-    if (form.telefono.replace(/\D/g, "").length !== 10) return;
+    if (!form.nombre || !form.celular) return;
+    if (form.celular.replace(/\D/g, "").length !== 10) return;
     if (loading.value) return;
 
     showForm.value = false;
@@ -101,7 +101,13 @@ const submitRegistro = async () => {
     await scrollToBottom();
 
     try {
-        const res = await axios.post("/chat/registrar", { ...form });
+        const res = await axios.post("/chat/registrar", {
+            nombre: form.nombre,
+            apellido_paterno: form.apellido_paterno,
+            apellido_materno: form.apellido_materno,
+            celular: form.celular,
+            seccion: form.seccion,
+        });
         messages.value.pop();
         messages.value.push({
             role: "assistant",
@@ -313,12 +319,11 @@ const renderMarkdown = (content) => {
                         <div>
                             <label
                                 class="block text-sm font-medium text-gray-700 mb-1"
-                                >Apellido Paterno *</label
+                                >Apellido Paterno</label
                             >
                             <input
                                 v-model="form.apellido_paterno"
                                 type="text"
-                                required
                                 class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-guinda-500 focus:ring-1 focus:ring-guinda-500 outline-none"
                             />
                         </div>
@@ -336,10 +341,10 @@ const renderMarkdown = (content) => {
                         <div>
                             <label
                                 class="block text-sm font-medium text-gray-700 mb-1"
-                                >Telefono *</label
+                                >Celular *</label
                             >
                             <input
-                                v-model="form.telefono"
+                                v-model="form.celular"
                                 type="tel"
                                 required
                                 pattern="[0-9]{10}"
@@ -420,8 +425,7 @@ const renderMarkdown = (content) => {
                             type="submit"
                             :disabled="
                                 !form.nombre ||
-                                !form.apellido_paterno ||
-                                form.telefono.replace(/\D/g, '').length !== 10
+                                form.celular.replace(/\D/g, '').length !== 10
                             "
                             class="w-full py-2.5 bg-guinda-600 text-white rounded-lg hover:bg-guinda-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium text-sm"
                         >

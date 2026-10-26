@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Persona;
 use App\Models\Seccion;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class MapController extends Controller
@@ -19,28 +18,29 @@ class MapController extends Controller
     {
         $tipo = $request->query('tipo', 'seccion');
 
-        $query = Persona::query()->selectRaw(
-            match ($tipo) {
-                'distrito_local' => 'distrito_local as clave, COUNT(*) as total',
-                'distrito_federal' => 'distrito_federal as clave, COUNT(*) as total',
-                'municipio' => 'municipio as clave, COUNT(*) as total',
-                'demarcacion' => "CONCAT(municipio, ' - D', demarcacion) as clave, COUNT(*) as total",
-                default => 'seccion as clave, COUNT(*) as total',
-            }
-        )
-            ->whereNotNull(match ($tipo) {
-                'distrito_local' => 'distrito_local',
-                'distrito_federal' => 'distrito_federal',
-                'municipio' => 'municipio',
-                'demarcacion' => 'demarcacion',
-                default => 'seccion',
-            })
+        $column = match ($tipo) {
+            'distrito_local' => 'secciones.distrito_local',
+            'distrito_federal' => 'secciones.distrito_federal',
+            'municipio' => 'secciones.municipio',
+            'demarcacion' => "CONCAT(secciones.municipio, ' - D', secciones.demarcacion)",
+            default => 'personas.seccion',
+        };
+
+        $query = Persona::query()
+            ->join('secciones', 'personas.seccion', '=', 'secciones.seccion')
+            ->selectRaw("{$column} as clave, COUNT(*) as total")
             ->groupBy('clave')
             ->orderByDesc('total')
-            ->limit(50)
-            ->get();
+            ->limit(50);
 
-        return response()->json($query);
+        if ($tipo === 'demarcacion') {
+            $query->whereNotNull('secciones.demarcacion')
+                ->where('secciones.demarcacion', '!=', '');
+        } else {
+            $query->whereNotNull($column)->where($column, '!=', '');
+        }
+
+        return response()->json($query->get());
     }
 
     public function metas(Request $request)
@@ -62,23 +62,31 @@ class MapController extends Controller
                 'municipio' => 'municipio',
                 'demarcacion' => 'demarcacion',
                 default => 'seccion',
-            })
-            ->groupBy('clave')
-            ->get();
+            });
+
+        if ($tipo === 'demarcacion') {
+            $query->where('demarcacion', '!=', '');
+        }
+
+        $query = $query->groupBy('clave')->get();
 
         return response()->json($query);
     }
 
     public function dashboard()
     {
-        $personas = Persona::selectRaw("CONCAT(municipio, ' - D', demarcacion) as clave, COUNT(*) as total")
-            ->whereNotNull('demarcacion')
-            ->where('municipio', 'XALISCO')
+        $personas = Persona::query()
+            ->join('secciones', 'personas.seccion', '=', 'secciones.seccion')
+            ->selectRaw("CONCAT(secciones.municipio, ' - D', secciones.demarcacion) as clave, COUNT(*) as total")
+            ->whereNotNull('secciones.demarcacion')
+            ->where('secciones.demarcacion', '!=', '')
+            ->where('secciones.municipio', 'XALISCO')
             ->groupBy('clave')
             ->pluck('total', 'clave');
 
         $metas = Seccion::selectRaw("CONCAT(municipio, ' - D', demarcacion) as clave, SUM(meta) as meta")
             ->whereNotNull('demarcacion')
+            ->where('demarcacion', '!=', '')
             ->where('municipio', 'XALISCO')
             ->groupBy('clave')
             ->pluck('meta', 'clave');
@@ -98,13 +106,15 @@ class MapController extends Controller
             ];
         }
 
-        usort($municipios, fn($a, $b) => $b['pct'] - $a['pct']);
+        usort($municipios, fn ($a, $b) => $b['pct'] - $a['pct']);
 
-        $seccionesXalisco = Persona::selectRaw('seccion, COUNT(*) as total')
-            ->where('municipio', 'XALISCO')
-            ->whereNotNull('seccion')
-            ->where('seccion', '!=', '')
-            ->groupBy('seccion')
+        $seccionesXalisco = Persona::query()
+            ->join('secciones', 'personas.seccion', '=', 'secciones.seccion')
+            ->selectRaw('personas.seccion as seccion, COUNT(*) as total')
+            ->where('secciones.municipio', 'XALISCO')
+            ->whereNotNull('personas.seccion')
+            ->where('personas.seccion', '!=', '')
+            ->groupBy('personas.seccion')
             ->pluck('total', 'seccion');
 
         $metasSeccion = Seccion::where('municipio', 'XALISCO')
@@ -121,7 +131,7 @@ class MapController extends Controller
             ];
         }
 
-        usort($secciones, fn($a, $b) => $b['pct'] - $a['pct']);
+        usort($secciones, fn ($a, $b) => $b['pct'] - $a['pct']);
 
         return response()->json([
             'estatal' => $estatal,
@@ -133,6 +143,7 @@ class MapController extends Controller
     public function seccionesMunicipios()
     {
         $data = Seccion::pluck('municipio', 'seccion');
+
         return response()->json($data);
     }
 }

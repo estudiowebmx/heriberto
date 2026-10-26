@@ -53,6 +53,7 @@ return [
             'key' => env('DEEPSEEK_API_KEY'),
             'options' => [
                 'model' => 'deepseek-chat',
+                'vision_model' => env('DEEPSEEK_VISION_MODEL', 'deepseek-flash'),
             ],
         ],
 

@@ -42,14 +42,10 @@ class ChatController extends Controller
     {
         $validated = $request->validate([
             'nombre' => 'required|string|max:100',
-            'apellido_paterno' => 'required|string|max:100',
+            'apellido_paterno' => 'nullable|string|max:100',
             'apellido_materno' => 'nullable|string|max:100',
-            'telefono' => 'required|string|size:10|regex:/^[0-9]{10}$/',
+            'celular' => 'required|digits:10',
             'seccion' => 'nullable|string|max:20',
-            'municipio' => 'nullable|string|max:255',
-            'distrito_local' => 'nullable|string|max:50',
-            'distrito_federal' => 'nullable|string|max:50',
-            'demarcacion' => 'nullable|string|max:50',
         ]);
 
         $persona = Persona::create($validated);
@@ -66,18 +62,18 @@ class ChatController extends Controller
     {
         $numero = $request->query('q');
 
-        if (!$numero) {
+        if (! $numero) {
             return response()->json(null, 404);
         }
 
         $seccion = Seccion::where('seccion', $numero)->first();
 
-        if (!$seccion) {
+        if (! $seccion) {
             return response()->json(null, 404);
         }
 
         $dmunicipal = $seccion->municipio && $seccion->demarcacion
-            ? $seccion->municipio . ' - D' . $seccion->demarcacion
+            ? $seccion->municipio.' - D'.$seccion->demarcacion
             : null;
 
         return response()->json([
